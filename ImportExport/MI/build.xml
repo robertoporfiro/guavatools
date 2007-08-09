@@ -1,0 +1,26 @@
+<project default="importToALSB" name="MI" basedir=".">
+	
+	<property file="import-export.properties" /> <!-- Properties specific to this project -->
+
+	<property name="config.file" value="../protectionPlus/import-export.properties" />
+	<property name="masterAntFile" value="../conf/import-export-tasks.xml"/>
+	
+
+	<target name="getExportJar">	
+		<ant antfile="${masterAntFile}" target="getExportJar"/>	
+	</target>
+	
+	
+	<target name="zipUp">
+		<ant antfile="${masterAntFile}" target="zipUp"/>
+	</target>
+	
+	
+	<target name="importToALSB">
+		<ant antfile="${masterAntFile}" target="importToALSB"/>
+	</target>
+	
+	<target name="exportConfigFromALSB">
+		<ant antfile="${masterAntFile}" target="exportConfigFromALSB"/>	
+	</target>
+</project>

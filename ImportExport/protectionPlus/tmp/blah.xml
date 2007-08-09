@@ -1,0 +1,1187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-fragment xmlns:ser="http://www.bea.com/wli/sb/services" xmlns:tran="http://www.bea.com/wli/sb/transports" xmlns:env="http://www.bea.com/wli/config/env" xmlns:http="http://www.bea.com/wli/sb/transports/http" xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config">
+  <ser:coreEntry isProxy="true" isEnabled="true" isAutoPublish="false" isTracingEnabled="false">
+    <ser:description/>
+    <ser:binding type="abstract XML"/>
+    <ser:monitoring isEnabled="true">
+      <ser:aggregationInterval>2</ser:aggregationInterval>
+    </ser:monitoring>
+    <ser:reporting>true</ser:reporting>
+    <ser:logging isEnabled="true">
+      <ser:logLevel>debug</ser:logLevel>
+    </ser:logging>
+    <ser:sla-alerting isEnabled="true">
+      <ser:alertLevel>normal</ser:alertLevel>
+    </ser:sla-alerting>
+    <ser:pipeline-alerting isEnabled="true">
+      <ser:alertLevel>normal</ser:alertLevel>
+    </ser:pipeline-alerting>
+  </ser:coreEntry>
+  <ser:endpointConfig>
+    <tran:provider-id>http</tran:provider-id>
+    <tran:inbound>true</tran:inbound>
+    <tran:URI>
+      <env:value>quote/OrigoProtectionTransformXMLPS</env:value>
+    </tran:URI>
+    <tran:inbound-properties/>
+    <tran:all-headers>false</tran:all-headers>
+    <tran:user-header>Host</tran:user-header>
+    <tran:provider-specific>
+      <http:inbound-properties/>
+    </tran:provider-specific>
+  </ser:endpointConfig>
+  <ser:router errorHandler="_onErrorHandler-4635099300291748912-273b19ae.1113282f468.-7f91">
+    <con:pipeline name="Prepare to invoke Quote Service_request" type="request">
+      <con:stage name="log incoming message">
+        <con:comment/>
+        <con:context/>
+        <con:actions>
+          <con4:log>
+            <con4:logLevel>info</con4:logLevel>
+            <con4:expr>
+              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$body</con:xqueryText>
+            </con4:expr>
+            <con4:message>PMD: incoming origo message</con4:message>
+          </con4:log>
+        </con:actions>
+      </con:stage>
+      <con:stage name="add namespace">
+        <con:comment/>
+        <con:context/>
+        <con:actions>
+          <con:rename varName="body" xmlns:con="http://www.bea.com/wli/sb/stages/transform/config">
+            <con:location>
+              <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">.//*</con:xpathText>
+            </con:location>
+            <con:namespace>http://www.origoservices.com</con:namespace>
+          </con:rename>
+        </con:actions>
+      </con:stage>
+      <con:stage name="storeOriginalMessage">
+        <con:comment/>
+        <con:context/>
+        <con:actions>
+          <con2:assign varName="originalMessage">
+            <con2:expr>
+              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$body</con:xqueryText>
+            </con2:expr>
+          </con2:assign>
+        </con:actions>
+      </con:stage>
+      <con:stage name="prepare quote request">
+        <con:comment/>
+        <con:context>
+          <con1:userNsDecl prefix="ogo" namespace="http://www.origoservices.com"/>
+          <con1:userNsDecl prefix="origo" namespace="http://www.origoservices.com"/>
+          <con1:userNsDecl prefix="quot" namespace="http://www.zurich.com/ep/protectionplus/quote"/>
+        </con:context>
+        <con:actions>
+          <con:assign varName="messageBody" xmlns:con="http://www.bea.com/wli/sb/stages/transform/config">
+            <con:expr>
+              <con:xqueryTransform xmlns:con="http://www.bea.com/wli/sb/stages/config">
+                <con:resource ref="protectionPlus/dmc/quote/XQueries/Generic Origo Request to Internal Model"/>
+                <con:param name="message">
+                  <con:path>$body/origo:message</con:path>
+                </con:param>
+              </con:xqueryTransform>
+            </con:expr>
+          </con:assign>
+          <con2:ifThenElse>
+            <con2:case>
+              <con2:condition>
+                <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">exists($messageBody//quot:benefits[quot:benefitType="UNSUPPORTED"])</con:xqueryText>
+              </con2:condition>
+              <con2:actions>
+                <con2:assign varName="internalErrorMessage">
+                  <con2:expr>
+                    <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">"Sorry, this is not supported"</con:xqueryText>
+                  </con2:expr>
+                </con2:assign>
+                <con2:Error>
+                  <con2:errCode>ZURICH-001</con2:errCode>
+                  <con2:message>Sorry, this is not supported</con2:message>
+                </con2:Error>
+              </con2:actions>
+            </con2:case>
+          </con2:ifThenElse>
+          <con2:validate>
+            <con2:schema ref="protectionPlus/dmc/quote/Schemas/eProtectionQuote"/>
+            <con2:schemaType xmlns:quot="http://www.zurich.com/ep/protectionplus/quote">quot:Quote</con2:schemaType>
+            <con2:varName>messageBody</con2:varName>
+            <con2:resultVarName/>
+          </con2:validate>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline name="Prepare to invoke Quote Service_response" type="response">
+      <con:stage name="determine quote status">
+        <con:comment/>
+        <con:context>
+          <con1:userNsDecl prefix="ogo" namespace="http://www.origoservices.com"/>
+          <con1:userNsDecl prefix="quot" namespace="http://www.zurich.com/ep/protectionplus/quote"/>
+        </con:context>
+        <con:actions>
+          <con:assign varName="quoteStatus" xmlns:con="http://www.bea.com/wli/sb/stages/transform/config">
+            <con:expr>
+              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">if(fn:count($quoteServiceResponse/quot:responseStatus/quot:clientIllustrationVariations) >0 )
+    then
+       "Warning"
+    else
+       "Success"</con:xqueryText>
+            </con:expr>
+          </con:assign>
+        </con:actions>
+      </con:stage>
+      <con:stage name="populate response with original request">
+        <con:comment/>
+        <con:context>
+          <con1:userNsDecl prefix="quot" namespace="http://www.zurich.com/ep/protectionplus/quote"/>
+          <con1:userNsDecl prefix="soap" namespace="http://www.zurich.com/ep/protectionplus/quote/services/soapTypes"/>
+        </con:context>
+        <con:actions>
+          <con2:replace varName="body" contents-only="false">
+            <con2:expr>
+              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$originalMessage</con:xqueryText>
+            </con2:expr>
+          </con2:replace>
+        </con:actions>
+      </con:stage>
+      <con:stage name="make initial modifications to reponse">
+        <con:comment/>
+        <con:context>
+          <con1:userNsDecl prefix="ogo" namespace="http://www.origoservices.com"/>
+        </con:context>
+        <con:actions>
+          <con:replace varName="body" contents-only="true" xmlns:con="http://www.bea.com/wli/sb/stages/transform/config">
+            <con:location>
+              <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:message/ogo:m_control/ogo:message_version</con:xpathText>
+            </con:location>
+            <con:expr>
+              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">"/origo/3.2.1/QNBProtectionQuoteResponse.xsd"</con:xqueryText>
+            </con:expr>
+          </con:replace>
+        </con:actions>
+      </con:stage>
+      <con:stage name="copy extra response data">
+        <con:comment>copies everything over from the response, which is not part of client_specific_illustration</con:comment>
+        <con:context>
+          <con1:userNsDecl prefix="quot" namespace="http://www.zurich.com/ep/protectionplus/quote"/>
+          <con1:userNsDecl prefix="ogo" namespace="http://www.origoservices.com"/>
+        </con:context>
+        <con:actions>
+          <con:replace varName="body" contents-only="true" xmlns:con="http://www.bea.com/wli/sb/stages/transform/config">
+            <con:location>
+              <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">/soap-env:Body/ogo:message/ogo:m_control/ogo:message_type</con:xpathText>
+            </con:location>
+            <con:expr>
+              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">"Quotation Response"</con:xqueryText>
+            </con:expr>
+          </con:replace>
+          <con2:insert varName="body">
+            <con2:location>
+              <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">/soap-env:Body/ogo:message/ogo:m_control/ogo:message_version</con:xpathText>
+            </con2:location>
+            <con2:where>after</con2:where>
+            <con2:expr>
+              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;ogo:message_status>Success&lt;/ogo:message_status></con:xqueryText>
+            </con2:expr>
+          </con2:insert>
+          <con2:insert varName="body">
+            <con2:location>
+              <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">/soap-env:Body/ogo:message/ogo:m_content/ogo:b_control/ogo:submission_date</con:xpathText>
+            </con2:location>
+            <con2:where>after</con2:where>
+            <con2:expr>
+              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;ogo:quote_response_status>{$quoteStatus}&lt;/ogo:quote_response_status></con:xqueryText>
+            </con2:expr>
+          </con2:insert>
+          <con2:ifThenElse>
+            <con2:case>
+              <con2:condition>
+                <con1:xqueryConditionExpr>
+                  <con1:boolExpr operator="or">
+                    <con1:compExpr operator="=">
+                      <con1:leftPath>data($body//ogo:b_control/ogo:quote_or_print)</con1:leftPath>
+                      <con1:rightPath>"Quote And Print"</con1:rightPath>
+                    </con1:compExpr>
+                    <con1:compExpr operator="=">
+                      <con1:leftPath>data($body//ogo:b_control/ogo:quote_or_print)</con1:leftPath>
+                      <con1:rightPath>'Print Only'</con1:rightPath>
+                    </con1:compExpr>
+                  </con1:boolExpr>
+                </con1:xqueryConditionExpr>
+              </con2:condition>
+              <con2:actions>
+                <con2:assign varName="documentURL">
+                  <con2:expr>
+                    <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">data($quoteServiceResponse//quot:responseStatus/quot:URL)</con:xqueryText>
+                  </con2:expr>
+                </con2:assign>
+                <con2:insert varName="body">
+                  <con2:location>
+                    <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:message/ogo:m_content/ogo:application</con:xpathText>
+                  </con2:location>
+                  <con2:where>last-child</con2:where>
+                  <con2:expr>
+                    <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config"><![CDATA[<ogo:document_out type="Client Specific Illustration">		
+	<ogo:print_requirements>				
+		<ogo:distribution_method>Web Hosted</ogo:distribution_method>			
+		<ogo:web_host_format>PDF</ogo:web_host_format>		
+	</ogo:print_requirements>		
+	<ogo:web_location document_format="PDF">
+                 {$documentURL}
+	</ogo:web_location>		
+</ogo:document_out>]]></con:xqueryText>
+                  </con2:expr>
+                </con2:insert>
+              </con2:actions>
+            </con2:case>
+            <con2:default>
+              <con2:insert varName="body">
+                <con2:location>
+                  <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:message/ogo:m_content/ogo:application</con:xpathText>
+                </con2:location>
+                <con2:where>last-child</con2:where>
+                <con2:expr>
+                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config"><![CDATA[<ogo:document_out type="Client Specific Illustration">		
+	<ogo:print_requirements>				
+		<ogo:distribution_method>Web Hosted</ogo:distribution_method>			
+		<ogo:web_host_format>PDF</ogo:web_host_format>		
+	</ogo:print_requirements>
+                <ogo:web_location document_format="PDF"></ogo:web_location>			
+</ogo:document_out>]]></con:xqueryText>
+                </con2:expr>
+              </con2:insert>
+            </con2:default>
+          </con2:ifThenElse>
+          <con2:assign varName="refNumber">
+            <con2:expr>
+              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">data($quoteServiceResponse/quot:quoteId)</con:xqueryText>
+            </con2:expr>
+          </con2:assign>
+          <con2:insert varName="body">
+            <con2:location>
+              <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:message/ogo:m_content/ogo:application/ogo:product</con:xpathText>
+            </con2:location>
+            <con2:where>first-child</con2:where>
+            <con2:expr>
+              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;ogo:quote_details>
+    &lt;ogo:reference_number>{$refNumber}&lt;/ogo:reference_number>
+&lt;/ogo:quote_details></con:xqueryText>
+            </con2:expr>
+          </con2:insert>
+        </con:actions>
+      </con:stage>
+      <con:stage name="do variations">
+        <con:comment/>
+        <con:context>
+          <con1:userNsDecl prefix="soap" namespace="http://schemas.xmlsoap.org/soap/envelope/"/>
+          <con1:userNsDecl prefix="qSvc" namespace="http://www.zurich.com/ep/protectionplus/quote/services/soapTypes"/>
+          <con1:userNsDecl prefix="quot" namespace="http://www.zurich.com/ep/protectionplus/quote"/>
+          <con1:userNsDecl prefix="ogo" namespace="http://www.origoservices.com"/>
+          <con1:userNsDecl prefix="tmp" namespace="http://my.tmp"/>
+        </con:context>
+        <con:actions>
+          <con2:ifThenElse>
+            <con2:case>
+              <con2:condition>
+                <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">fn:count($quoteServiceResponse/quot:responseStatus/quot:clientIllustrationVariations) >0</con:xqueryText>
+              </con2:condition>
+              <con2:actions>
+                <con2:assign varName="message">
+                  <con2:expr>
+                    <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$body//ogo:message</con:xqueryText>
+                  </con2:expr>
+                </con2:assign>
+                <con2:foreach>
+                  <con2:variable>quoteServiceResponse</con2:variable>
+                  <con2:expression>
+                    <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//quot:responseStatus/quot:clientIllustrationVariations</con:xpathText>
+                  </con2:expression>
+                  <con2:value-variable>variation</con2:value-variable>
+                  <con2:index-variable>variationIdx</con2:index-variable>
+                  <con2:total-variable>variationTotalCount</con2:total-variable>
+                  <con2:actions>
+                    <con2:replace varName="variation" contents-only="true">
+                      <con2:location>
+                        <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">quot:elementId</con:xpathText>
+                      </con2:location>
+                      <con2:expr>
+                        <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">(: This is a pain, we were using | as the seperator, but we're not allowed. The rules will be rewritten to give us - instead. Then we can remove this step :)
+fn:replace(data($variation/quot:elementId),"\|","-")</con:xqueryText>
+                      </con2:expr>
+                    </con2:replace>
+                    <con2:insert varName="body">
+                      <con2:location>
+                        <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">/</con:xpathText>
+                      </con2:location>
+                      <con2:where>first-child</con2:where>
+                      <con2:expr>
+                        <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;tmp:selector xmlns:tmp="http://my.tmp">  
+ {fn:substring-before($variation/quot:elementId,"-") }
+&lt;/tmp:selector></con:xqueryText>
+                      </con2:expr>
+                    </con2:insert>
+                    <con2:assign varName="id">
+                      <con2:expr>
+                        <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">data($variation/quot:elementId)</con:xqueryText>
+                      </con2:expr>
+                    </con2:assign>
+                    <con2:assign varName="newValue">
+                      <con2:expr>
+                        <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">data($variation/quot:newValue)</con:xqueryText>
+                      </con2:expr>
+                    </con2:assign>
+                    <con2:ifThenElse>
+                      <con2:case>
+                        <con2:condition>
+                          <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">fn:contains($variation/quot:elementId,"premium")</con:xqueryText>
+                        </con2:condition>
+                        <con2:actions>
+                          <con2:assign varName="currentElement">
+                            <con2:expr>
+                              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$body//ogo:message/ogo:m_content/ogo:application/ogo:product/ogo:risk_benefit[@id=data(//tmp:selector)]/ogo:risk_contribution/ogo:contribution</con:xqueryText>
+                            </con2:expr>
+                          </con2:assign>
+                          <con2:ifThenElse>
+                            <con2:case>
+                              <con2:condition>
+                                <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">empty($currentElement/ogo:amount) or not(exists($currentElement/ogo:amount))</con:xqueryText>
+                              </con2:condition>
+                              <con2:actions>
+                                <con2:insert varName="body">
+                                  <con2:location>
+                                    <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:message/ogo:m_content/ogo:application/ogo:product/ogo:risk_benefit[@id=data(//tmp:selector)]/ogo:risk_contribution/ogo:contribution</con:xpathText>
+                                  </con2:location>
+                                  <con2:where>first-child</con2:where>
+                                  <con2:expr>
+                                    <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;ogo:amount  currency="GBP">-1.0&lt;/ogo:amount></con:xqueryText>
+                                  </con2:expr>
+                                </con2:insert>
+                              </con2:actions>
+                            </con2:case>
+                          </con2:ifThenElse>
+                          <con2:assign varName="currentElement">
+                            <con2:expr>
+                              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$body//ogo:message/ogo:m_content/ogo:application/ogo:product/ogo:risk_benefit[@id=data(//tmp:selector)]/ogo:risk_contribution/ogo:contribution</con:xqueryText>
+                            </con2:expr>
+                          </con2:assign>
+                          <con2:replace varName="body" contents-only="false">
+                            <con2:location>
+                              <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:message/ogo:m_content/ogo:application/ogo:product/ogo:risk_benefit[@id=data(//tmp:selector)]/ogo:risk_contribution/ogo:contribution</con:xpathText>
+                            </con2:location>
+                            <con2:expr>
+                              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;ogo:contribution id="{$id}"> 
+   {$currentElement/@*}
+   {$currentElement/*}
+&lt;/ogo:contribution></con:xqueryText>
+                            </con2:expr>
+                          </con2:replace>
+                          <con2:replace varName="body" contents-only="true">
+                            <con2:location>
+                              <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:message/ogo:m_content/ogo:application/ogo:product/ogo:risk_benefit[@id=data(//tmp:selector)]/ogo:risk_contribution/ogo:contribution/ogo:amount</con:xpathText>
+                            </con2:location>
+                            <con2:expr>
+                              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$newValue</con:xqueryText>
+                            </con2:expr>
+                          </con2:replace>
+                        </con2:actions>
+                      </con2:case>
+                    </con2:ifThenElse>
+                    <con2:ifThenElse>
+                      <con2:case>
+                        <con2:condition>
+                          <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">fn:contains($variation/quot:elementId,"sumAssured")</con:xqueryText>
+                        </con2:condition>
+                        <con2:actions>
+                          <con2:insert varName="quoteServiceResponse">
+                            <con2:location>
+                              <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">/</con:xpathText>
+                            </con2:location>
+                            <con2:where>first-child</con2:where>
+                            <con2:expr>
+                              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;tmp:selector xmlns:tmp="http://my.tmp">  
+ {fn:substring-before($variation/quot:elementId,"-") }
+&lt;/tmp:selector></con:xqueryText>
+                            </con2:expr>
+                          </con2:insert>
+                          <con2:assign varName="currentElement">
+                            <con2:expr>
+                              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$body//ogo:message/ogo:m_content/ogo:application/ogo:product/ogo:risk_benefit[@id=data(//tmp:selector)]/ogo:risk_cover/ogo:lump_sum_benefit/ogo:amount</con:xqueryText>
+                            </con2:expr>
+                          </con2:assign>
+                          <con2:assign varName="newValue">
+                            <con2:expr>
+                              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">data($quoteServiceResponse//quot:clientDetails[quot:role="Mph"]/quot:benefits[quot:id=data(//tmp:selector)]/quot:sumAssured)</con:xqueryText>
+                            </con2:expr>
+                          </con2:assign>
+                          <con2:replace varName="quoteServiceResponse" contents-only="true">
+                            <con2:location>
+                              <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//quot:responseStatus/quot:clientIllustrationVariations[quot:elementId="rb1-sumAssured" or quot:elementId="RB1-sumAssured"]/quot:newValue</con:xpathText>
+                            </con2:location>
+                            <con2:expr>
+                              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$newValue</con:xqueryText>
+                            </con2:expr>
+                          </con2:replace>
+                          <con2:replace varName="body" contents-only="false">
+                            <con2:location>
+                              <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:message/ogo:m_content/ogo:application/ogo:product/ogo:risk_benefit[@id=data(//tmp:selector)]/ogo:risk_cover/ogo:lump_sum_benefit/ogo:amount</con:xpathText>
+                            </con2:location>
+                            <con2:expr>
+                              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;ogo:amount id="{$id}"> 
+   {$currentElement/@*}
+   {$currentElement/*}
+&lt;/ogo:amount></con:xqueryText>
+                            </con2:expr>
+                          </con2:replace>
+                          <con2:replace varName="body" contents-only="true">
+                            <con2:location>
+                              <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:message/ogo:m_content/ogo:application/ogo:product/ogo:risk_benefit[@id=data(//tmp:selector)]/ogo:risk_cover/ogo:lump_sum_benefit/ogo:amount</con:xpathText>
+                            </con2:location>
+                            <con2:expr>
+                              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$newValue</con:xqueryText>
+                            </con2:expr>
+                          </con2:replace>
+                          <con2:delete varName="quoteServiceResponse">
+                            <con2:location>
+                              <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//tmp:selector</con:xpathText>
+                            </con2:location>
+                          </con2:delete>
+                        </con2:actions>
+                      </con2:case>
+                    </con2:ifThenElse>
+                    <con2:ifThenElse>
+                      <con2:case>
+                        <con2:condition>
+                          <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">fn:contains($variation/quot:elementId,"policyStartDate")</con:xqueryText>
+                        </con2:condition>
+                        <con2:actions>
+                          <con2:assign varName="currentElement">
+                            <con2:expr>
+                              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$body//ogo:message/ogo:m_content/ogo:application/ogo:product/ogo:policy_term</con:xqueryText>
+                            </con2:expr>
+                          </con2:assign>
+                          <con2:replace varName="body" contents-only="false">
+                            <con2:location>
+                              <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:message/ogo:m_content/ogo:application/ogo:product/ogo:policy_term</con:xpathText>
+                            </con2:location>
+                            <con2:expr>
+                              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;ogo:policy_term id="{$id}">
+   {$currentElement/@*}
+   {$currentElement/*}
+&lt;/ogo:policy_term></con:xqueryText>
+                            </con2:expr>
+                          </con2:replace>
+                          <con2:replace varName="body" contents-only="true">
+                            <con2:location>
+                              <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:message/ogo:m_content/ogo:application/ogo:product/ogo:policy_term/ogo:start_date</con:xpathText>
+                            </con2:location>
+                            <con2:expr>
+                              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$newValue</con:xqueryText>
+                            </con2:expr>
+                          </con2:replace>
+                        </con2:actions>
+                      </con2:case>
+                    </con2:ifThenElse>
+                    <con2:ifThenElse>
+                      <con2:case>
+                        <con2:condition>
+                          <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">fn:contains($variation/quot:elementId,"benefitTerm")</con:xqueryText>
+                        </con2:condition>
+                        <con2:actions>
+                          <con2:ifThenElse>
+                            <con2:case>
+                              <con2:condition>
+                                <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">not(exists($body//ogo:message/ogo:m_content/ogo:application/ogo:product/ogo:risk_benefit[1]/ogo:cover_period/ogo:term))</con:xqueryText>
+                              </con2:condition>
+                              <con2:actions>
+                                <con2:insert varName="body">
+                                  <con2:location>
+                                    <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:message/ogo:m_content/ogo:application/ogo:product/ogo:risk_benefit[1]/ogo:cover_period</con:xpathText>
+                                  </con2:location>
+                                  <con2:where>first-child</con2:where>
+                                  <con2:expr>
+                                    <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;ogo:term/></con:xqueryText>
+                                  </con2:expr>
+                                </con2:insert>
+                              </con2:actions>
+                            </con2:case>
+                          </con2:ifThenElse>
+                          <con2:assign varName="currentElement">
+                            <con2:expr>
+                              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$body//ogo:message/ogo:m_content/ogo:application/ogo:product/ogo:risk_benefit[1]/ogo:cover_period/ogo:term</con:xqueryText>
+                            </con2:expr>
+                          </con2:assign>
+                          <con2:replace varName="body" contents-only="false">
+                            <con2:location>
+                              <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:message/ogo:m_content/ogo:application/ogo:product/ogo:risk_benefit[1]/ogo:cover_period/ogo:term</con:xpathText>
+                            </con2:location>
+                            <con2:expr>
+                              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;ogo:term id="{$id}">
+   {$currentElement/@*}
+   {$currentElement/*}
+&lt;/ogo:term></con:xqueryText>
+                            </con2:expr>
+                          </con2:replace>
+                          <con2:replace varName="body" contents-only="true">
+                            <con2:location>
+                              <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:message/ogo:m_content/ogo:application/ogo:product/ogo:risk_benefit[1]/ogo:cover_period/ogo:term</con:xpathText>
+                            </con2:location>
+                            <con2:expr>
+                              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$newValue</con:xqueryText>
+                            </con2:expr>
+                          </con2:replace>
+                        </con2:actions>
+                      </con2:case>
+                    </con2:ifThenElse>
+                    <con2:delete varName="body">
+                      <con2:location>
+                        <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//tmp:selector</con:xpathText>
+                      </con2:location>
+                    </con2:delete>
+                  </con2:actions>
+                </con2:foreach>
+              </con2:actions>
+            </con2:case>
+          </con2:ifThenElse>
+        </con:actions>
+      </con:stage>
+      <con:stage name="copy client_specific_illustration">
+        <con:comment/>
+        <con:context>
+          <con1:userNsDecl prefix="ogo" namespace="http://www.origoservices.com"/>
+          <con1:userNsDecl prefix="quot" namespace="http://www.zurich.com/ep/protectionplus/quote"/>
+          <con1:userNsDecl prefix="soap" namespace="http://www.zurich.com/ep/protectionplus/quote/services/soapTypes"/>
+        </con:context>
+        <con:actions>
+          <con2:rename varName="quoteServiceResponse">
+            <con2:location>
+              <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//soap:performQuoteResponse</con:xpathText>
+            </con2:location>
+            <con2:localname>Quote</con2:localname>
+            <con2:namespace>http://www.zurich.com/ep/protectionplus/quote</con2:namespace>
+          </con2:rename>
+          <con2:insert varName="body">
+            <con2:location>
+              <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:message/ogo:m_content/ogo:application/ogo:product</con:xpathText>
+            </con2:location>
+            <con2:where>last-child</con2:where>
+            <con2:expr>
+              <con:xqueryTransform xmlns:con="http://www.bea.com/wli/sb/stages/config">
+                <con:resource ref="protectionPlus/dmc/quote/XQueries/ResponseClientSpecficIllustrationMapping"/>
+                <con:param name="quote1">
+                  <con:path>$quoteServiceResponse</con:path>
+                </con:param>
+                <con:param name="origoQuoteRequest">
+                  <con:path>$originalMessage/ogo:message</con:path>
+                </con:param>
+              </con:xqueryTransform>
+            </con2:expr>
+          </con2:insert>
+        </con:actions>
+      </con:stage>
+      <con:stage name="validate response">
+        <con:comment/>
+        <con:context>
+          <con1:userNsDecl prefix="ogo" namespace="http://www.origoservices.com"/>
+        </con:context>
+        <con:actions>
+          <con2:ifThenElse>
+            <con2:case>
+              <con2:condition>
+                <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">(: Do we want validation ? :)
+false()</con:xqueryText>
+              </con2:condition>
+              <con2:actions>
+                <con2:validate>
+                  <con2:schema ref="protectionPlus/dmc/quote/Schemas/OrigoStandards/QNBPROTECTIONQUOTERESPONSE"/>
+                  <con2:schemaElement xmlns:orig="http://www.origoservices.com">orig:message</con2:schemaElement>
+                  <con2:varName>body</con2:varName>
+                  <con2:location>
+                    <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:message</con:xpathText>
+                  </con2:location>
+                  <con2:resultVarName/>
+                </con2:validate>
+              </con2:actions>
+            </con2:case>
+          </con2:ifThenElse>
+        </con:actions>
+      </con:stage>
+      <con:stage name="remove namespace">
+        <con:comment/>
+        <con:context>
+          <con1:userNsDecl prefix="ogo" namespace="http://www.origoservices.com"/>
+        </con:context>
+        <con:actions>
+          <con2:rename varName="body">
+            <con2:location>
+              <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:*</con:xpathText>
+            </con2:location>
+            <con2:namespace/>
+          </con2:rename>
+        </con:actions>
+      </con:stage>
+      <con:stage name="log outgoing message">
+        <con:comment/>
+        <con:context/>
+        <con:actions>
+          <con4:log>
+            <con4:logLevel>info</con4:logLevel>
+            <con4:expr>
+              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$body</con:xqueryText>
+            </con4:expr>
+            <con4:message>PMD: outgoing origo message</con4:message>
+          </con4:log>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline name="_onErrorHandler-4635099300291748912-273b19ae.1113282f468.-7f91" type="error">
+      <con:stage name="log fault">
+        <con:context/>
+        <con:actions>
+          <con:log xmlns:con="http://www.bea.com/wli/sb/stages/logging/config">
+            <con:logLevel>error</con:logLevel>
+            <con:expr>
+              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config"><![CDATA[<protectionPlusError>
+  <fault>
+     {$fault}
+  </fault>
+
+  <responseBody>
+     {$responseBody}
+  </responseBody>
+</protectionPlusError>]]></con:xqueryText>
+            </con:expr>
+            <con:message>PMD: fault with protection plus B2B</con:message>
+          </con:log>
+        </con:actions>
+      </con:stage>
+      <con:stage name="populate response with original request">
+        <con:context/>
+        <con:actions>
+          <con1:replace varName="body" contents-only="false" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+            <con1:expr>
+              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$originalMessage</con:xqueryText>
+            </con1:expr>
+          </con1:replace>
+        </con:actions>
+      </con:stage>
+      <con:stage name="add error response">
+        <con:context>
+          <con1:userNsDecl prefix="origo" namespace="http://www.origoservices.com"/>
+        </con:context>
+        <con:actions>
+          <con2:ifThenElse>
+            <con2:case>
+              <con2:condition>
+                <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">fn:exists($body/origo:message/origo:m_content/origo:b_control/origo:quote_response_status)</con:xqueryText>
+              </con2:condition>
+              <con2:actions>
+                <con2:replace varName="body" contents-only="false">
+                  <con2:location>
+                    <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">./origo:message/origo:m_content/origo:b_control/origo:quote_response_status</con:xpathText>
+                  </con2:location>
+                  <con2:expr>
+                    <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;origo:quote_response_status>Error&lt;/origo:quote_response_status></con:xqueryText>
+                  </con2:expr>
+                </con2:replace>
+              </con2:actions>
+            </con2:case>
+            <con2:default>
+              <con2:insert varName="body">
+                <con2:location>
+                  <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">origo:message/origo:m_content/origo:b_control</con:xpathText>
+                </con2:location>
+                <con2:where>last-child</con2:where>
+                <con2:expr>
+                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;origo:quote_response_status>Error&lt;/origo:quote_response_status></con:xqueryText>
+                </con2:expr>
+              </con2:insert>
+            </con2:default>
+          </con2:ifThenElse>
+          <con2:ifThenElse>
+            <con2:case>
+              <con2:condition>
+                <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">not(empty($internalErrorMessage))</con:xqueryText>
+              </con2:condition>
+              <con2:actions>
+                <con2:insert varName="body">
+                  <con2:location>
+                    <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">./origo:message/origo:m_content/origo:b_control/origo:quote_response_status</con:xpathText>
+                  </con2:location>
+                  <con2:where>after</con2:where>
+                  <con2:expr>
+                    <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config"><![CDATA[<origo:quote_error_note>
+	<origo:short_description>{$internalErrorMessage}</origo:short_description>
+	<origo:reason>Business rule or validation error</origo:reason>
+</origo:quote_error_note>]]></con:xqueryText>
+                  </con2:expr>
+                </con2:insert>
+              </con2:actions>
+            </con2:case>
+            <con2:default>
+              <con2:insert varName="body">
+                <con2:location>
+                  <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">./origo:message/origo:m_content/origo:b_control/origo:quote_response_status</con:xpathText>
+                </con2:location>
+                <con2:where>after</con2:where>
+                <con2:expr>
+                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config"><![CDATA[<origo:quote_error_note>
+	<origo:short_description>System Error</origo:short_description>
+	<origo:reason>Sorry we cannot produce a quote at this time</origo:reason>
+</origo:quote_error_note>]]></con:xqueryText>
+                </con2:expr>
+              </con2:insert>
+            </con2:default>
+          </con2:ifThenElse>
+        </con:actions>
+      </con:stage>
+      <con:stage name="update m_control">
+        <con:context>
+          <con1:userNsDecl prefix="origo" namespace="http://www.origoservices.com"/>
+        </con:context>
+        <con:actions>
+          <con2:ifThenElse>
+            <con2:case>
+              <con2:condition>
+                <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">fn:exists($body/origo:message/origo:m_control/origo:message_status)</con:xqueryText>
+              </con2:condition>
+              <con2:actions>
+                <con2:replace varName="body" contents-only="false">
+                  <con2:location>
+                    <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">./origo:message/origo:m_control/origo:message_status</con:xpathText>
+                  </con2:location>
+                  <con2:expr>
+                    <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;origo:message_status>Success&lt;/origo:message_status></con:xqueryText>
+                  </con2:expr>
+                </con2:replace>
+              </con2:actions>
+            </con2:case>
+            <con2:default>
+              <con2:insert varName="body">
+                <con2:location>
+                  <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">origo:message/origo:m_control</con:xpathText>
+                </con2:location>
+                <con2:where>first-child</con2:where>
+                <con2:expr>
+                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;origo:message_status>Success&lt;/origo:message_status></con:xqueryText>
+                </con2:expr>
+              </con2:insert>
+            </con2:default>
+          </con2:ifThenElse>
+          <con2:ifThenElse>
+            <con2:case>
+              <con2:condition>
+                <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">fn:exists($body/origo:message/origo:m_control/origo:message_type)</con:xqueryText>
+              </con2:condition>
+              <con2:actions>
+                <con2:replace varName="body" contents-only="false">
+                  <con2:location>
+                    <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">./origo:message/origo:m_control/origo:message_type</con:xpathText>
+                  </con2:location>
+                  <con2:expr>
+                    <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;origo:message_type>Quotation Response&lt;/origo:message_type></con:xqueryText>
+                  </con2:expr>
+                </con2:replace>
+              </con2:actions>
+            </con2:case>
+            <con2:default>
+              <con2:insert varName="body">
+                <con2:location>
+                  <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">./origo:message/origo:m_control/origo:message_type</con:xpathText>
+                </con2:location>
+                <con2:where>first-child</con2:where>
+                <con2:expr>
+                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;origo:message_type>Quotation Response&lt;/origo:message_type></con:xqueryText>
+                </con2:expr>
+              </con2:insert>
+            </con2:default>
+          </con2:ifThenElse>
+          <con2:ifThenElse>
+            <con2:case>
+              <con2:condition>
+                <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">fn:exists($body/origo:message/origo:m_control/origo:message_version)</con:xqueryText>
+              </con2:condition>
+              <con2:actions>
+                <con2:replace varName="body" contents-only="false">
+                  <con2:location>
+                    <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">./origo:message/origo:m_control/origo:message_version</con:xpathText>
+                  </con2:location>
+                  <con2:expr>
+                    <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;origo:message_version>/origo/3.2.1/QNBProtectionQuoteResponse.xsd&lt;/origo:message_version></con:xqueryText>
+                  </con2:expr>
+                </con2:replace>
+              </con2:actions>
+            </con2:case>
+            <con2:default>
+              <con2:insert varName="body">
+                <con2:location>
+                  <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">./origo:message/origo:m_control/origo:message_version</con:xpathText>
+                </con2:location>
+                <con2:where>first-child</con2:where>
+                <con2:expr>
+                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;origo:message_version>/origo/3.2.1/QNBProtectionQuoteResponse.xsd&lt;/origo:message_version></con:xqueryText>
+                </con2:expr>
+              </con2:insert>
+            </con2:default>
+          </con2:ifThenElse>
+        </con:actions>
+      </con:stage>
+      <con:stage name="remove namespace">
+        <con:context>
+          <con1:userNsDecl prefix="origo" namespace="http://www.origoservices.com"/>
+        </con:context>
+        <con:actions>
+          <con2:rename varName="body">
+            <con2:location>
+              <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//origo:*</con:xpathText>
+            </con2:location>
+            <con2:namespace/>
+          </con2:rename>
+        </con:actions>
+      </con:stage>
+      <con:stage name="Send error response">
+        <con:actions>
+          <con1:reply isError="false"/>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:flow>
+      <con:pipeline-node name="Prepare to invoke Quote Service">
+        <con:comment/>
+        <con:request>Prepare to invoke Quote Service_request</con:request>
+        <con:response>Prepare to invoke Quote Service_response</con:response>
+      </con:pipeline-node>
+      <con:route-node name="invoke quote service">
+        <con:comment/>
+        <con:context>
+          <con1:userNsDecl prefix="soap" namespace="http://schemas.xmlsoap.org/soap/envelope/"/>
+          <con1:userNsDecl prefix="qSvc" namespace="http://www.zurich.com/ep/protectionplus/quote/services/soapTypes"/>
+          <con1:userNsDecl prefix="quot" namespace="http://www.zurich.com/ep/protectionplus/quote"/>
+          <con1:userNsDecl prefix="ogo" namespace="http://www.origoservices.com"/>
+          <con1:userNsDecl prefix="orig" namespace="http://www.origoservices.com"/>
+        </con:context>
+        <con:actions>
+          <con3:route>
+            <con3:service ref="protectionPlus/dmc/quote/Business Services/ProtectionPlusQuoteOrchestrationService" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+            <con3:operation>performQuote</con3:operation>
+            <con3:outboundTransform>
+              <con2:assign varName="requestBody">
+                <con2:expr>
+                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;soap:Body>
+  &lt;qSvc:performQuoteRequest>
+
+
+  &lt;/qSvc:performQuoteRequest>
+&lt;/soap:Body></con:xqueryText>
+                </con2:expr>
+              </con2:assign>
+              <con2:insert varName="requestBody">
+                <con2:location>
+                  <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">/soap:Body/qSvc:performQuoteRequest</con:xpathText>
+                </con2:location>
+                <con2:where>first-child</con2:where>
+                <con2:expr>
+                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$messageBody/*</con:xqueryText>
+                </con2:expr>
+              </con2:insert>
+              <con2:replace varName="body" contents-only="false">
+                <con2:expr>
+                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$requestBody</con:xqueryText>
+                </con2:expr>
+              </con2:replace>
+            </con3:outboundTransform>
+            <con3:responseTransform>
+              <con2:assign varName="quoteServiceResponse">
+                <con2:expr>
+                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$body/qSvc:performQuoteResponse</con:xqueryText>
+                </con2:expr>
+              </con2:assign>
+              <con2:ifThenElse>
+                <con2:case>
+                  <con2:condition>
+                    <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">data($body//quot:responseStatus/quot:ExceptionIndicator)="true"</con:xqueryText>
+                  </con2:condition>
+                  <con2:actions>
+                    <con2:replace varName="body" contents-only="false">
+                      <con2:expr>
+                        <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$originalMessage</con:xqueryText>
+                      </con2:expr>
+                    </con2:replace>
+                    <con:replace varName="body" contents-only="true" xmlns:con="http://www.bea.com/wli/sb/stages/transform/config">
+                      <con:location>
+                        <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:message/ogo:m_control/ogo:message_version</con:xpathText>
+                      </con:location>
+                      <con:expr>
+                        <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">"/origo/3.2.1/QNBProtectionQuoteResponse.xsd"</con:xqueryText>
+                      </con:expr>
+                    </con:replace>
+                    <con:replace varName="body" contents-only="true" xmlns:con="http://www.bea.com/wli/sb/stages/transform/config">
+                      <con:location>
+                        <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">/soap-env:Body/ogo:message/ogo:m_control/ogo:message_type</con:xpathText>
+                      </con:location>
+                      <con:expr>
+                        <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">"Quotation Response"</con:xqueryText>
+                      </con:expr>
+                    </con:replace>
+                    <con2:insert varName="body">
+                      <con2:location>
+                        <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:message/ogo:m_content/ogo:b_control/ogo:submission_date</con:xpathText>
+                      </con2:location>
+                      <con2:where>after</con2:where>
+                      <con2:expr>
+                        <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;ogo:quote_response_status>Error&lt;/ogo:quote_response_status></con:xqueryText>
+                      </con2:expr>
+                    </con2:insert>
+                    <con2:insert varName="body">
+                      <con2:location>
+                        <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:message/ogo:m_control/ogo:message_version</con:xpathText>
+                      </con2:location>
+                      <con2:where>after</con2:where>
+                      <con2:expr>
+                        <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;ogo:message_status>Success&lt;/ogo:message_status></con:xqueryText>
+                      </con2:expr>
+                    </con2:insert>
+                    <con2:foreach>
+                      <con2:variable>quoteServiceResponse</con2:variable>
+                      <con2:expression>
+                        <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//quot:responseStatus/quot:clientIllustrationNotes</con:xpathText>
+                      </con2:expression>
+                      <con2:value-variable>error</con2:value-variable>
+                      <con2:index-variable>errorIdx</con2:index-variable>
+                      <con2:total-variable>errorTotalCount</con2:total-variable>
+                      <con2:actions>
+                        <con2:ifThenElse>
+                          <con2:case>
+                            <con2:condition>
+                              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">data($error/quot:relatesToElementId)="MAIN_POLICY_HOLDER|dateOfBirth"</con:xqueryText>
+                            </con2:condition>
+                            <con2:actions>
+                              <con2:assign varName="dob">
+                                <con2:expr>
+                                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">data($body//ogo:application/ogo:personal_client[@id="pc1"]/ogo:date_of_birth)</con:xqueryText>
+                                </con2:expr>
+                              </con2:assign>
+                              <con2:replace varName="body" contents-only="false">
+                                <con2:location>
+                                  <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:application/ogo:personal_client[@id="pc1"]/ogo:date_of_birth</con:xpathText>
+                                </con2:location>
+                                <con2:expr>
+                                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;ogo:date_of_birth id="100{$errorIdx}" >{$dob}&lt;/ogo:date_of_birth></con:xqueryText>
+                                </con2:expr>
+                              </con2:replace>
+                              <con2:replace varName="error" contents-only="true">
+                                <con2:location>
+                                  <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">quot:relatesToElementId</con:xpathText>
+                                </con2:location>
+                                <con2:expr>
+                                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">fn:concat("100",xs:string($errorIdx))</con:xqueryText>
+                                </con2:expr>
+                              </con2:replace>
+                            </con2:actions>
+                          </con2:case>
+                        </con2:ifThenElse>
+                        <con2:ifThenElse>
+                          <con2:case>
+                            <con2:condition>
+                              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">data($error/quot:relatesToElementId)="QuoteDetails|policyStartDate"</con:xqueryText>
+                            </con2:condition>
+                            <con2:actions>
+                              <con2:assign varName="policyStartDate">
+                                <con2:expr>
+                                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">data($body//ogo:application/ogo:product/ogo:policy_term/ogo:start_date)</con:xqueryText>
+                                </con2:expr>
+                              </con2:assign>
+                              <con2:replace varName="body" contents-only="false">
+                                <con2:location>
+                                  <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:application/ogo:product/ogo:policy_term/ogo:start_date</con:xpathText>
+                                </con2:location>
+                                <con2:expr>
+                                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;ogo:start_date  id="100{$errorIdx}">{$policyStartDate}&lt;/ogo:start_date></con:xqueryText>
+                                </con2:expr>
+                              </con2:replace>
+                              <con2:replace varName="error" contents-only="true">
+                                <con2:location>
+                                  <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">quot:relatesToElementId</con:xpathText>
+                                </con2:location>
+                                <con2:expr>
+                                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">fn:concat("100",xs:string($errorIdx))</con:xqueryText>
+                                </con2:expr>
+                              </con2:replace>
+                            </con2:actions>
+                          </con2:case>
+                        </con2:ifThenElse>
+                        <con2:ifThenElse>
+                          <con2:case>
+                            <con2:condition>
+                              <con1:xqueryConditionExpr>
+                                <con1:boolExpr operator="and">
+                                  <con1:unaryExpr>
+                                    <con1:path>fn:starts-with(data($error/quot:relatesToElementId),"rb")</con1:path>
+                                  </con1:unaryExpr>
+                                  <con1:unaryExpr>
+                                    <con1:path>fn:substring-after(data($error/quot:relatesToElementId),"|")="term"</con1:path>
+                                  </con1:unaryExpr>
+                                </con1:boolExpr>
+                              </con1:xqueryConditionExpr>
+                            </con2:condition>
+                            <con2:actions>
+                              <con2:assign varName="rbid">
+                                <con2:expr>
+                                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">fn:substring-before(data($error/quot:relatesToElementId),"|")</con:xqueryText>
+                                </con2:expr>
+                              </con2:assign>
+                              <con2:assign varName="termLength">
+                                <con2:expr>
+                                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">data($body//ogo:risk_benefit[@id=$rbid]/ogo:cover_period/ogo:term/ogo:years)</con:xqueryText>
+                                </con2:expr>
+                              </con2:assign>
+                              <con2:replace varName="body" contents-only="false">
+                                <con2:location>
+                                  <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:risk_benefit/ogo:cover_period/ogo:term</con:xpathText>
+                                </con2:location>
+                                <con2:expr>
+                                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;ogo:term id="100{$errorIdx}">
+	&lt;ogo:years>{$termLength}&lt;/ogo:years>
+&lt;/ogo:term></con:xqueryText>
+                                </con2:expr>
+                              </con2:replace>
+                              <con2:replace varName="error" contents-only="true">
+                                <con2:location>
+                                  <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">quot:relatesToElementId</con:xpathText>
+                                </con2:location>
+                                <con2:expr>
+                                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">fn:concat("100",xs:string($errorIdx))</con:xqueryText>
+                                </con2:expr>
+                              </con2:replace>
+                            </con2:actions>
+                          </con2:case>
+                        </con2:ifThenElse>
+                        <con2:ifThenElse>
+                          <con2:case>
+                            <con2:condition>
+                              <con1:xqueryConditionExpr>
+                                <con1:boolExpr operator="and">
+                                  <con1:unaryExpr>
+                                    <con1:path>fn:starts-with(data($error/quot:relatesToElementId),"rb")</con1:path>
+                                  </con1:unaryExpr>
+                                  <con1:unaryExpr>
+                                    <con1:path>fn:substring-after(data($error/quot:relatesToElementId),"|")="sumAssured"</con1:path>
+                                  </con1:unaryExpr>
+                                </con1:boolExpr>
+                              </con1:xqueryConditionExpr>
+                            </con2:condition>
+                            <con2:actions>
+                              <con2:assign varName="rbid">
+                                <con2:expr>
+                                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">fn:substring-before(data($error/quot:relatesToElementId),"|")</con:xqueryText>
+                                </con2:expr>
+                              </con2:assign>
+                              <con2:assign varName="sumAssuredAmount">
+                                <con2:expr>
+                                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$body//ogo:risk_benefit[@id=$rbid]/ogo:risk_cover/ogo:lump_sum_benefit/ogo:amount</con:xqueryText>
+                                </con2:expr>
+                              </con2:assign>
+                              <con2:assign varName="newValue">
+                                <con2:expr>
+                                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;ogo:lump_sum_benefit id="error:{$errorIdx}">
+	&lt;ogo:amount currency="GBP">{$sumAssuredAmount}&lt;/ogo:amount>
+&lt;/ogo:lump_sum_benefit></con:xqueryText>
+                                </con2:expr>
+                              </con2:assign>
+                              <con2:javaCallout varName="newBody">
+                                <con2:location/>
+                                <con2:archive ref="protectionPlus/dmc/quote/Proxy Services/ALSBUtils"/>
+                                <con2:className>com.zurich.ep.protection.alsb.util.ALSBUtils</con2:className>
+                                <con2:method>public static org.apache.xmlbeans.XmlObject replaceValue(org.apache.xmlbeans.XmlObject, java.lang.String, java.lang.String, java.lang.String, java.lang.String)</con2:method>
+                                <con2:expr>
+                                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$body</con:xqueryText>
+                                </con2:expr>
+                                <con2:expr>
+                                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">"//orig:risk_benefit[@id=XXrbidXX]/orig:risk_cover/orig:lump_sum_benefit"</con:xqueryText>
+                                </con2:expr>
+                                <con2:expr>
+                                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">xs:string($newValue)</con:xqueryText>
+                                </con2:expr>
+                                <con2:expr>
+                                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">"XXrbidXX"</con:xqueryText>
+                                </con2:expr>
+                                <con2:expr>
+                                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">xs:string($rbid)</con:xqueryText>
+                                </con2:expr>
+                              </con2:javaCallout>
+                              <con2:assign varName="body">
+                                <con2:expr>
+                                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$newBody</con:xqueryText>
+                                </con2:expr>
+                              </con2:assign>
+                              <con2:replace varName="body" contents-only="false">
+                                <con2:location>
+                                  <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:risk_benefit/ogo:cover_period/ogo:term</con:xpathText>
+                                </con2:location>
+                                <con2:expr>
+                                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">&lt;ogo:term id="100{$errorIdx}">
+	&lt;ogo:years>{$termLength}&lt;/ogo:years>
+&lt;/ogo:term></con:xqueryText>
+                                </con2:expr>
+                              </con2:replace>
+                              <con2:replace varName="error" contents-only="true">
+                                <con2:location>
+                                  <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">quot:relatesToElementId</con:xpathText>
+                                </con2:location>
+                                <con2:expr>
+                                  <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">fn:concat("100",xs:string($errorIdx))</con:xqueryText>
+                                </con2:expr>
+                              </con2:replace>
+                            </con2:actions>
+                          </con2:case>
+                        </con2:ifThenElse>
+                      </con2:actions>
+                    </con2:foreach>
+                    <con2:assign varName="origoErrorMessagesBControl">
+                      <con2:expr>
+                        <con:xqueryTransform xmlns:con="http://www.bea.com/wli/sb/stages/config">
+                          <con:resource ref="protectionPlus/dmc/quote/XQueries/addOrigoErrorMessages"/>
+                          <con:param name="b2BResponse1">
+                            <con:path>$quoteServiceResponse/quot:responseStatus</con:path>
+                          </con:param>
+                        </con:xqueryTransform>
+                      </con2:expr>
+                    </con2:assign>
+                    <con2:foreach>
+                      <con2:variable>origoErrorMessagesBControl</con2:variable>
+                      <con2:expression>
+                        <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">ogo:quote_error_note</con:xpathText>
+                      </con2:expression>
+                      <con2:value-variable>errorMessage</con2:value-variable>
+                      <con2:index-variable>errorMessageIdx</con2:index-variable>
+                      <con2:total-variable>errorMessageTotCount</con2:total-variable>
+                      <con2:actions>
+                        <con2:insert varName="body">
+                          <con2:location>
+                            <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:message/ogo:m_content/ogo:b_control/ogo:quote_response_status</con:xpathText>
+                          </con2:location>
+                          <con2:where>after</con2:where>
+                          <con2:expr>
+                            <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$errorMessage</con:xqueryText>
+                          </con2:expr>
+                        </con2:insert>
+                      </con2:actions>
+                    </con2:foreach>
+                    <con2:rename varName="body">
+                      <con2:location>
+                        <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">//ogo:*</con:xpathText>
+                      </con2:location>
+                      <con2:namespace/>
+                    </con2:rename>
+                    <con1:reply isError="false"/>
+                  </con2:actions>
+                </con2:case>
+              </con2:ifThenElse>
+            </con3:responseTransform>
+          </con3:route>
+        </con:actions>
+      </con:route-node>
+    </con:flow>
+  </ser:router>
+</xml-fragment>
