@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/bea/weblogic92/servicebus/lib/sb-public.jar"/>
+	<classpathentry kind="lib" path="C:/bea/weblogic92/servicebus/lib/sb-core.jar"/>
+	<classpathentry kind="lib" path="C:/bea/weblogic92/servicebus/lib/public.jar"/>
+	<classpathentry kind="lib" path="C:/bea/weblogic92/servicebus/lib/sb-common.jar"/>
+	<classpathentry kind="lib" path="C:/bea/weblogic92/servicebus/lib/sb-internal.jar"/>
+	<classpathentry kind="lib" path="C:/bea/weblogic92/servicebus/lib/stage-utils.jar"/>
+	<classpathentry kind="lib" path="C:/bea/weblogic92/servicebus/lib/uddi_client_v3.jar"/>
+	<classpathentry kind="lib" path="C:/bea/weblogic92/servicebus/lib/uddi_library.jar"/>
+	<classpathentry kind="lib" path="C:/bea/weblogic92/servicebus/lib/sb-schemas.jar"/>
+	<classpathentry kind="lib" path="C:/bea/weblogic92/server/lib/weblogic.jar"/>
+	<classpathentry kind="output" path=""/>
+</classpath>
