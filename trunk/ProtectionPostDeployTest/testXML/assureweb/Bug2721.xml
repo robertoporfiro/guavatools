@@ -1,0 +1,85 @@
+<?xml version="1.0" ?><message><m_control><control_timestamp>2007-07-04T16:10:36</control_timestamp><message_id>B9FD2603-D4DF-4B27-82EA-4646FFC43DCF</message_id><retry_number>0</retry_number><message_type>Quotation Request</message_type><message_version>/origo/3.2.1/QNBProtectionQuoteRequest.xsd</message_version><expected_response_type>synchronous</expected_response_type><initiator_id>ASL</initiator_id><user_id>web57235</user_id><responder_id>zifa</responder_id></m_control><m_content>
+<b_control>
+<service_provider_reference_number>B9FD2603-D4DF-4B27-82EA-4646FFC43DCF</service_provider_reference_number>
+<intermediary_case_reference_number>040707</intermediary_case_reference_number>
+<quote_type>Comparison</quote_type><quote_or_print>Quote Only</quote_or_print>
+<message_version_number>3.2.1</message_version_number>
+<submission_date>2007-07-04</submission_date>
+</b_control>
+<intermediary type="IFA"><sib_number>171342</sib_number><FirmFSARef>171342</FirmFSARef><basis_of_sale><whole_of_market>Yes</whole_of_market></basis_of_sale><company_name>MFS Partners Limited</company_name><agency_address><line_1>24 Spring Road</line_1><line_2>Abingdon</line_2><line_3>Wooton</line_3><line_4>Oxford</line_4><postcode>PL3 4DH</postcode></agency_address></intermediary><application>
+<personal_client id="pc1">
+<title></title>
+<forenames>Brad</forenames>
+<surname>Evans</surname>
+<sex>Male</sex>
+<age definition="Next Whole Year">40</age>
+<tax_rate>22</tax_rate>
+<smoker_ind>No</smoker_ind>
+</personal_client>
+<product type="Term Protection" product_code="DY_P">
+<main_purpose>Personal </main_purpose>
+<increment_ind>No</increment_ind>
+<benefits_required>
+<life_assured personal_client_id="pc1" sequence_number="1"/>
+<death_ind>No</death_ind>
+<death_or_earlier_cic_ind>No</death_or_earlier_cic_ind>
+<critical_illness_ind>Yes</critical_illness_ind>
+<tpd_ind>No</tpd_ind>
+<waiver_ind>No</waiver_ind>
+</benefits_required>
+<risk_benefit id="rb1" type="Life And Health">
+<cover_basis>Single Life</cover_basis>
+<cover_period>
+<term>
+<years>5</years>
+</term>
+</cover_period>
+<risk_cover>
+<risk_event qualifier="Core">Critical Illness</risk_event>
+<life_assured personal_client_id="pc1" sequence_number="1"/>
+<lump_sum_benefit>
+<amount currency="GBP">100000</amount>
+</lump_sum_benefit><cover_indexation>
+<change_basis>Level</change_basis>
+<change_index>Level</change_index>
+</cover_indexation>
+</risk_cover>
+<risk_contribution>
+<cost_basis>Paid For Separately</cost_basis>
+<contribution>
+<frequency>Monthly</frequency>
+</contribution>
+<payment_indexation>
+<change_index>Level</change_index>
+</payment_indexation>
+<main_commission commission_entitlement_id="ce1"/>
+<renewal_commission commission_entitlement_id="ce2"/>
+</risk_contribution>
+</risk_benefit>
+<policy_term>
+<start_date>2007-07-04</start_date>
+</policy_term>
+<product_option type="Reviewable Rates"/>
+<commission_entitlement id="ce1" type="Initial">
+<uplift>
+<percent calculation_basis="Entitlement">100</percent>
+</uplift>
+<indemnity_ind>Yes</indemnity_ind>
+</commission_entitlement>
+<commission_entitlement id="ce2" type="Renewal">
+<uplift>
+<percent calculation_basis="Entitlement">100</percent>
+</uplift>
+<indemnity_ind>Yes</indemnity_ind>
+</commission_entitlement>
+<illustration_basis>
+<contribution_or_benefit_led>Benefit</contribution_or_benefit_led>
+</illustration_basis>
+</product>
+<document_out type="Client Specific Illustration">
+<print_requirements>
+<distribution_method>Web Hosted</distribution_method>
+<web_host_format>PDF</web_host_format>
+</print_requirements>
+</document_out>
+</application></m_content></message>
