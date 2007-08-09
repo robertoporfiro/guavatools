@@ -1,0 +1,112 @@
+<message>
+	<m_control>
+		<control_timestamp>2007-06-05T16:27:52.000
+		</control_timestamp>
+		<message_id>9b3ad772-27cf-43db-89e4-04e50ca9d5d4</message_id>
+		<retry_number>0</retry_number>
+		<message_type>Quotation Request</message_type>
+		<message_version>/origo/3.2/QNBProtectionQuoteRequest.xsd</message_version>
+		<expected_response_type>synchronous</expected_response_type>
+		<initiator_id>PS</initiator_id>
+		<user_id>Tester 1</user_id>
+		<responder_id>Zurich Financial Services</responder_id>
+	</m_control>
+	<m_content>
+		<b_control>
+			<service_provider_reference_number>11</service_provider_reference_number>
+			<intermediary_case_reference_number>11</intermediary_case_reference_number>
+			<quote_type>Single Company</quote_type>
+			<quote_or_print>Quote And Print</quote_or_print>
+			<message_version_number>3.2.1</message_version_number>
+			<submission_date>20070605162752</submission_date>
+		</b_control>
+		<intermediary type="IFA">
+			<FirmFSARef>184591</FirmFSARef>
+			<PrincipalOrNetworkFSARef>184591</PrincipalOrNetworkFSARef>
+			<basis_of_sale>
+				<whole_of_market>Yes</whole_of_market>
+			</basis_of_sale>
+			<company_name>Positive Solutions (Financial Services) Ltd</company_name>
+			<agency_address>
+				<postcode>NE15 8NY</postcode>
+			</agency_address>
+		</intermediary>
+		<application>
+			<personal_client id="pc1">
+				<title>Mr</title>
+				<forenames>Test</forenames>
+				<surname>Zurich</surname>
+				<sex>Male</sex>
+				<date_of_birth>1978-01-01</date_of_birth>
+				<age definition="Next Whole Year">30</age>
+				<tax_rate>22</tax_rate>
+				<smoker_ind>No</smoker_ind>
+			</personal_client>
+			<product type="Term Protection" product_code="DY_E">
+				<main_purpose>Business Protection</main_purpose>
+				<number_of_lives_assured>1</number_of_lives_assured>
+				<increment_ind>No</increment_ind>
+				<risk_benefit id="rb1" type="Life And Health">
+					<cover_basis>Single Life</cover_basis>
+					<cover_period>
+						<term>
+							<years>25</years>
+						</term>
+					</cover_period>
+					<risk_cover>
+						<risk_event>Death</risk_event>
+						<life_assured personal_client_id="pc1" sequence_number="1"/>
+						<lump_sum_benefit>
+							<amount currency="GBP">125000</amount>
+						</lump_sum_benefit>
+						<cover_indexation>
+							<change_basis>Level</change_basis>
+							<change_index>Level</change_index>
+						</cover_indexation>
+					</risk_cover>
+					<risk_contribution>
+						<cost_basis>Paid For Separately</cost_basis>
+						<contribution>
+							<frequency>Monthly</frequency>
+						</contribution>
+						<payment_indexation>
+							<change_index>Level</change_index>
+						</payment_indexation>
+						<main_commission commission_entitlement_id="ce1"/>
+						<renewal_commission commission_entitlement_id="ce2"/>
+					</risk_contribution>
+				</risk_benefit>
+				<policy_term>
+					<start_date>2007-06-05</start_date>
+					<term>
+						<years>25</years>
+					</term>
+				</policy_term>
+				<loan_details>
+					<amount currency="GBP">125000</amount>
+					<interest_rate>10</interest_rate>
+				</loan_details>
+				<product_option type="Guaranteed Rates"/>
+				<commission_entitlement id="ce1" type="Initial">
+					<uplift>
+						<percent calculation_basis="Entitlement">100</percent>
+					</uplift>
+				</commission_entitlement>
+				<commission_entitlement id="ce2" type="Renewal">
+					<uplift>
+						<percent calculation_basis="Entitlement">100</percent>
+					</uplift>
+				</commission_entitlement>
+				<illustration_basis>
+					<contribution_or_benefit_led>Benefit</contribution_or_benefit_led>
+				</illustration_basis>
+				<document_out type="Client Specific Illustration">
+					<print_requirements>
+						<distribution_method>Web Hosted</distribution_method>
+						<web_host_format>PDF</web_host_format>
+					</print_requirements>
+				</document_out>
+			</product>
+		</application>
+	</m_content>
+</message>

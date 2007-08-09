@@ -1,0 +1,224 @@
+LPP Reviewable Test Cases,,,,,,,
+,IFA,,IFA Comm Flex,,IFA premium led,,IFA Prem Led Com Flex
+Case Number,2,5,17,20,26,27,32
+,,,,,,,
+INPUTS,,,,,,,
+,,,,,,,
+Premium Rate Set,2,2,2,2,2,2,2
+Policy Type,Accelerated,Standalone CI,Standalone CI,Excess CI,Accelerated,Standalone CI,Accelerated
+Indexation,             ,             ,Y,Y,,             ,             
+Indexation Rate,,,10%,5%,,,
+Life ,Joint Life,Single Life,Joint Life,Single Life,Joint Life,Single Life,Single Life
+Submission Type,Electronic,Paper,Electronic,Paper,Electronic,Paper,Electronic
+,,,,,,,
+Term,40,13,5,20,25,18,8
+Frequency,Annual,Monthly,Monthly,Annual,Monthly,Annual,Annual
+,,,,,,,
+Life Assured 1,MS,MNS,MNS,FNS,MNS,MS,FS
+ANQB 1,18.75,36.50,40.50,49.75,37.75,28.00,50.75
+Occ Group 1    ,n/a,n/a,n/a,n/a,n/a,n/a,n/a
+Def Period 1   ,n/a,n/a,n/a,n/a,n/a,n/a,n/a
+,,,,,,,
+Life Assured 2,FS,,FNS,,FS,,
+ANQB 2,21.00,,45.25,,35.00,,
+Occ Group 2,n/a,,n/a,,n/a,,
+Def Period 2,n/a,,n/a,,n/a,,
+,,,,,,,
+Life Cover    ,"350,000",0,0,"70,000",n/a,n/a,n/a
+Critical Illness Cover,"350,000","50,000","1,000,000","100,000",n/a,n/a,n/a
+WOC 1    ,,Y,Y,,Y,Y,
+WOC 2  ,Y,             ,Y,,Y,             ,             
+TPD 1 ,Y,             ,Y,             ,Y,             ,Y
+TPD 2  ,Y,             ,Y,             ,Y,             ,             
+TPD Term 1,40,,5,,23,,8
+TPD Term 2,40,,5,,25,,
+PPB 1,,,,,,,
+PPB 2,,,,,,,
+PPB Term 1,,,,,,,
+PPB Term 2,,,,,,,
+,,,,,,,
+Combined Premium Required,n/a,n/a,n/a,n/a,25.00,,250.00
+Standalone CI Premium Required,n/a,n/a,n/a,n/a,,2500.00,
+,,,,,,,
+Commission type,Indemnity,Accruals,Indemnity,Accruals,Indemnity,Accruals,Indemnity
+Adviser Uplift (%),160,150,155,160,150,155,140
+Maxium initial commission period (years),4,4,4,4,4,4,4
+Commission flex IC (% retained),,,0,75,,,60
+Commission flex RC (retain RC Y/N ?),,,Y,N,,,Y
+,,,,,,,
+,,,,,,,,,
+Portals applicable,ALL,ALL,ALL,Exchange,ALL,ALL,ALL,,Total
+No. of Cases,4,4,4,1,4,4,4,,25
+EXPECTED RESULTS,,,,,,,,,
+,,,,,,,,,
+Pre-flex,,,,,,,,,
+,,,,,,,,,
+Without Ratings,,,,,,,,,
+Life cover premium 1,0,0,0,0,0,0,0,,
+Critical illness premium 1,0,12.56,272.27,319.04,0,2420.98,0,,
+Combined cover premium 1,1461.82,0,0,783.51,9.63,0,215.14,,
+TPD premium 1,20.53,0,5.94,0,0.2,0,22.41,,
+PPB (excl WOC) premium 1,0,0,0,0,0,0,0,,
+PPB woc cost premium 1 ,0,0,0,0,0,0,0,,
+WoC premium 1,0,0.3,20.32,0,0.48,49.02,0,,
+Life cover premium 2,0,0,0,0,0,0,0,,
+Critical illness premium 2,0,0,388.83,0,0,0,0
+Combined cover premium 2,1244.55,0,0,0,10.74,0,0
+TPD premium 2,94.31,0,7.92,0,0.86,0,0
+PPB (excl WOC) premium 2,0,0,0,0,0,0,0
+PPB woc cost premium 2,0,0,0,0,0,0,0
+WoC premium 2,71.28,0,27.1,0,0.6,0,0
+FPA,30,2.5,2.5,30,2.5,30,30
+Total Premium,2922.49,15.36,724.88,1132.55,25,2500,267.55
+,,,,,,,
+Total PPB premium 1,0,0,0,0,0,0,0
+Total PPB premium 2,0,0,0,0,0,0,0
+,,,,,,,
+Life cover sum assured available,,,,,0,0,0
+Critical illness sum assured available,,,,,0,924798,0
+Combined cover available,,,,,22568,0,13698
+,,,,,,,
+Total Indemnity Commission,6110.81,0.00,8524.24,0.00,566.81,0.00,366.72,
+Total Accruals Commission,0.00,386.88,0.00,2536.92,0.00,5425.00,0.00,
+Accruals Commission Year 1,0.00,96.72,0.00,634.23,0.00,1356.25,0.00,
+Accruals Commission Year 2,0.00,96.72,0.00,634.23,0.00,1356.25,0.00,
+Accruals Commission Year 3,0.00,96.72,0.00,634.23,0.00,1356.25,0.00,
+Accruals Commission Year 4,0.00,96.72,0.00,634.23,0.00,1356.25,0.00,
+IC Period (months),48,48,22,48,48,48,34,
+Renewal commission (annual amount),73.06,4.56,217.44,28.31,7.56,62.50,6.69,
+Renewal commission Year 1,0.00,0.00,0.00,0.00,0.00,0.00,0.00,
+Renewal commission Year 2,0.00,0.00,36.24,0.00,0.00,0.00,0.00,
+Renewal commission Year 3,0.00,0.00,217.44,0.00,0.00,0.00,1.12,
+Renewal commission Year 4,0.00,0.00,217.44,0.00,0.00,0.00,6.69,
+Renewal commission Year 5+,73.06,4.56,217.44,28.31,7.56,62.50,6.69,
+Advisor IC Rate,170.00%,150.00%,165.00%,160.00%,160.00%,155.00%,150.00%,
+IC Rate per year,59.50%,52.50%,57.75%,56.00%,56.00%,54.25%,52.50%,
+IC rate per year multiplied by IC period (years),238.00%,210.00%,105.88%,224.00%,224.00%,217.00%,148.75%,
+Renewal commission rate (per year),2.50%,2.50%,2.50%,2.50%,2.50%,2.50%,2.50%
+,,,,,,,
+Indexation Rate,0.0%,0.0%,10.0%,5.0%,0.0%,0.0%,0.0%
+,,,,,,,
+Post-flex,,,,,,,
+,,,,,,,
+Without Ratings,,,,,,,
+Life cover premium 1,,,0.00,0.00,,,0.00
+Critical illness premium 1,,,223.09,304.43,,,0.00
+Combined cover premium 1,,,0.00,747.64,,,199.25
+TPD premium 1,,,4.87,0.00,,,20.75
+PPB (excl WOC) premium 1,,,0.00,0.00,,,0.00
+PPB woc cost premium 1 ,,,0.00,0.00,,,0.00
+WoC premium 1,,,16.65,0.00,,,0.00
+Life cover premium 2,,,0.00,0.00,,,0.00
+Critical illness premium 2,,,318.60,0.00,,,0.00
+Combined cover premium 2,,,0.00,0.00,,,0.00
+TPD premium 2,,,6.49,0.00,,,0.00
+PPB (excl WOC) premium 2,,,0.00,0.00,,,0.00
+PPB woc cost premium 2,,,0.00,0.00,,,0.00
+WoC premium 2,,,22.21,0.00,,,0.00
+FPA,,,2.50,30.00,,,30.00
+Total Premium,,,594.4,1082.07,,,250.00
+,,,,,,,
+Total PPB premium 1,,,0.00,0.00,,,0.00
+Total PPB premium 2,,,0.00,0.00,,,0.00
+,,,,,,,
+Life cover sum assured available,,,,,,,0
+Critical illness sum assured available,,,,,,,0
+Combined cover available,,,,,,,13698
+,,,,,,,
+Total Indemnity Commission,,,0.00,0.00,,,220.03
+Total Accruals Commission,,,0.00,1902.68,,,0.00
+Accruals Commission Year 1,,,0.00,475.67,,,0.00
+Accruals Commission Year 2,,,0.00,475.67,,,0.00
+Accruals Commission Year 3,,,0.00,475.67,,,0.00
+Accruals Commission Year 4,,,0.00,475.67,,,0.00
+IC Period (months),,,22,48,,,34
+Renewal commission (annual amount),,,178.32,0.00,,,6.25
+Renewal commission Year 1,,,0.00,0.00,,,0.00
+Renewal commission Year 2,,,29.72,0.00,,,0.00
+Renewal commission Year 3,,,178.32,0.00,,,1.04
+Renewal commission Year 4,,,178.32,0.00,,,6.25
+Renewal commission Year 5+,,,178.32,0.00,,,6.25
+Advisor IC Rate,,,0.00%,125.60%,,,96.32%
+IC Rate per year,,,0.00%,43.96%,,,33.71%
+IC rate per year multiplied by IC period (years),,,0.00%,175.84%,,,95.51%
+Factor applied to IC rate,,,0.00%,78.50%,,,64.21%
+Factor applied to IC,,,0.00%,75.00%,,,60.00%
+Renewal commission rate (per year),,,2.5%,0.0%,,,2.5%
+Unit Allocation Rate,,,121.95%,104.67%,,,107.02%
+,,,,,,,
+Indexation rate,,,10.0%,5.0%,,,0.0%
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,

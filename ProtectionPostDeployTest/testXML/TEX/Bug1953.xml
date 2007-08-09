@@ -1,0 +1,124 @@
+  <message xmlns="">
+    <m_control>
+      <control_timestamp>2007-05-25T14:03:41.8090</control_timestamp>
+      <message_id>1b0e67c2-fad9-4fc7-b62d-16f15d9a7462</message_id>
+      <retry_number>0</retry_number>
+      <message_type>Quotation Request</message_type>
+      <message_version>/origo/3.2.1/QNBProtectionQuoteRequest.xsd</message_version>
+      <expected_response_type>synchronous</expected_response_type>
+      <initiator_id>Exchange, The</initiator_id>
+      <initiator_orchestration_id>664739</initiator_orchestration_id>
+      <responder_id>Zurich Assurance</responder_id>
+    </m_control>
+    <m_content>
+      <b_control>
+        <service_provider_reference_number>664739</service_provider_reference_number>
+        <intermediary_case_reference_number>070525140341813</intermediary_case_reference_number>
+        <quote_type>Comparison</quote_type>
+        <quote_or_print>Quote Only</quote_or_print>
+        <generic_quote_ind>No</generic_quote_ind>
+        <message_version_number>3.2.1</message_version_number>
+        <submission_date>2007-05-25</submission_date>
+        <tpsdata>
+          <billingproducttype>155</billingproducttype>
+          <billingproductsubtype>0</billingproductsubtype>
+          <billingproduct>34</billingproduct>
+          <URLofIP>https://systest-quote-ep.zurich.co.uk/quote/OrigoProtectionTransformXMLPS</URLofIP>
+          <IPtimeout>30000</IPtimeout>
+        </tpsdata>
+      </b_control>
+      <intermediary type="IFA">
+        <sib_number>432886</sib_number>
+        <FirmFSARef>432886</FirmFSARef>
+        <basis_of_sale>
+          <whole_of_market>Yes</whole_of_market>
+        </basis_of_sale>
+        <company_name>Zurich Life Assurance Co (Demo)</company_name>
+        <branch_name>Zurich Life Assurance Co (Demo)</branch_name>
+        <agency_number>ZUR610136</agency_number>
+        <agency_address>
+          <postcode>PO15 7JY</postcode>
+        </agency_address>
+        <contact_details>
+          <name>Stuart Hogton</name>
+        </contact_details>
+      </intermediary>
+      <application>
+        <personal_client id="pc1">
+          <title>Ms</title>
+          <forenames>Joanne</forenames>
+          <surname>Hayes</surname>
+          <sex>Female</sex>
+          <date_of_birth>1966-08-13</date_of_birth>
+          <tax_rate>0</tax_rate>
+          <employment_contract>
+            <occupation code="RAB01959">Receptionist</occupation>
+          </employment_contract>
+          <smoker_ind>Yes</smoker_ind>
+          <preferred_life_ind>No</preferred_life_ind>
+        </personal_client>
+        <product type="Term Protection" product_code="DY_P">
+          <main_purpose>Business Protection</main_purpose>
+          <increment_ind>No</increment_ind>
+          <benefits_required>
+            <life_assured personal_client_id="pc1" sequence_number="1"/>
+            <death_ind>No</death_ind>
+            <death_or_earlier_cic_ind>No</death_or_earlier_cic_ind>
+            <critical_illness_ind>Yes</critical_illness_ind>
+            <tpd_ind>Yes</tpd_ind>
+            <waiver_ind>No</waiver_ind>
+            <unemployment_ind>No</unemployment_ind>
+          </benefits_required>
+          <risk_benefit id="rb1" type="Life And Health">
+            <cover_basis>Single Life</cover_basis>
+            <cover_period>
+              <term>
+                <years>20</years>
+              </term>
+            </cover_period>
+            <risk_cover>
+              <risk_event qualifier="Core">Critical Illness</risk_event>
+              <risk_event qualifier="Own Occupation">Total And Permanent Disability</risk_event>
+              <life_assured personal_client_id="pc1" sequence_number="1"/>
+              <cover_indexation>
+                <change_basis>Increasing</change_basis>
+                <change_index>Fixed</change_index>
+                <change_percent>5.00</change_percent>
+              </cover_indexation>
+            </risk_cover>
+            <risk_contribution>
+              <cost_basis>Paid For Separately</cost_basis>
+              <contribution>
+                <amount currency="GBP">1000.00</amount>
+                <frequency>Annually</frequency>
+              </contribution>
+              <payment_indexation>
+                <change_index>Fixed</change_index>
+                <change_percent>5.0</change_percent>
+              </payment_indexation>
+              <main_commission commission_entitlement_id="CE1"/>
+              <renewal_commission commission_entitlement_id="CE2"/>
+            </risk_contribution>
+          </risk_benefit>
+          <policy_term>
+            <start_date>2007-05-31</start_date>
+          </policy_term>
+          <product_option type="Reviewable Rates"/>
+          <commission_entitlement id="CE1" type="Initial">
+            <sacrifice>
+              <percent calculation_basis="Entitlement">50.00</percent>
+            </sacrifice>
+            <indemnity_ind>Yes</indemnity_ind>
+          </commission_entitlement>
+          <commission_entitlement id="CE2" type="Renewal">
+            <uplift>
+              <percent calculation_basis="Entitlement">99.00</percent>
+            </uplift>
+          </commission_entitlement>
+          <illustration_basis>
+            <contribution_or_benefit_led>Contribution</contribution_or_benefit_led>
+          </illustration_basis>
+        </product>
+      </application>
+    </m_content>
+  </message>

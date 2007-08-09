@@ -1,0 +1,125 @@
+  <message xmlns="">
+    <m_control>
+      <control_timestamp>2007-06-09T12:50:13.8480</control_timestamp>
+      <message_id>b583faf8-22d0-4dc1-8d22-8c3b2ff6f50b</message_id>
+      <retry_number>0</retry_number>
+      <message_type>Quotation Request</message_type>
+      <message_version>/origo/3.2.1/QNBProtectionQuoteRequest.xsd</message_version>
+      <expected_response_type>synchronous</expected_response_type>
+      <initiator_id>Exchange, The</initiator_id>
+      <initiator_orchestration_id>671148</initiator_orchestration_id>
+      <responder_id>Zurich Assurance</responder_id>
+    </m_control>
+    <m_content>
+      <b_control>
+        <service_provider_reference_number>671148</service_provider_reference_number>
+        <intermediary_case_reference_number>070609125012470</intermediary_case_reference_number>
+        <quote_type>Comparison</quote_type>
+        <quote_or_print>Quote Only</quote_or_print>
+        <generic_quote_ind>No</generic_quote_ind>
+        <message_version_number>3.2.1</message_version_number>
+        <submission_date>2007-06-09</submission_date>
+        <tpsdata>
+          <billingproducttype>160</billingproducttype>
+          <billingproductsubtype>0</billingproductsubtype>
+          <billingproduct>36</billingproduct>
+          <URLofIP>https://systest-quote-ep.zurich.co.uk/quote/OrigoProtectionTransformXMLPS</URLofIP>
+          <IPtimeout>30000</IPtimeout>
+        </tpsdata>
+      </b_control>
+      <intermediary type="IFA">
+        <sib_number>432886</sib_number>
+        <FirmFSARef>432886</FirmFSARef>
+        <basis_of_sale>
+          <whole_of_market>Yes</whole_of_market>
+        </basis_of_sale>
+        <company_name>Zurich Life Assurance Co (Demo)</company_name>
+        <branch_name>Zurich Life Assurance Co (Demo)</branch_name>
+        <agency_number>ZUR610136</agency_number>
+        <agency_address>
+          <postcode>PO15 7JY</postcode>
+        </agency_address>
+        <contact_details>
+          <name>Stuart Hogton</name>
+        </contact_details>
+      </intermediary>
+      <application>
+        <personal_client id="pc1">
+          <title>Mr</title>
+          <forenames>Lembera</forenames>
+          <surname>Hussainpuri</surname>
+          <sex>Male</sex>
+          <date_of_birth>1980-05-02</date_of_birth>
+          <tax_rate>22</tax_rate>
+          <smoker_ind>No</smoker_ind>
+          <preferred_life_ind>No</preferred_life_ind>
+        </personal_client>
+        <product type="Term Protection" product_code="DU_P">
+          <main_purpose>Mortgage Protection</main_purpose>
+          <increment_ind>No</increment_ind>
+          <benefits_required>
+            <life_assured personal_client_id="pc1" sequence_number="1"/>
+            <death_ind>No</death_ind>
+            <death_or_earlier_cic_ind>No</death_or_earlier_cic_ind>
+            <critical_illness_ind>Yes</critical_illness_ind>
+            <tpd_ind>Yes</tpd_ind>
+            <waiver_ind>No</waiver_ind>
+            <unemployment_ind>No</unemployment_ind>
+          </benefits_required>
+          <risk_benefit id="rb1" type="Life And Health">
+            <cover_basis>Single Life</cover_basis>
+            <cover_period>
+              <term>
+                <years>5</years>
+              </term>
+            </cover_period>
+            <risk_cover>
+              <risk_event qualifier="Core">Critical Illness</risk_event>
+              <risk_event qualifier="Suited Occupation">Total And Permanent Disability</risk_event>
+              <life_assured personal_client_id="pc1" sequence_number="1"/>
+              <lump_sum_benefit>
+                <amount currency="GBP">50000</amount>
+              </lump_sum_benefit>
+              <cover_indexation>
+                <change_basis>Decreasing - Mortgage Protection</change_basis>
+              </cover_indexation>
+            </risk_cover>
+            <risk_contribution>
+              <cost_basis>Paid For Separately</cost_basis>
+              <contribution>
+                <frequency>Monthly</frequency>
+              </contribution>
+              <payment_indexation>
+                <change_index>Level</change_index>
+              </payment_indexation>
+              <main_commission commission_entitlement_id="CE1"/>
+              <renewal_commission commission_entitlement_id="CE2"/>
+            </risk_contribution>
+          </risk_benefit>
+          <policy_term>
+            <start_date>2007-06-09</start_date>
+          </policy_term>
+          <loan_details>
+            <amount currency="GBP">50000</amount>
+            <interest_rate>6.99</interest_rate>
+          </loan_details>
+          <product_option type="Reviewable Rates"/>
+          <commission_entitlement id="CE1" type="Initial">
+            <uplift>
+              <percent calculation_basis="Entitlement">100</percent>
+            </uplift>
+            <indemnity_ind>Yes</indemnity_ind>
+          </commission_entitlement>
+          <commission_entitlement id="CE2" type="Renewal">
+            <uplift>
+              <percent calculation_basis="Entitlement">100</percent>
+            </uplift>
+          </commission_entitlement>
+          <illustration_basis>
+            <contribution_or_benefit_led>Benefit</contribution_or_benefit_led>
+            <assumed_interest_rate>1.2</assumed_interest_rate>
+          </illustration_basis>
+        </product>
+      </application>
+    </m_content>
+  </message>
