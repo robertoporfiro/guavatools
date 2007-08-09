@@ -1,0 +1,20 @@
+<project default="runWLSTScript">
+  <!-- ALSB domain creation project -->
+    
+  <property environment="env"/>
+  <property name="domain.script"   	  value="script.py"/>
+  <property name="config.file"     	  value="wlst.properties"/>
+  <property name="build"                  value="build"/>
+  <property name="dist"                   value="dist"/>
+
+  <taskdef name="wlst" classname="weblogic.ant.taskdefs.management.WLSTTask"/>
+
+  <target name="runWLSTScript">
+    <echo message="scriptname: ${domain.script}"/>
+    <java classname="weblogic.WLST" fork="true">
+        <arg line="${domain.script} ${config.file} ${custFile} "/>
+    </java>
+  </target>
+
+
+</project>
