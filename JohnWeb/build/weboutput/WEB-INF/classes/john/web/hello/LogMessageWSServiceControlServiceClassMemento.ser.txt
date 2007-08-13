@@ -1,0 +1,26 @@
+ServiceClass class = john.web.hello.LogMessageWSServiceControl
+tns = null
+WSDL path relative to JCX = null
+WSDL resource path = john/web/hello/LogMessageWS.wsdl
+WSDL service name = {http://john/ws}LogMessageWSService
+_use81BindingTypes = false
+_has81Conversation = false
+_callbackJmsQueueName = weblogic.wsee.DefaultCallbackQueue
+_serviceMethodsMap
+     [logMessage]=[[ServiceMethod name = logMessage, return type = void, argument string = java.lang.String message_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws}LogMessageWSSoapPort], transports = {http://john/ws}LogMessageWSSoapPort->http]]
+_operationNameMap
+     [{http://john/ws}logMessage]=[[ServiceMethod name = logMessage, return type = void, argument string = java.lang.String message_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws}LogMessageWSSoapPort], transports = {http://john/ws}LogMessageWSSoapPort->http]]
+_portProtocolMap
+     [{http://john/ws}LogMessageWSSoapPort]=[3]
+_portTransportMap
+     [{http://john/ws}LogMessageWSSoapPort]=[http]
+_portLocationMap
+     [{http://john/ws}LogMessageWSSoapPort]=[http://localhost:7021/JohnWS/LogMessageWS]
+_serviceMethods
+     [[ServiceMethod name = logMessage, return type = void, argument string = java.lang.String message_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws}LogMessageWSSoapPort], transports = {http://john/ws}LogMessageWSSoapPort->http]]
+_sortedPortProtocols
+     [com.bea.control.servicecontrol.util.memento.v1.ServicePortProtocolV1@1ba5004]
+Callback Endpoint Context Path:null
+Callback Endpoint Service URI:null
+EightOneCallbackMethods: 
+Callback Class = null

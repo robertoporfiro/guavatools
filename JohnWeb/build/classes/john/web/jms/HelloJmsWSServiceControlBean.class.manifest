@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+
+Name: john/web/jms/HelloJmsWSServiceControlBean.class
+Java-Bean: true
+Beehive-Control: true

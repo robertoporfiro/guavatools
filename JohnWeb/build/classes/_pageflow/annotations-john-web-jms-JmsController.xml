@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<processed-annotations>
+  <!-- Generated from john.web.jms.JmsController on Mon Aug 13 09:39:42 BST 2007 -->
+  <type-name>john.web.jms.JmsController</type-name>
+  <annotated-element>
+    <element-name>logMessageJmsWSServiceControl</element-name>
+    <annotation>
+      <annotation-name>org.apache.beehive.controls.api.bean.Control</annotation-name>
+    </annotation>
+  </annotated-element>
+  <annotated-element>
+    <element-name>helloJmsWSServiceControl</element-name>
+    <annotation>
+      <annotation-name>org.apache.beehive.controls.api.bean.Control</annotation-name>
+    </annotation>
+  </annotated-element>
+</processed-annotations>
