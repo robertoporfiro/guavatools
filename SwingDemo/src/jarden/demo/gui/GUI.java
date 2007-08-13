@@ -1,7 +1,11 @@
 package jarden.demo.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -18,7 +22,7 @@ public class GUI {
     
     // Create all the bits that we need in the GUI.
     // I'm going to do this in Swing, which basically means adding J to the beginning of each word: JButton, JTextField etc
-   
+    //-----------------Page One Stuff-------------------------
     JTextField nameField;
     JLabel nameLabel = new JLabel("name");
     JTextField addressField;
@@ -36,6 +40,18 @@ public class GUI {
     // a blank panel to fill the grid layout with
     JPanel blankPanel = new JPanel();
     JPanel bigBlankPanel = new JPanel();
+    
+    //--------------End Page One Stuff-------------------------
+    
+
+    //--------------Page Two Stuff-------------------------
+    JPanel pageTwo = new JPanel();
+    JLabel pageTwoLabel = new JLabel();
+    JButton pageTwoSubmitButton = new JButton("back to page one");
+    //--------------Page Two Stuff-------------------------
+    
+    
+    
     JFrame frame= new JFrame("Test GUI");
     
     public GUI(DummyAgent agent) {
@@ -45,12 +61,20 @@ public class GUI {
 
     public void launch(){
         buildPageOne();
+        buildPageTwo();
+        addListeners();
         displayPage(pageOne);        
        
     }
     
     
     private void displayPage(JPanel pageName) {
+        if(pageName == pageOne){
+            frame.getContentPane().remove(pageTwo);
+        }
+        else{
+            frame.getContentPane().remove(pageOne);
+        }
         frame.getContentPane().add(pageName,BorderLayout.CENTER);
         frame.pack();
         frame.setVisible(true);        
@@ -63,15 +87,24 @@ public class GUI {
         addressField = configurePageOneTextField(addressLabel);
         yearsOfJavaField= configurePageOneTextField(yearsLabel);
         companyField=configurePageOneTextField(companyLabel);
+        tickerDataField = configurePageOneTextField(tickerDataLabel);
+        
+        tickerDataField.setForeground(new Color(150,0,0));
+        tickerDataField.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         JPanel buttonSpacer = new JPanel();
         buttonSpacer.add(pageOneSubmitButton);
         pageOne.add(buttonSpacer);
-        
-        
-        addListeners();
-             
+
     }
+    
+    
+    private void buildPageTwo(){
+        pageTwoLabel.setText("Thanks for submitting. When you click back, you should see a new stock ticker symbol");
+        pageTwo.add(pageTwoSubmitButton);
+        pageTwo.add(pageTwoLabel);
+    }
+    
 
 
     /**
@@ -92,12 +125,13 @@ public class GUI {
 
 
     public void handleIncomingAgentData(String data){
-        
+        this.tickerDataField.setText(data);
     }
     
 
 
     private void addListeners() {
+        // first of all, add the window listener, so that we can close the window
         frame.addWindowListener(new WindowAdapter(){
 
             @Override
@@ -109,8 +143,35 @@ public class GUI {
             
         });
         
+        // then add a listener to the button.
+        
+        pageOneSubmitButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent event) {
+                System.out.println("Button pushed");
+                // ignore the event, we are just interested in the fact that the button has been pushed
+                //Pull the data out of the GUI, and create a UserData object from it.
+                UserData userData = new UserData();
+                userData.setName(nameField.getText());
+                userData.setAddress(addressField.getText());
+                userData.setYearsOfJava(yearsOfJavaField.getText());
+                userData.setStockCode(companyField.getText());
+                
+                // publish the new userData to the agent
+                agent.setCurrentUserData(userData);
+                displayPage(pageTwo); 
+            }            
+        });
+        
+        pageTwoSubmitButton.addActionListener(new ActionListener(){
+
+            public void actionPerformed(ActionEvent event) {          
+                displayPage(pageOne); 
+            }
+        });
+        
     }
-    
+
+
     
     
 }

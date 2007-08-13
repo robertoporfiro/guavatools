@@ -12,15 +12,15 @@ import java.util.Random;
  */
 public class DummyAgent {
     String tickerLabel = "BEASYS=";
-
-    public static void main(String[] args) {
-        DummyAgent agent = new DummyAgent();
-        GUI gui = new GUI(agent);
+    private UserData currentUserData;
+    GUI gui;
+    
+    public DummyAgent(){
+        gui = new GUI(this);
         gui.launch();
-        agent.launch();
-
+        this.launch();
     }
-
+    
     private void launch() {
         DataPoller poller = new DataPoller();
         Thread t = new Thread(poller);
@@ -41,6 +41,22 @@ public class DummyAgent {
         this.tickerLabel = data+"=";
     }
     
+    
+    /**
+     * In this method, we receive and handle the data from the GUI.
+     * Here, we will print out the data to the command line, and also update the stockTicker, so that the data sent to the 
+     * GUI have a different company name
+     */
+    public void setCurrentUserData(UserData data){
+        System.out.println("GUI data received in agent:\n"+data);
+        this.currentUserData = data;
+        setStockTicker(currentUserData.getStockCode());        
+    }
+    
+    public UserData getCurrentUserData() {
+        return currentUserData;
+    }
+
     public String getStockTickerLabel(){
         return this.tickerLabel;
     }
@@ -52,6 +68,7 @@ public class DummyAgent {
     // data arrives from the network
     private void onNewNetworkData(String data) {
         System.out.println("new stock price has arrived: " + data);
+        gui.handleIncomingAgentData(data);
     }
 
     // timer inner class which polls the DummyAgent every few seconds with some new Data
@@ -86,5 +103,12 @@ public class DummyAgent {
         }
 
     }
+    
+    
+
+    public static void main(String[] args) {
+        new DummyAgent();
+    }
+
 
 }
