@@ -6,7 +6,7 @@ package jarden.demo.gui;
  *
  */
 public class UserData {
-
+ 
     private String name;
     private String address;
     private String yearsOfJava;
