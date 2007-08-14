@@ -1,0 +1,7 @@
+DROP TABLE JohnLog;
+
+CREATE TABLE JohnLog (
+    ident INTEGER IDENTITY NOT NULL PRIMARY KEY,
+    message VARCHAR(256) NOT NULL,
+    createTime TIMESTAMP NOT NULL
+);

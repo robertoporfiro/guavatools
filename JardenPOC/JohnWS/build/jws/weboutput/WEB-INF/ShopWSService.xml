@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<j2ee:java-wsdl-mapping xmlns:j2ee="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1">
+  <j2ee:package-mapping>
+    <j2ee:package-type>john.ws.cart</j2ee:package-type>
+    <j2ee:namespaceURI>java:john.ws.cart</j2ee:namespaceURI>
+  </j2ee:package-mapping>
+  <j2ee:package-mapping>
+    <j2ee:package-type>john.ws.cart</j2ee:package-type>
+    <j2ee:namespaceURI>http://john/ws/cart</j2ee:namespaceURI>
+  </j2ee:package-mapping>
+  <j2ee:java-xml-type-mapping>
+    <j2ee:java-type>john.ws.cart.CartItem</j2ee:java-type>
+    <j2ee:root-type-qname xmlns:java="java:john.ws.cart">java:CartItem</j2ee:root-type-qname>
+    <j2ee:qname-scope>complexType</j2ee:qname-scope>
+    <j2ee:variable-mapping>
+      <j2ee:java-variable-name>Code</j2ee:java-variable-name>
+      <j2ee:xml-element-name>Code</j2ee:xml-element-name>
+    </j2ee:variable-mapping>
+    <j2ee:variable-mapping>
+      <j2ee:java-variable-name>Name</j2ee:java-variable-name>
+      <j2ee:xml-element-name>Name</j2ee:xml-element-name>
+    </j2ee:variable-mapping>
+    <j2ee:variable-mapping>
+      <j2ee:java-variable-name>Price</j2ee:java-variable-name>
+      <j2ee:xml-element-name>Price</j2ee:xml-element-name>
+    </j2ee:variable-mapping>
+    <j2ee:variable-mapping>
+      <j2ee:java-variable-name>Quantity</j2ee:java-variable-name>
+      <j2ee:xml-element-name>Quantity</j2ee:xml-element-name>
+    </j2ee:variable-mapping>
+  </j2ee:java-xml-type-mapping>
+  <j2ee:java-xml-type-mapping>
+    <j2ee:java-type>john.ws.cart.Invoice</j2ee:java-type>
+    <j2ee:root-type-qname xmlns:java="java:john.ws.cart">java:Invoice</j2ee:root-type-qname>
+    <j2ee:qname-scope>complexType</j2ee:qname-scope>
+    <j2ee:variable-mapping>
+      <j2ee:java-variable-name>TotalPrice</j2ee:java-variable-name>
+      <j2ee:xml-element-name>TotalPrice</j2ee:xml-element-name>
+    </j2ee:variable-mapping>
+    <j2ee:variable-mapping>
+      <j2ee:java-variable-name>Client</j2ee:java-variable-name>
+      <j2ee:xml-element-name>Client</j2ee:xml-element-name>
+    </j2ee:variable-mapping>
+    <j2ee:variable-mapping>
+      <j2ee:java-variable-name>CreditCardNumber</j2ee:java-variable-name>
+      <j2ee:xml-element-name>CreditCardNumber</j2ee:xml-element-name>
+    </j2ee:variable-mapping>
+    <j2ee:variable-mapping>
+      <j2ee:java-variable-name>Items</j2ee:java-variable-name>
+      <j2ee:xml-element-name>Items</j2ee:xml-element-name>
+    </j2ee:variable-mapping>
+  </j2ee:java-xml-type-mapping>
+  <j2ee:java-xml-type-mapping>
+    <j2ee:java-type>john.ws.cart.CartItem[]</j2ee:java-type>
+    <j2ee:root-type-qname xmlns:java="java:john.ws.cart">java:ArrayOfCartItem_literal</j2ee:root-type-qname>
+    <j2ee:qname-scope>complexType</j2ee:qname-scope>
+  </j2ee:java-xml-type-mapping>
+  <j2ee:java-xml-type-mapping>
+    <j2ee:java-type>john.ws.cart.CartItem[]</j2ee:java-type>
+    <j2ee:root-type-qname xmlns:java="java:john.ws.cart">java:ArrayOfCartItem_literal</j2ee:root-type-qname>
+    <j2ee:qname-scope>element</j2ee:qname-scope>
+  </j2ee:java-xml-type-mapping>
+  <j2ee:service-interface-mapping>
+    <j2ee:service-interface>javax.xml.rpc.Service</j2ee:service-interface>
+    <j2ee:wsdl-service-name xmlns:cart="http://john/ws/cart">cart:ShopWSService</j2ee:wsdl-service-name>
+    <j2ee:port-mapping>
+      <j2ee:port-name>ShopWSSoapPort</j2ee:port-name>
+      <j2ee:java-port-name>getShopWSSoapPort</j2ee:java-port-name>
+    </j2ee:port-mapping>
+  </j2ee:service-interface-mapping>
+  <j2ee:service-endpoint-interface-mapping>
+    <j2ee:service-endpoint-interface>john.ws.cart.ShopWSPortType</j2ee:service-endpoint-interface>
+    <j2ee:wsdl-port-type xmlns:cart="http://john/ws/cart">cart:ShopWS</j2ee:wsdl-port-type>
+    <j2ee:wsdl-binding xmlns:cart="http://john/ws/cart">cart:ShopWSServiceSoapBinding</j2ee:wsdl-binding>
+    <j2ee:service-endpoint-method-mapping>
+      <j2ee:java-method-name>newCart</j2ee:java-method-name>
+      <j2ee:wsdl-operation>newCart</j2ee:wsdl-operation>
+      <j2ee:wrapped-element></j2ee:wrapped-element>
+      <j2ee:method-param-parts-mapping>
+        <j2ee:param-position>0</j2ee:param-position>
+        <j2ee:param-type>java.lang.String</j2ee:param-type>
+        <j2ee:wsdl-message-mapping>
+          <j2ee:wsdl-message xmlns:cart="http://john/ws/cart">cart:newCart</j2ee:wsdl-message>
+          <j2ee:wsdl-message-part-name>client</j2ee:wsdl-message-part-name>
+          <j2ee:parameter-mode>IN</j2ee:parameter-mode>
+        </j2ee:wsdl-message-mapping>
+      </j2ee:method-param-parts-mapping>
+    </j2ee:service-endpoint-method-mapping>
+    <j2ee:service-endpoint-method-mapping>
+      <j2ee:java-method-name>placeOrder</j2ee:java-method-name>
+      <j2ee:wsdl-operation>placeOrder</j2ee:wsdl-operation>
+      <j2ee:wrapped-element></j2ee:wrapped-element>
+      <j2ee:method-param-parts-mapping>
+        <j2ee:param-position>0</j2ee:param-position>
+        <j2ee:param-type>java.lang.String</j2ee:param-type>
+        <j2ee:wsdl-message-mapping>
+          <j2ee:wsdl-message xmlns:cart="http://john/ws/cart">cart:placeOrder</j2ee:wsdl-message>
+          <j2ee:wsdl-message-part-name>creditCardNumber</j2ee:wsdl-message-part-name>
+          <j2ee:parameter-mode>IN</j2ee:parameter-mode>
+        </j2ee:wsdl-message-mapping>
+      </j2ee:method-param-parts-mapping>
+      <j2ee:wsdl-return-value-mapping>
+        <j2ee:method-return-value>john.ws.cart.Invoice</j2ee:method-return-value>
+        <j2ee:wsdl-message xmlns:cart="http://john/ws/cart">cart:placeOrderResponse</j2ee:wsdl-message>
+        <j2ee:wsdl-message-part-name>return</j2ee:wsdl-message-part-name>
+      </j2ee:wsdl-return-value-mapping>
+    </j2ee:service-endpoint-method-mapping>
+    <j2ee:service-endpoint-method-mapping>
+      <j2ee:java-method-name>addItem</j2ee:java-method-name>
+      <j2ee:wsdl-operation>addItem</j2ee:wsdl-operation>
+      <j2ee:wrapped-element></j2ee:wrapped-element>
+      <j2ee:method-param-parts-mapping>
+        <j2ee:param-position>0</j2ee:param-position>
+        <j2ee:param-type>john.ws.cart.CartItem</j2ee:param-type>
+        <j2ee:wsdl-message-mapping>
+          <j2ee:wsdl-message xmlns:cart="http://john/ws/cart">cart:addItem</j2ee:wsdl-message>
+          <j2ee:wsdl-message-part-name>item</j2ee:wsdl-message-part-name>
+          <j2ee:parameter-mode>IN</j2ee:parameter-mode>
+        </j2ee:wsdl-message-mapping>
+      </j2ee:method-param-parts-mapping>
+    </j2ee:service-endpoint-method-mapping>
+    <j2ee:service-endpoint-method-mapping>
+      <j2ee:java-method-name>getCart</j2ee:java-method-name>
+      <j2ee:wsdl-operation>getCart</j2ee:wsdl-operation>
+      <j2ee:wrapped-element></j2ee:wrapped-element>
+      <j2ee:wsdl-return-value-mapping>
+        <j2ee:method-return-value>john.ws.cart.CartItem[]</j2ee:method-return-value>
+        <j2ee:wsdl-message xmlns:cart="http://john/ws/cart">cart:getCartResponse</j2ee:wsdl-message>
+        <j2ee:wsdl-message-part-name>return</j2ee:wsdl-message-part-name>
+      </j2ee:wsdl-return-value-mapping>
+    </j2ee:service-endpoint-method-mapping>
+    <j2ee:service-endpoint-method-mapping>
+      <j2ee:java-method-name>getClient</j2ee:java-method-name>
+      <j2ee:wsdl-operation>getClient</j2ee:wsdl-operation>
+      <j2ee:wrapped-element></j2ee:wrapped-element>
+      <j2ee:wsdl-return-value-mapping>
+        <j2ee:method-return-value>java.lang.String</j2ee:method-return-value>
+        <j2ee:wsdl-message xmlns:cart="http://john/ws/cart">cart:getClientResponse</j2ee:wsdl-message>
+        <j2ee:wsdl-message-part-name>return</j2ee:wsdl-message-part-name>
+      </j2ee:wsdl-return-value-mapping>
+    </j2ee:service-endpoint-method-mapping>
+  </j2ee:service-endpoint-interface-mapping>
+</j2ee:java-wsdl-mapping>

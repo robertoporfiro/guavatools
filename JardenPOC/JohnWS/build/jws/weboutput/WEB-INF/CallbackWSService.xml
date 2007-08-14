@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<j2ee:java-wsdl-mapping xmlns:j2ee="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1">
+  <j2ee:package-mapping>
+    <j2ee:package-type>john.ws.callback</j2ee:package-type>
+    <j2ee:namespaceURI>http://john/ws/callback</j2ee:namespaceURI>
+  </j2ee:package-mapping>
+  <j2ee:service-interface-mapping>
+    <j2ee:service-interface>javax.xml.rpc.Service</j2ee:service-interface>
+    <j2ee:wsdl-service-name xmlns:cal="http://john/ws/callback">cal:CallbackWSService</j2ee:wsdl-service-name>
+    <j2ee:port-mapping>
+      <j2ee:port-name>CallbackWSSoapPort</j2ee:port-name>
+      <j2ee:java-port-name>getCallbackWSSoapPort</j2ee:java-port-name>
+    </j2ee:port-mapping>
+  </j2ee:service-interface-mapping>
+  <j2ee:service-endpoint-interface-mapping>
+    <j2ee:service-endpoint-interface>john.ws.callback.CallbackWSPortType</j2ee:service-endpoint-interface>
+    <j2ee:wsdl-port-type xmlns:cal="http://john/ws/callback">cal:CallbackWS</j2ee:wsdl-port-type>
+    <j2ee:wsdl-binding xmlns:cal="http://john/ws/callback">cal:CallbackWSServiceSoapBinding</j2ee:wsdl-binding>
+    <j2ee:service-endpoint-method-mapping>
+      <j2ee:java-method-name>delayedHello</j2ee:java-method-name>
+      <j2ee:wsdl-operation>delayedHello</j2ee:wsdl-operation>
+      <j2ee:wrapped-element></j2ee:wrapped-element>
+      <j2ee:method-param-parts-mapping>
+        <j2ee:param-position>0</j2ee:param-position>
+        <j2ee:param-type>java.lang.String</j2ee:param-type>
+        <j2ee:wsdl-message-mapping>
+          <j2ee:wsdl-message xmlns:cal="http://john/ws/callback">cal:delayedHello</j2ee:wsdl-message>
+          <j2ee:wsdl-message-part-name>name</j2ee:wsdl-message-part-name>
+          <j2ee:parameter-mode>IN</j2ee:parameter-mode>
+        </j2ee:wsdl-message-mapping>
+      </j2ee:method-param-parts-mapping>
+      <j2ee:method-param-parts-mapping>
+        <j2ee:param-position>1</j2ee:param-position>
+        <j2ee:param-type>int</j2ee:param-type>
+        <j2ee:wsdl-message-mapping>
+          <j2ee:wsdl-message xmlns:cal="http://john/ws/callback">cal:delayedHello</j2ee:wsdl-message>
+          <j2ee:wsdl-message-part-name>delay</j2ee:wsdl-message-part-name>
+          <j2ee:parameter-mode>IN</j2ee:parameter-mode>
+        </j2ee:wsdl-message-mapping>
+      </j2ee:method-param-parts-mapping>
+    </j2ee:service-endpoint-method-mapping>
+  </j2ee:service-endpoint-interface-mapping>
+</j2ee:java-wsdl-mapping>
