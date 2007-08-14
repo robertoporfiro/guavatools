@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://john/ws/cart" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="java:john.ws.cart"/>
+  <xs:element name="newCart">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="client" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="newCartResponse">
+    <xs:complexType>
+      <xs:sequence/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="placeOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="creditCardNumber" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="placeOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="return" type="java:Invoice" xmlns:java="java:john.ws.cart"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addItem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="item" type="java:CartItem" xmlns:java="java:john.ws.cart"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addItemResponse">
+    <xs:complexType>
+      <xs:sequence/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getCart">
+    <xs:complexType>
+      <xs:sequence/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getCartResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="return" type="java:ArrayOfCartItem_literal" xmlns:java="java:john.ws.cart"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getClient">
+    <xs:complexType>
+      <xs:sequence/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getClientResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="return" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
