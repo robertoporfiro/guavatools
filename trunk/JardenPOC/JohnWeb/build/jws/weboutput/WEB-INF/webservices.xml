@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<webservices xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1">
+  <webservice-description>
+    <webservice-description-name>BankClientWSService</webservice-description-name>
+    <wsdl-file>WEB-INF/BankClientWSService.wsdl</wsdl-file>
+    <jaxrpc-mapping-file>WEB-INF/BankClientWSService.xml</jaxrpc-mapping-file>
+    <port-component>
+      <port-component-name>BankClientWSSoapPort</port-component-name>
+      <wsdl-port xmlns:cli="http://john/ws/client">cli:BankClientWSSoapPort</wsdl-port>
+      <service-endpoint-interface>john.ws.client.BankClientWSPortType</service-endpoint-interface>
+      <service-impl-bean>
+        <servlet-link>BankClientWSServiceServlethttp</servlet-link>
+      </service-impl-bean>
+    </port-component>
+  </webservice-description>
+  <webservice-description>
+    <webservice-description-name>CallbackWSService_CallbackSvcService</webservice-description-name>
+    <wsdl-file>WEB-INF/CallbackWSService_CallbackSvcService.wsdl</wsdl-file>
+    <jaxrpc-mapping-file>WEB-INF/CallbackWSService_CallbackSvcService.xml</jaxrpc-mapping-file>
+    <port-component>
+      <port-component-name>CallbackWSServiceControlCcbHttpPort</port-component-name>
+      <wsdl-port xmlns:cal="http://john/ws/callback">cal:CallbackWSServiceControlCcbHttpPort</wsdl-port>
+      <service-endpoint-interface>john.ws.client.CallbackWSServiceControlCcbPortType</service-endpoint-interface>
+      <service-impl-bean>
+        <servlet-link>CallbackWSService_CallbackSvcServiceServlethttp</servlet-link>
+      </service-impl-bean>
+    </port-component>
+    <port-component>
+      <port-component-name>CallbackWSServiceControlCcbHttpsPort</port-component-name>
+      <wsdl-port xmlns:cal="http://john/ws/callback">cal:CallbackWSServiceControlCcbHttpsPort</wsdl-port>
+      <service-endpoint-interface>john.ws.client.CallbackWSServiceControlCcbPortType</service-endpoint-interface>
+      <service-impl-bean>
+        <servlet-link>CallbackWSService_CallbackSvcServiceServlethttps</servlet-link>
+      </service-impl-bean>
+    </port-component>
+  </webservice-description>
+</webservices>

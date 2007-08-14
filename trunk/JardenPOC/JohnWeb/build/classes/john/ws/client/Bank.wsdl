@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<s3:definitions name="BankWSServiceDefinitions" targetNamespace="http://john/ws/reliable" xmlns="" xmlns:s0="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:s1="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:s2="http://schemas.xmlsoap.org/ws/2005/02/rm/policy" xmlns:s3="http://schemas.xmlsoap.org/wsdl/" xmlns:s4="http://john/ws/reliable" xmlns:s5="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+  <s0:Policy s1:Id="ReliablePolicy.xml">
+    <s2:RMAssertion>
+      <s2:InactivityTimeout Milliseconds="600000"/>
+      <s2:AcknowledgementInterval Milliseconds="2000"/>
+      <s2:BaseRetransmissionInterval Milliseconds="500"/>
+      <s2:ExponentialBackoff/>
+    </s2:RMAssertion>
+  </s0:Policy>
+  <wsp:UsingPolicy s3:Required="true"/>
+  <s3:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://john/ws/reliable" xmlns:s0="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:s1="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:s2="http://schemas.xmlsoap.org/ws/2005/02/rm/policy" xmlns:s3="http://schemas.xmlsoap.org/wsdl/" xmlns:s4="http://john/ws/reliable" xmlns:s5="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="debit">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="account" type="xs:string"/>
+            <xs:element name="amount" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </s3:types>
+  <s3:message name="debit">
+    <s3:part element="s4:debit" name="parameters"/>
+  </s3:message>
+  <s3:portType name="BankWS">
+    <s3:operation name="debit" parameterOrder="parameters">
+      <s3:input message="s4:debit"/>
+    </s3:operation>
+  </s3:portType>
+  <s3:binding name="BankWSServiceSoapBinding" type="s4:BankWS">
+    <s5:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <s3:operation name="debit">
+      <s5:operation soapAction="" style="document"/>
+      <s3:input>
+        <s5:body parts="parameters" use="literal"/>
+        <wsp:Policy>
+          <wsp:PolicyReference URI="#ReliablePolicy.xml"/>
+        </wsp:Policy>
+      </s3:input>
+    </s3:operation>
+  </s3:binding>
+  <s3:service name="BankWSService">
+    <s3:port binding="s4:BankWSServiceSoapBinding" name="BankWSSoapPort">
+      <s5:address location="http://localhost:7041/JohnWS/BankWS"/>
+    </s3:port>
+  </s3:service>
+</s3:definitions>

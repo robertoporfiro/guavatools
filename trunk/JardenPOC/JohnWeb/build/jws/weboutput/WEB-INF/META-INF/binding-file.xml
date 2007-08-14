@@ -1,0 +1,7 @@
+<ns:binding-config xmlns:ns="http://www.bea.com/ns/staxb/binding-config/90">
+  <ns:bindings/>
+  <ns:xml-to-pojo/>
+  <ns:xml-to-xmlobj/>
+  <ns:java-to-xml/>
+  <ns:java-to-element/>
+</ns:binding-config>

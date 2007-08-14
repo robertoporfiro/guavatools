@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<s2:definitions name="HelloWSServiceDefinitions" targetNamespace="http://john/ws" xmlns="" xmlns:s0="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:s1="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:s2="http://schemas.xmlsoap.org/wsdl/" xmlns:s3="http://john/ws" xmlns:s4="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+  <s0:Policy s1:Id="AuthSAML.xml">
+    <wssp:Identity xmlns:wssp="http://www.bea.com/wls90/security/policy">
+      <wssp:SupportedTokens>
+        <wssp:SecurityToken TokenType="http://docs.oasis-open.org/wss/2004/01/oasis-2004-01-saml-token-profile-1.0#SAMLAssertionID">
+          <wssp:Claims>
+            <wssp:ConfirmationMethod>sender-vouches</wssp:ConfirmationMethod>
+          </wssp:Claims>
+        </wssp:SecurityToken>
+        <wssp:SecurityToken TokenType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#UsernameToken">
+          <wssp:UsePassword Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText"/>
+        </wssp:SecurityToken>
+      </wssp:SupportedTokens>
+    </wssp:Identity>
+  </s0:Policy>
+  <wsp:UsingPolicy s2:Required="true"/>
+  <s2:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://john/ws" xmlns:s0="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:s1="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:s2="http://schemas.xmlsoap.org/wsdl/" xmlns:s3="http://john/ws" xmlns:s4="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="logMessage">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="message" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="logMessageResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="samlHello">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="samlHelloResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="hello">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="helloResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="longHello">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="delay" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="longHelloResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </s2:types>
+  <s2:message name="logMessage">
+    <s2:part element="s3:logMessage" name="parameters"/>
+  </s2:message>
+  <s2:message name="logMessageResponse">
+    <s2:part element="s3:logMessageResponse" name="parameters"/>
+  </s2:message>
+  <s2:message name="samlHello">
+    <s2:part element="s3:samlHello" name="parameters"/>
+  </s2:message>
+  <s2:message name="samlHelloResponse">
+    <s2:part element="s3:samlHelloResponse" name="parameters"/>
+  </s2:message>
+  <s2:message name="hello">
+    <s2:part element="s3:hello" name="parameters"/>
+  </s2:message>
+  <s2:message name="helloResponse">
+    <s2:part element="s3:helloResponse" name="parameters"/>
+  </s2:message>
+  <s2:message name="longHello">
+    <s2:part element="s3:longHello" name="parameters"/>
+  </s2:message>
+  <s2:message name="longHelloResponse">
+    <s2:part element="s3:longHelloResponse" name="parameters"/>
+  </s2:message>
+  <s2:portType name="HelloWS">
+    <s2:operation name="logMessage" parameterOrder="parameters">
+      <s2:input message="s3:logMessage"/>
+      <s2:output message="s3:logMessageResponse"/>
+    </s2:operation>
+    <s2:operation name="samlHello" parameterOrder="parameters">
+      <s2:input message="s3:samlHello"/>
+      <s2:output message="s3:samlHelloResponse"/>
+    </s2:operation>
+    <s2:operation name="hello" parameterOrder="parameters">
+      <s2:input message="s3:hello"/>
+      <s2:output message="s3:helloResponse"/>
+    </s2:operation>
+    <s2:operation name="longHello" parameterOrder="parameters">
+      <s2:input message="s3:longHello"/>
+      <s2:output message="s3:longHelloResponse"/>
+    </s2:operation>
+  </s2:portType>
+  <s2:binding name="HelloWSServiceSoapBinding" type="s3:HelloWS">
+    <s4:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <s2:operation name="logMessage">
+      <s4:operation soapAction="" style="document"/>
+      <s2:input>
+        <s4:body parts="parameters" use="literal"/>
+      </s2:input>
+      <s2:output>
+        <s4:body parts="parameters" use="literal"/>
+      </s2:output>
+    </s2:operation>
+    <s2:operation name="samlHello">
+      <s4:operation soapAction="" style="document"/>
+      <s2:input>
+        <s4:body parts="parameters" use="literal"/>
+        <wsp:Policy>
+          <wsp:PolicyReference URI="#AuthSAML.xml"/>
+        </wsp:Policy>
+      </s2:input>
+      <s2:output>
+        <s4:body parts="parameters" use="literal"/>
+      </s2:output>
+    </s2:operation>
+    <s2:operation name="hello">
+      <s4:operation soapAction="" style="document"/>
+      <s2:input>
+        <s4:body parts="parameters" use="literal"/>
+      </s2:input>
+      <s2:output>
+        <s4:body parts="parameters" use="literal"/>
+      </s2:output>
+    </s2:operation>
+    <s2:operation name="longHello">
+      <s4:operation soapAction="" style="document"/>
+      <s2:input>
+        <s4:body parts="parameters" use="literal"/>
+      </s2:input>
+      <s2:output>
+        <s4:body parts="parameters" use="literal"/>
+      </s2:output>
+    </s2:operation>
+  </s2:binding>
+  <s2:service name="HelloWSService">
+    <s2:port binding="s3:HelloWSServiceSoapBinding" name="HelloWSSoapPort">
+      <s4:address location="http://localhost:7041/JohnWS/HelloWS"/>
+    </s2:port>
+  </s2:service>
+</s2:definitions>
