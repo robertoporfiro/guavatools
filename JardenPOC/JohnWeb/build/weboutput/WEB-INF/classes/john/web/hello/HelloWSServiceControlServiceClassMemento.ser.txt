@@ -1,0 +1,35 @@
+ServiceClass class = john.web.hello.HelloWSServiceControl
+tns = null
+WSDL path relative to JCX = null
+WSDL resource path = john/web/hello/HelloWS.wsdl
+WSDL service name = {http://john/ws}HelloWSService
+_use81BindingTypes = false
+_has81Conversation = false
+_callbackJmsQueueName = weblogic.wsee.DefaultCallbackQueue
+_serviceMethodsMap
+     [longHello]=[[ServiceMethod name = longHello, return type = java.lang.String, argument string = java.lang.String name_arg,int delay_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws}HelloWSSoapPort], transports = {http://john/ws}HelloWSSoapPort->http]]
+     [hello]=[[ServiceMethod name = hello, return type = java.lang.String, argument string = java.lang.String name_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws}HelloWSSoapPort], transports = {http://john/ws}HelloWSSoapPort->http]]
+     [logMessage]=[[ServiceMethod name = logMessage, return type = java.lang.String, argument string = java.lang.String message_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws}HelloWSSoapPort], transports = {http://john/ws}HelloWSSoapPort->http]]
+     [samlHello]=[[ServiceMethod name = samlHello, return type = java.lang.String, argument string = java.lang.String name_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws}HelloWSSoapPort], transports = {http://john/ws}HelloWSSoapPort->http]]
+_operationNameMap
+     [{http://john/ws}hello]=[[ServiceMethod name = hello, return type = java.lang.String, argument string = java.lang.String name_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws}HelloWSSoapPort], transports = {http://john/ws}HelloWSSoapPort->http]]
+     [{http://john/ws}longHello]=[[ServiceMethod name = longHello, return type = java.lang.String, argument string = java.lang.String name_arg,int delay_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws}HelloWSSoapPort], transports = {http://john/ws}HelloWSSoapPort->http]]
+     [{http://john/ws}logMessage]=[[ServiceMethod name = logMessage, return type = java.lang.String, argument string = java.lang.String message_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws}HelloWSSoapPort], transports = {http://john/ws}HelloWSSoapPort->http]]
+     [{http://john/ws}samlHello]=[[ServiceMethod name = samlHello, return type = java.lang.String, argument string = java.lang.String name_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws}HelloWSSoapPort], transports = {http://john/ws}HelloWSSoapPort->http]]
+_portProtocolMap
+     [{http://john/ws}HelloWSSoapPort]=[3]
+_portTransportMap
+     [{http://john/ws}HelloWSSoapPort]=[http]
+_portLocationMap
+     [{http://john/ws}HelloWSSoapPort]=[http://localhost:7041/JohnWS/HelloWS]
+_serviceMethods
+     [[ServiceMethod name = hello, return type = java.lang.String, argument string = java.lang.String name_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws}HelloWSSoapPort], transports = {http://john/ws}HelloWSSoapPort->http]]
+     [[ServiceMethod name = logMessage, return type = java.lang.String, argument string = java.lang.String message_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws}HelloWSSoapPort], transports = {http://john/ws}HelloWSSoapPort->http]]
+     [[ServiceMethod name = longHello, return type = java.lang.String, argument string = java.lang.String name_arg,int delay_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws}HelloWSSoapPort], transports = {http://john/ws}HelloWSSoapPort->http]]
+     [[ServiceMethod name = samlHello, return type = java.lang.String, argument string = java.lang.String name_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws}HelloWSSoapPort], transports = {http://john/ws}HelloWSSoapPort->http]]
+_sortedPortProtocols
+     [com.bea.control.servicecontrol.util.memento.v1.ServicePortProtocolV1@e56f86]
+Callback Endpoint Context Path:null
+Callback Endpoint Service URI:null
+EightOneCallbackMethods: 
+Callback Class = null

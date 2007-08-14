@@ -1,0 +1,52 @@
+ServiceClass class = john.ws.client.CallbackWSServiceControl
+tns = null
+WSDL path relative to JCX = null
+WSDL resource path = john/ws/client/HelloCallback.wsdl
+WSDL service name = {http://john/ws/callback}CallbackWSService
+_use81BindingTypes = false
+_has81Conversation = false
+_callbackJmsQueueName = weblogic.wsee.DefaultCallbackQueue
+_serviceMethodsMap
+     [delayedHello]=[[ServiceMethod name = delayedHello, return type = void, argument string = java.lang.String name_arg,int delay_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = start, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/callback}CallbackWSSoapPort], transports = {http://john/ws/callback}CallbackWSSoapPort->http]]
+_operationNameMap
+     [{http://john/ws/callback}delayedHello]=[[ServiceMethod name = delayedHello, return type = void, argument string = java.lang.String name_arg,int delay_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = start, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/callback}CallbackWSSoapPort], transports = {http://john/ws/callback}CallbackWSSoapPort->http]]
+_portProtocolMap
+     [{http://john/ws/callback}CallbackWSSoapPort]=[3]
+_portTransportMap
+     [{http://john/ws/callback}CallbackWSSoapPort]=[http]
+_portLocationMap
+     [{http://john/ws/callback}CallbackWSSoapPort]=[http://localhost:7041/JohnWS/CallbackWS]
+_serviceMethods
+     [[ServiceMethod name = delayedHello, return type = void, argument string = java.lang.String name_arg,int delay_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = start, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/callback}CallbackWSSoapPort], transports = {http://john/ws/callback}CallbackWSSoapPort->http]]
+_sortedPortProtocols
+     [com.bea.control.servicecontrol.util.memento.v1.ServicePortProtocolV1@118544d]
+Callback Endpoint Context Path:null
+Callback Endpoint Service URI:null
+EightOneCallbackMethods: 
+Callback Class = ServiceClass class = Callback
+tns = null
+WSDL path relative to JCX = null
+WSDL resource path = null
+WSDL service name = null
+_use81BindingTypes = false
+_has81Conversation = false
+_callbackJmsQueueName = weblogic.wsee.DefaultCallbackQueue
+_serviceMethodsMap
+     [helloCallback]=[[ServiceMethod name = helloCallback, return type = void, argument string = java.lang.String reply_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/callback}CallbackWSSoapPortCallback], transports = {http://john/ws/callback}CallbackWSSoapPortCallback->http]]
+_operationNameMap
+     [{http://john/ws/callback}helloCallback]=[[ServiceMethod name = helloCallback, return type = void, argument string = java.lang.String reply_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/callback}CallbackWSSoapPortCallback], transports = {http://john/ws/callback}CallbackWSSoapPortCallback->http]]
+_portProtocolMap
+     [{http://john/ws/callback}CallbackWSSoapPortCallback]=[3]
+_portTransportMap
+     [{http://john/ws/callback}CallbackWSSoapPortCallback]=[http]
+_portLocationMap
+     [{http://john/ws/callback}CallbackWSSoapPortCallback]=[null]
+_serviceMethods
+     [[ServiceMethod name = helloCallback, return type = void, argument string = java.lang.String reply_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/callback}CallbackWSSoapPortCallback], transports = {http://john/ws/callback}CallbackWSSoapPortCallback->http]]
+_sortedPortProtocols
+     [com.bea.control.servicecontrol.util.memento.v1.ServicePortProtocolV1@228e01]
+Callback Endpoint Context Path:null
+Callback Endpoint Service URI:null
+EightOneCallbackMethods: 
+Callback Class = null
+

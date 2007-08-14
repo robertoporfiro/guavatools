@@ -1,0 +1,26 @@
+ServiceClass class = john.ws.client.BankWSServiceControl
+tns = null
+WSDL path relative to JCX = null
+WSDL resource path = john/ws/client/Bank.wsdl
+WSDL service name = {http://john/ws/reliable}BankWSService
+_use81BindingTypes = false
+_has81Conversation = false
+_callbackJmsQueueName = weblogic.wsee.DefaultCallbackQueue
+_serviceMethodsMap
+     [debit]=[[ServiceMethod name = debit, return type = void, argument string = java.lang.String account_arg,double amount_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/reliable}BankWSSoapPort], transports = {http://john/ws/reliable}BankWSSoapPort->http]]
+_operationNameMap
+     [{http://john/ws/reliable}debit]=[[ServiceMethod name = debit, return type = void, argument string = java.lang.String account_arg,double amount_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/reliable}BankWSSoapPort], transports = {http://john/ws/reliable}BankWSSoapPort->http]]
+_portProtocolMap
+     [{http://john/ws/reliable}BankWSSoapPort]=[3]
+_portTransportMap
+     [{http://john/ws/reliable}BankWSSoapPort]=[http]
+_portLocationMap
+     [{http://john/ws/reliable}BankWSSoapPort]=[http://localhost:7041/JohnWS/BankWS]
+_serviceMethods
+     [[ServiceMethod name = debit, return type = void, argument string = java.lang.String account_arg,double amount_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/reliable}BankWSSoapPort], transports = {http://john/ws/reliable}BankWSSoapPort->http]]
+_sortedPortProtocols
+     [com.bea.control.servicecontrol.util.memento.v1.ServicePortProtocolV1@47d087]
+Callback Endpoint Context Path:null
+Callback Endpoint Service URI:null
+EightOneCallbackMethods: 
+Callback Class = null
