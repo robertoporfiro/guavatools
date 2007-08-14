@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-
-Name: john/web/hello/JohnSessionEjbCtrlBean.class
-Java-Bean: true
-Beehive-Control: true
