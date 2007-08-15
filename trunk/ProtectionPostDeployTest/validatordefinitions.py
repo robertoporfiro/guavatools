@@ -18,12 +18,13 @@ validators={
     'has OE note': XMLObjectTest("Does this message have an occupation eligibility note?",XMLObjectTest.CONTAINS,".//message/product/client_specific_illustration/note/reason","eligibility"),
     'has plan term note': XMLObjectTest("Does this message have a plan term not supported note?",XMLObjectTest.CONTAINS,".//message/m_content/b_control/quote_error_note","The plan term selected is not supported"),
     'has commencement date note': XMLObjectTest("Does this message have a commencement date note?",XMLObjectTest.CONTAINS,".//message/product/client_specific_illustration/variation/reason","The illustration assumes a commencement date of"),
-    'has plan term rounded up message': XMLObjectTest("Does this message have a plan term rounded up message?",XMLObjectTest.CONTAINS,".//message/product/client_specific_illustration/note/reason","The term of the plan illustrated has been rounded up to the next whole year"),
+    'has plan term rounded up message': XMLObjectTest("Does this message have a plan term rounded up message?",XMLObjectTest.CONTAINS,".//message/product/client_specific_illustration/note/reason","rounded up to the next whole year"),
     'has ADL note': XMLObjectTest("Does this message have an ADL message?",XMLObjectTest.CONTAINS,".//message/product/client_specific_illustration/variation/reason","Activities"), 
     'risk benefit has type attribute': XMLObjectTest("Do the client_specific_illustration risk_benefits contain type attributes?",XMLObjectTest.EXISTS,".//message/product/client_specific_illustration/risk_benefit/@type"),
     'risk benefit has risk_events': XMLObjectTest("Do the client_specific_illustration risk_benefits contain at least one risk_event?",XMLObjectTest.EXISTS,".//message/product/client_specific_illustration/risk_benefit/risk_event"),
     'space bug fixed': XMLObjectTest("Has the space been removed from 'Life and Health '",XMLObjectTest.EQUALS,".//message/product/client_specific_illustration/risk_benefit/@type","Life And Health"), 
     'csi has indexation element': XMLObjectTest("does the indexation element now exist within the client_specific_illustration risk benefits",XMLObjectTest.EXISTS,".//message/product/client_specific_illustration/risk_benefit/cover_indexation"),     
+    'has not supported note': XMLObjectTest("Does this message have a not supported error note?",XMLObjectTest.CONTAINS,".//message/m_content/b_control/quote_error_note","not supported"),
      
 
 } 
