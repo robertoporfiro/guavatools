@@ -14,8 +14,11 @@
 	<classpathentry kind="lib" path="C:/bea/weblogic92/servicebus/lib/sb-public.jar"/>
 	<classpathentry kind="lib" path="C:/bea/weblogic92/servicebus/lib/sb-common.jar"/>
 	<classpathentry kind="lib" path="C:/bea/weblogic92/server/lib/weblogic.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/xmlbeansapache"/>
 	<classpathentry kind="lib" path="lib/jython.jar"/>
 	<classpathentry kind="lib" path="lib/csv.jar"/>
+	<classpathentry kind="lib" path="lib/apache_xbean.jar"/>
+	<classpathentry kind="lib" path="lib/jsr173_1.0_api.jar"/>
+	<classpathentry kind="lib" path="lib/resolver.jar"/>
+	<classpathentry kind="lib" path="lib/xbean_xpath.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

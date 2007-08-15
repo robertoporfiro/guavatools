@@ -36,8 +36,8 @@ tests=[
     ["Bug2144","testXML/TEX/Bug2144.xml","Annual Premium not being increased to the minimum allowed £80 on normal commission", ['is origo message','is origo response message','has warning status']],
     ["Bug3365","testXML/TEX/Bug3365.xml","Plan Term to-age variation note not working correctly", ['is origo message','is origo response message']],
     ["Bug3434","testXML/TEX/Bug3434.xml","Quote unexpectedly produced when plan term rule is violated", ['is origo message','is origo response message','has error status']],
-    ["ADIL1","testXML/TEX/AdilOne.xml","interestRate2 bug", ['is origo message','is origo response message','has success status']],    
-    ["ADIL2","testXML/TEX/AdilTwo.xml","interestRate2 bug", ['is origo message','is origo response message','has success status']],
+    ["ADIL1","testXML/TEX/AdilOne.xml","interestRate2 bug", ['is origo message','is origo response message','has warning status']],    
+    ["ADIL2","testXML/TEX/AdilTwo.xml","interestRate2 bug", ['is origo message','is origo response message','has warning status']],
     
      ########### webline ############
     ["commencementAgeTooHigh","testXML/Webline/Webline1.xml","Testing age of Client at commencement date must be 16 - 64", ['is origo message','has error status','has error note']],
@@ -87,6 +87,7 @@ tests=[
    ["real assureweb LPP","testXML/assureweb/LPPQuote.xml","LPP 2 Risk Covers", ['is origo message','is origo response message','has warning status']],
    ["Enhanced Risk Benefit element","testXML/assureweb/Bug2331.xml","Risk Benefit now contains risk_event and a type attribute", ['is origo message','is origo response message','risk benefit has type attribute','risk benefit has risk_events']],   
    ["Bug2515","testXML/assureweb/Bug2515.xml","Joint Life_LC CI_Monthly_All Premium Types - Quotes timed out no responses", ['is origo message','is origo response message']],      
+   ["Bug3742","testXML/assureweb/Bug3742.xml","LC greater than CI - Incorrect Error Note", ['is origo message','is origo response message','has not supported note']],      
    
    
     ########### New term definition ##########   
