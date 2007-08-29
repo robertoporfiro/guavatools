@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-
-Name: john/ws/client/BankWSServiceControlBean.class
-Java-Bean: true
-Beehive-Control: true
