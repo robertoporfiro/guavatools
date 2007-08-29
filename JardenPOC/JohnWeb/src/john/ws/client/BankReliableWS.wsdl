@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<s3:definitions name="BankReliableWSServiceDefinitions" targetNamespace="http://john/ws/reliable" xmlns="" xmlns:s0="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:s1="http://schemas.xmlsoap.org/ws/2005/02/rm/policy" xmlns:s2="http://www.bea.com/wsrm/policy" xmlns:s3="http://schemas.xmlsoap.org/wsdl/" xmlns:s4="http://john/ws/reliable" xmlns:s5="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+  <wsp:UsingPolicy s3:Required="true"/>
+  <wsp:Policy s0:Id="DefaultReliability.xml">
+    <s1:RMAssertion>
+      <s1:InactivityTimeout Milliseconds="600000"/>
+      <s1:AcknowledgementInterval Milliseconds="200"/>
+      <s1:BaseRetransmissionInterval Milliseconds="3000"/>
+      <s1:ExponentialBackoff/>
+      <s2:Expires Expires="P1D"/>
+    </s1:RMAssertion>
+  </wsp:Policy>
+  <s3:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://john/ws/reliable" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://john/ws/reliable" xmlns:s2="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="transfer">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="fromName" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+            <xs:element name="toName" type="xs:string"/>
+            <xs:element name="amount" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </s3:types>
+  <s3:message name="transfer">
+    <s3:part element="s4:transfer" name="parameters"/>
+  </s3:message>
+  <s3:portType name="BankReliableWS" wsp:PolicyURIs="#DefaultReliability.xml">
+    <s3:operation name="transfer" parameterOrder="parameters">
+      <s3:input message="s4:transfer"/>
+    </s3:operation>
+  </s3:portType>
+  <s3:binding name="BankReliableWSServiceSoapBinding" type="s4:BankReliableWS">
+    <s5:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <s3:operation name="transfer">
+      <s5:operation soapAction="" style="document"/>
+      <s3:input>
+        <s5:body parts="parameters" use="literal"/>
+      </s3:input>
+    </s3:operation>
+  </s3:binding>
+  <s3:service name="BankReliableWSService">
+    <s3:port binding="s4:BankReliableWSServiceSoapBinding" name="BankReliableWSSoapPort">
+      <s5:address location="http://localhost:7041/JohnWS/BankReliableWS"/>
+    </s3:port>
+  </s3:service>
+</s3:definitions>
