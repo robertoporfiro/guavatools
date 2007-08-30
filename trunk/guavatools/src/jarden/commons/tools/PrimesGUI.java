@@ -21,6 +21,7 @@ public class PrimesGUI {
     JLabel runningTime;
     JLabel primesPerMinute;
     JLabel nextMilestone;
+    JLabel primesPerThousand;
     
     public boolean showtime=true;
     public long statsRefreshInterval=1000;
@@ -30,7 +31,8 @@ public class PrimesGUI {
     private String heapStatText="heap usage: ";
     private String runningTimeText="elapsed: ";
     private String ppmText="find rate(cur/max): ";
-    private String nextMilestoneText="next milestone (M/G):";
+    private String nextMilestoneText="next milestone (M/G): ";
+    private String primesPerThousandText="primesPerThousand: ";
     
     NumberFormat formatter = NumberFormat.getIntegerInstance();
     
@@ -40,7 +42,7 @@ public class PrimesGUI {
         
         
         contentPanel = new JPanel();
-        contentPanel.setLayout(new GridLayout(6,0));
+        contentPanel.setLayout(new GridLayout(7,0));
         frame.getContentPane().setBackground(Color.WHITE);
         
                
@@ -58,6 +60,8 @@ public class PrimesGUI {
         nextMilestone = new JLabel(nextMilestoneText);
         nextMilestone.setToolTipText("The amount of time it will take to reach the next Million (M) / Billion (G)");
         contentPanel.add(nextMilestone);
+        primesPerThousand=new JLabel(primesPerThousandText);
+        contentPanel.add(primesPerThousand);
         
         JPanel spacerPanel = new JPanel();
         spacerPanel.setMinimumSize(new Dimension(100,100));
@@ -66,11 +70,12 @@ public class PrimesGUI {
         frame.getContentPane().add(contentPanel,BorderLayout.CENTER);
         setUpListeners();
         
-        frame.setSize(250,180);
+        frame.setSize(270,180);
         frame.setVisible(true);
         
         Runnable updater = new StatsUpdater();
         Thread updaterThread = new Thread(updater);
+        updaterThread.setName("updaterThread");
         
         updaterThread.start();
         
@@ -83,7 +88,8 @@ public class PrimesGUI {
         heapStats.setText(heapStatText+stats.getHeapStats());
         runningTime.setText(runningTimeText+stats.getElapsedTime());
         primesPerMinute.setText(ppmText+stats.getPrimesFoundPerMinute()+" / "+stats.getHighestFindRate()+" per min");
-        nextMilestone.setText(nextMilestoneText+stats.getTimeToNextMillionMilestoneText()+" / "+(stats.getSecondsToNextBillionMilestoneText()));        
+        nextMilestone.setText(nextMilestoneText+stats.getTimeToNextMillionMilestoneText()+" / "+(stats.getSecondsToNextBillionMilestoneText()));
+        primesPerThousand.setText(primesPerThousandText+stats.getPrimesPerThousand());
     }
     
     class StatsUpdater implements Runnable{
