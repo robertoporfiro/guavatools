@@ -8,6 +8,7 @@ public class Stats {
     private Date startTime = new Date();
     private int highestFindRate=0;
     private long numberOfPrimesLoadedFromDisk=0;
+    private int primesPerThousand;
     Runtime runtime = Runtime.getRuntime();
 
     public String getHeapStats() {
@@ -117,6 +118,7 @@ public class Stats {
     
     
     
+    
     public int getPrimesFoundPerSecond(){
         long seconds = (getElapsedTimeInMillis() / 1000);
         if(seconds <1){
@@ -128,5 +130,13 @@ public class Stats {
 
     public void setNumberOfPrimesLoadedFromDisk(long numberOfPrimesLoadedFromDisk) {
         this.numberOfPrimesLoadedFromDisk = numberOfPrimesLoadedFromDisk;
+    }
+
+    public int getPrimesPerThousand() {
+        return primesPerThousand;
+    }
+
+    public void setPrimesPerThousand(int primesPerThousand) {
+        this.primesPerThousand = primesPerThousand;
     }
 }

@@ -11,6 +11,9 @@ public class Primes {
         private int primesFound=0;
         // how many primes were found during the last 1000 numbers
         private int primesFoundLastThousand=0;
+        int primesThisThousand=0;
+        int candidatesThisThousand=0;
+        long currentCandidate=0;
         private Stats stats = new Stats();
         PrimesGUI gui;
         PrimesStore store;
@@ -44,6 +47,7 @@ public class Primes {
             Primes primes = new Primes();
             PrimeSeeker seeker = primes.new PrimeSeeker();
             Thread seekerThread = new Thread(seeker);
+            seekerThread.setName("seeker thread");
             seekerThread.start();
         }
         
@@ -85,7 +89,7 @@ public class Primes {
                         e.printStackTrace();
                     }
                     notifyStartLooking();
-                    prime = lookForNextPrime(prime);
+                    prime = lookForNextPrime(prime+1);
                     addPrime(prime);
                     notifyStopLooking();
                 }
@@ -95,22 +99,24 @@ public class Primes {
                 if(isPrime(startPoint)){
                     return startPoint;
                 } 
-                int primesInThousand=0;
-                int candidatesThisThousand=0;
+                
                 // if startPoint is even, make it odd, and then go up in 2s from there.
                 if(startPoint %2 ==0){
                     startPoint++;
                 }
                 boolean primeFound=false;
                 while(!primeFound){
-                    startPoint +=2;
                     candidatesThisThousand+=2;
                     if(candidatesThisThousand>=1000){
+                        primesFoundLastThousand=primesThisThousand;
                         candidatesThisThousand=0;
+                        primesThisThousand=0;
                     }
                     if(isPrime(startPoint)){
+                        primesThisThousand++;
                         return startPoint;
                     }
+                    startPoint +=2;
                 }
                 
                 return -1;
@@ -118,7 +124,12 @@ public class Primes {
             
             
             private boolean isPrime(long candidate){
+                currentCandidate = candidate;
+                double squareRootLimit = Math.sqrt(candidate);    // only search upto square root of candidate (Wow!)
                 for(long prime: primes){
+                    if(prime > squareRootLimit){
+                        return true;
+                    }
                     if(candidate % prime ==0){
                         return false;
                     }
@@ -130,7 +141,7 @@ public class Primes {
 
         public Stats getStats() {
             stats.setNumberOfPrimesFound(this.primesFound);
-            
+            stats.setPrimesPerThousand(this.primesFoundLastThousand);
             stats.setLatestPrime(getLatestPrime());
             return stats ;
         }
