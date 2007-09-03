@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceBeans xmlns="http://com.zurich.ep/catalogSchema" xmlns:nv="http://com.zurich.ep/catalog/nameValueSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://com.zurich.ep/catalogSchema
+C:\DOCUME~1\john\Desktop\catalog.xml\ServiceBeans.xsd">
+	<serviceBean>
+		<serviceName>BankLookupService</serviceName>
+		<packageName>com.zurich.ep.apply.lookup</packageName>
+		<stream>apply</stream>
+		<endpoints>
+			<nv:nameValue>
+				<nv:name>fred</nv:name>
+				<nv:value>http://localhost:7001/fred</nv:value>
+			</nv:nameValue>
+			<nv:nameValue>
+				<nv:name>bill</nv:name>
+				<nv:value>http://localhost:7001/bill</nv:value>
+			</nv:nameValue>
+		</endpoints>
+	</serviceBean>
+	<serviceBean>
+		<serviceName>DoctorLookupService</serviceName>
+		<packageName>com.zurich.ep.apply.lookup</packageName>
+		<stream>apply</stream>
+		<endpoints/>
+	</serviceBean>
+</serviceBeans>

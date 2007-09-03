@@ -1,0 +1,200 @@
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:cat="http://www.zurich.com/ep/catalog"
+  targetNamespace="http://www.zurich.com/ep/catalog"
+  name="CatalogDefinitions">
+	<types>
+		<xs:schema
+		 targetNamespace="http://www.zurich.com/ep/catalog"
+		 xmlns="http://www.zurich.com/ep/catalog"
+		 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		 attributeFormDefault="unqualified" elementFormDefault="qualified">
+
+			
+			<xs:import namespace="http://www.zurich.com/ep/catalog"
+			 	schemaLocation="http://ep.uk.zurich.com/SharedModel/catalog/ServiceBeans.xsd"/>
+			<xs:import namespace="http://www.zurich.com/ep/catalog"
+			 	schemaLocation="http://ep.uk.zurich.com/SharedModel/catalog/PackageBeans.xsd"/>
+
+			<xs:element name="getPackageHierarchy">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packageName" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getPackageHierarchyResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return" type="cat:packageBeans"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			
+			<xs:element name="getMemberPackages">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packageName" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getMemberPackagesResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return" type="cat:packageBeans"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="getService">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="serviceName" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getServiceResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return" type="cat:serviceBean"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="getMemberServices">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="packageName" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getMemberServicesResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return" type="cat:serviceBeans"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="reloadCatalog">
+				<xs:complexType>
+					<xs:sequence/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="reloadCatalogResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+	</types>
+
+	<message name="getPackageHierarchy">
+		<part name="parameters" element="cat:getPackageHierarchy"/>
+	</message>
+	<message name="getPackageHierarchyResponse">
+		<part name="parameters" element="cat:getPackageHierarchyResponse"/>
+	</message>
+	<message name="getMemberPackages">
+		<part name="parameters" element="cat:getMemberPackages"/>
+	</message>
+	<message name="getMemberPackagesResponse">
+		<part name="parameters" element="cat:getMemberPackagesResponse"/>
+	</message>
+	<message name="getService">
+		<part name="parameters" element="cat:getService"/>
+	</message>
+	<message name="getServiceResponse">
+		<part name="parameters" element="cat:getServiceResponse"/>
+	</message>
+	<message name="getMemberServices">
+		<part name="parameters" element="cat:getMemberServices"/>
+	</message>
+	<message name="getMemberServicesResponse">
+		<part name="parameters" element="cat:getMemberServicesResponse"/>
+	</message>
+	<message name="reloadCatalog">
+		<part name="parameters" element="cat:reloadCatalog"/>
+	</message>
+	<message name="reloadCatalogResponse">
+		<part name="parameters" element="cat:reloadCatalogResponse"/>
+	</message>
+
+	<portType name="CatalogPortType">
+		<operation name="getPackageHierarchy" parameterOrder="parameters">
+			<input message="cat:getPackageHierarchy"/>
+			<output message="cat:getPackageHierarchyResponse"/>
+		</operation>
+		<operation name="getMemberPackages" parameterOrder="parameters">
+			<input message="cat:getMemberPackages"/>
+			<output message="cat:getMemberPackagesResponse"/>
+		</operation>
+		<operation name="getService" parameterOrder="parameters">
+			<input message="cat:getService"/>
+			<output message="cat:getServiceResponse"/>
+		</operation>
+		<operation name="getMemberServices" parameterOrder="parameters">
+			<input message="cat:getMemberServices"/>
+			<output message="cat:getMemberServicesResponse"/>
+		</operation>
+		<operation name="reloadCatalog" parameterOrder="parameters">
+			<input message="cat:reloadCatalog"/>
+			<output message="cat:reloadCatalogResponse"/>
+		</operation>
+	</portType>
+	<binding name="CatalogSoapBinding" type="cat:CatalogPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="getPackageHierarchy">
+			<soap:operation style="document"/>
+			<input>
+				<soap:body parts="parameters" use="literal"/>
+			</input>
+			<output>
+				<soap:body parts="parameters" use="literal"/>
+			</output>
+		</operation>
+		<operation name="getMemberPackages">
+			<soap:operation style="document"/>
+			<input>
+				<soap:body parts="parameters" use="literal"/>
+			</input>
+			<output>
+				<soap:body parts="parameters" use="literal"/>
+			</output>
+		</operation>
+		<operation name="getService">
+			<soap:operation style="document"/>
+			<input>
+				<soap:body parts="parameters" use="literal"/>
+			</input>
+			<output>
+				<soap:body parts="parameters" use="literal"/>
+			</output>
+		</operation>
+		<operation name="getMemberServices">
+			<soap:operation style="document"/>
+			<input>
+				<soap:body parts="parameters" use="literal"/>
+			</input>
+			<output>
+				<soap:body parts="parameters" use="literal"/>
+			</output>
+		</operation>
+		<operation name="reloadCatalog">
+			<soap:operation style="document"/>
+			<input>
+				<soap:body parts="parameters" use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="CatalogService">
+		<port name="ServiceCatalogWSSoapPort" binding="cat:CatalogSoapBinding">
+			<soap:address location="http://10.160.2.94:7021/ServiceCatalogWS2/ServiceCatalogWSImpl"/>
+		</port>
+	</service>
+</definitions>
