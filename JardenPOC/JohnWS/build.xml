@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="wsdl-to-jws" default="wsdl-to-jws">
+	<description>
+		Ant build script to (re)generate Java Web Service implementations from WSDL files.
+	
+		Requires a list of WSDLs to be defined in the ccbuild.properties file,
+		using property names such as services.implemented.1 or services.implemented.2
+
+		For example...
+		
+			services.implemented.1=http://ep.emea.zurich.corp/SharedModel/lookup/BankLookupService.wsdl
+			services.implemented.2=http://ep.emea.zurich.corp/SharedModel/lookup/CountryLookupService.wsdl
+	
+		Steve Leach, Feb 2007
+	</description>
+	
+	<taskdef name="wsdlc" classname="weblogic.wsee.tools.anttasks.WsdlcTask" />
+	<taskdef resource="net/sf/antcontrib/antlib.xml" />
+
+	<!-- The URLs of the WSDL files is specified in the ccbuild.properties file. -->
+	<property file="ccbuild.properties" />
+	
+	<property name="template.dir" value="./templates" />
+	<property name="type.jar.dir" value="./WebContent/WEB-INF/lib/" />
+		
+	<target name="wsdl-to-jws">
+		<!-- unset the property -->
+		<var name="services.implemented.list" unset="true"/>
+		<!-- build the iterator -->
+		<propertyselector property="services.implemented.list" override="true" match="(services)\.(implemented)\.([0-9]+)" select="\3" />
+
+		<!-- for each WSDL in the ccbuild.properties file... -->
+		<for list="${services.implemented.list}" param="services.implemented.idx">
+			<sequential>
+				<!-- get the WSDL name into a local property -->
+				<var name="service.impl" unset="true"/>
+				<propertycopy name="service.wsdl" from="services.implemented.@{services.implemented.idx}" override="true" />
+				<echo message="processing WSDL @{services.implemented.idx}: ${service.wsdl}" />
+				
+				<var name="service.base" unset="true"/>
+				<basename file="${service.wsdl}" property="service.base"  suffix=".wsdl"/>
+				
+				<!-- from the WSDL, generate a types JAR and a template implementation -->
+				<wsdlc srcWsdl="${service.wsdl}" destimpldir="${template.dir}" destJwsDir="jws/@{services.implemented.idx}" explode="true" />
+				
+				<!-- compile the generated java into .class files -->
+				<javac srcdir="jws/@{services.implemented.idx}" destdir="jws/@{services.implemented.idx}" />
+				
+				<!-- jar it all up -->
+				<jar destfile="${type.jar.dir}/${service.base}-wsdl.jar" basedir="jws/@{services.implemented.idx}" />
+
+				<!-- delete the temporary files -->
+				<delete dir="jws/@{services.implemented.idx}" />
+			</sequential>
+		</for>
+		
+		<echo message="Types and interface JARs are in ${type.jar.dir}" />		
+		<echo message="Template JWS files are in ${template.dir}" />
+		<echo message="To use a template, copy into your ./src directory" />
+	</target>
+			
+</project>
