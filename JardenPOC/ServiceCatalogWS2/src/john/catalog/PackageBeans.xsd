@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.zurich.com/ep/catalog"
+  xmlns="http://www.zurich.com/ep/catalog"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified">
+
+	<xs:complexType name="packageBean">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="lastBit" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="packageBean" type="packageBean"/>
+	
+	<xs:complexType name="packageBeans">
+		<xs:sequence>
+			<xs:element ref="packageBean" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="packageBeans" type="packageBeans"/>
+
+</xs:schema>
