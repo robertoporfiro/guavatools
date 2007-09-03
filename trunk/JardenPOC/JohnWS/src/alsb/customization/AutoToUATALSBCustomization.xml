@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This customisation file is used to change environmental values on the ALSB configuration,
+exported from AUTO and imported to UAT.
+This version written by John Denny, 4th June 2007, 17:00.
+-->
+<cus:Customizations xmlns:cus="http://www.bea.com/wli/config/customizations" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xt="http://www.bea.com/wli/config/xmltypes">
+  <cus:customization xsi:type="cus:FindAndReplaceCustomizationType">
+    <cus:description>
+    	Change Service URI from zfs-dev2:7311 (AUTO) to zfs-dr-test2:9211 (UAT)
+    </cus:description>
+    <cus:query>
+      <xt:envValueTypes>Service URI</xt:envValueTypes>
+      <xt:includeOnlyModifiedResources>false</xt:includeOnlyModifiedResources>
+      <xt:searchString>zfs-dev2:7311</xt:searchString>
+      <xt:isCompleteMatch>false</xt:isCompleteMatch>
+    </cus:query>
+    <cus:replacement>zfs-dr-test2:9211</cus:replacement>
+  </cus:customization>
+
+  <cus:customization xsi:type="cus:FindAndReplaceCustomizationType">
+    <cus:description>
+    	Change Service URI from 10.88.7.183:7311 (AUTO) to 10.88.67.70:9211 (UAT)
+    </cus:description>
+    <cus:query>
+      <xt:envValueTypes>Service URI</xt:envValueTypes>
+      <xt:includeOnlyModifiedResources>false</xt:includeOnlyModifiedResources>
+      <xt:searchString>10.88.7.183:7311</xt:searchString>
+      <xt:isCompleteMatch>false</xt:isCompleteMatch>
+    </cus:query>
+    <cus:replacement>10.88.67.70:9211</cus:replacement>
+  </cus:customization>
+
+</cus:Customizations>
