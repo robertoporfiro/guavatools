@@ -1,8 +1,8 @@
-<project default="importToALSB" name="protectionPlus" basedir=".">
+<project default="importToALSB" name="boron" basedir=".">
 	
 	<property file="import-export.properties" /> <!-- Properties specific to this project -->
 
-	<property name="config.file" value="../protectionPlus/import-export.properties" />
+	<property name="config.file" value="../protectionPlusBoron/import-export.properties" />
 	<property name="masterAntFile" value="../conf/import-export-tasks.xml"/>
 	
 
