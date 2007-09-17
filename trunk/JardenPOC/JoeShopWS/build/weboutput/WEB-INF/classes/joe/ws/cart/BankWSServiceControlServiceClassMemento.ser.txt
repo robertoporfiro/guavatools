@@ -1,0 +1,35 @@
+ServiceClass class = joe.ws.cart.BankWSServiceControl
+tns = null
+WSDL path relative to JCX = null
+WSDL resource path = joe/ws/cart/Bank.wsdl
+WSDL service name = {http://john/ws/bank}BankWSService
+_use81BindingTypes = false
+_has81Conversation = false
+_callbackJmsQueueName = weblogic.wsee.DefaultCallbackQueue
+_serviceMethodsMap
+     [changePassword]=[[ServiceMethod name = changePassword, return type = int, argument string = java.lang.String userName_arg,java.lang.String oldPassword_arg,java.lang.String newPassword_arg, throws clause =  throws john.ws.bank.BankException, SEI throws clause =  throws java.rmi.RemoteException, john.ws.bank.BankException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/bank}BankWSSoapPort], transports = {http://john/ws/bank}BankWSSoapPort->http]]
+     [getBalance]=[[ServiceMethod name = getBalance, return type = double, argument string = java.lang.String userName_arg,java.lang.String password_arg, throws clause =  throws john.ws.bank.BankException, SEI throws clause =  throws java.rmi.RemoteException, john.ws.bank.BankException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/bank}BankWSSoapPort], transports = {http://john/ws/bank}BankWSSoapPort->http]]
+     [getTransactionLog]=[[ServiceMethod name = getTransactionLog, return type = john.db.JohnLogVO[], argument string = java.lang.String userName_arg,java.lang.String password_arg, throws clause =  throws john.ws.bank.BankException, SEI throws clause =  throws java.rmi.RemoteException, john.ws.bank.BankException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/bank}BankWSSoapPort], transports = {http://john/ws/bank}BankWSSoapPort->http]]
+     [transfer]=[[ServiceMethod name = transfer, return type = double, argument string = java.lang.String fromName_arg,java.lang.String password_arg,java.lang.String toName_arg,double amount_arg, throws clause =  throws john.ws.bank.BankException, SEI throws clause =  throws java.rmi.RemoteException, john.ws.bank.BankException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/bank}BankWSSoapPort], transports = {http://john/ws/bank}BankWSSoapPort->http]]
+_operationNameMap
+     [{http://john/ws/bank}transfer]=[[ServiceMethod name = transfer, return type = double, argument string = java.lang.String fromName_arg,java.lang.String password_arg,java.lang.String toName_arg,double amount_arg, throws clause =  throws john.ws.bank.BankException, SEI throws clause =  throws java.rmi.RemoteException, john.ws.bank.BankException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/bank}BankWSSoapPort], transports = {http://john/ws/bank}BankWSSoapPort->http]]
+     [{http://john/ws/bank}changePassword]=[[ServiceMethod name = changePassword, return type = int, argument string = java.lang.String userName_arg,java.lang.String oldPassword_arg,java.lang.String newPassword_arg, throws clause =  throws john.ws.bank.BankException, SEI throws clause =  throws java.rmi.RemoteException, john.ws.bank.BankException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/bank}BankWSSoapPort], transports = {http://john/ws/bank}BankWSSoapPort->http]]
+     [{http://john/ws/bank}getTransactionLog]=[[ServiceMethod name = getTransactionLog, return type = john.db.JohnLogVO[], argument string = java.lang.String userName_arg,java.lang.String password_arg, throws clause =  throws john.ws.bank.BankException, SEI throws clause =  throws java.rmi.RemoteException, john.ws.bank.BankException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/bank}BankWSSoapPort], transports = {http://john/ws/bank}BankWSSoapPort->http]]
+     [{http://john/ws/bank}getBalance]=[[ServiceMethod name = getBalance, return type = double, argument string = java.lang.String userName_arg,java.lang.String password_arg, throws clause =  throws john.ws.bank.BankException, SEI throws clause =  throws java.rmi.RemoteException, john.ws.bank.BankException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/bank}BankWSSoapPort], transports = {http://john/ws/bank}BankWSSoapPort->http]]
+_portProtocolMap
+     [{http://john/ws/bank}BankWSSoapPort]=[3]
+_portTransportMap
+     [{http://john/ws/bank}BankWSSoapPort]=[http]
+_portLocationMap
+     [{http://john/ws/bank}BankWSSoapPort]=[http://localhost:7041/JohnWS/BankWS]
+_serviceMethods
+     [[ServiceMethod name = changePassword, return type = int, argument string = java.lang.String userName_arg,java.lang.String oldPassword_arg,java.lang.String newPassword_arg, throws clause =  throws john.ws.bank.BankException, SEI throws clause =  throws java.rmi.RemoteException, john.ws.bank.BankException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/bank}BankWSSoapPort], transports = {http://john/ws/bank}BankWSSoapPort->http]]
+     [[ServiceMethod name = getBalance, return type = double, argument string = java.lang.String userName_arg,java.lang.String password_arg, throws clause =  throws john.ws.bank.BankException, SEI throws clause =  throws java.rmi.RemoteException, john.ws.bank.BankException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/bank}BankWSSoapPort], transports = {http://john/ws/bank}BankWSSoapPort->http]]
+     [[ServiceMethod name = getTransactionLog, return type = john.db.JohnLogVO[], argument string = java.lang.String userName_arg,java.lang.String password_arg, throws clause =  throws john.ws.bank.BankException, SEI throws clause =  throws java.rmi.RemoteException, john.ws.bank.BankException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/bank}BankWSSoapPort], transports = {http://john/ws/bank}BankWSSoapPort->http]]
+     [[ServiceMethod name = transfer, return type = double, argument string = java.lang.String fromName_arg,java.lang.String password_arg,java.lang.String toName_arg,double amount_arg, throws clause =  throws john.ws.bank.BankException, SEI throws clause =  throws java.rmi.RemoteException, john.ws.bank.BankException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/bank}BankWSSoapPort], transports = {http://john/ws/bank}BankWSSoapPort->http]]
+_sortedPortProtocols
+     [com.bea.control.servicecontrol.util.memento.v1.ServicePortProtocolV1@1fe5580]
+Callback Endpoint Context Path:null
+Callback Endpoint Service URI:null
+EightOneCallbackMethods: 
+Callback Class = null
