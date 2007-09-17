@@ -1,0 +1,6 @@
+#Thu May 10 12:12:10 BST 2007
+eclipse.preferences.version=1
+org.eclipse.jdt.apt.aptEnabled=true
+org.eclipse.jdt.apt.genSrcDir=.apt_src
+org.eclipse.jdt.apt.processorOptions/web.content.root=%PROJECT.DIR%/WebContent
+org.eclipse.jdt.apt.processorOptions/web.source.roots=%PROJECT.DIR%/src
