@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faceted-project>
+  <runtime name="BEA WebLogic v9.2"/>
+  <fixed facet="jst.utility"/>
+  <fixed facet="jst.java"/>
+  <installed facet="workshop.beehive.controls" version="1.0"/>
+  <installed facet="workshop.xmlbeans" version="2.0"/>
+  <installed facet="java.apt" version="5.0"/>
+  <installed facet="jst.java" version="5.0"/>
+  <installed facet="workshop.xmlbeans.builder" version="2.0"/>
+  <installed facet="wls.utility" version="9.2.0"/>
+  <installed facet="wls.logging" version="9.2.0"/>
+  <installed facet="jst.utility" version="1.0"/>
+  <installed facet="wls.controls" version="9.2.0"/>
+</faceted-project>
