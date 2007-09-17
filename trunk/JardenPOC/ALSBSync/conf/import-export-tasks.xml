@@ -1,0 +1,48 @@
+<project default="exportConfigFromALSB" name="protectionPlus">
+
+	<property environment="env" />
+	<property name="domain.export.script" value="../../conf/export.py" />
+	<property name="domain.import.script" value="../../conf/import.py" />
+	<property name="genConfigFile" value="../../conf/generalConfiguration.properties" />
+
+	<property file="${genConfigFile}" /> <!-- general properties  -->	
+	
+	<path id="wlst-alsb-classpath">
+		<fileset dir="${alsb.bea.homedir}/weblogic92/servicebus/lib" includes="*.jar" />
+		<fileset dir="${alsb.bea.homedir}/weblogic92/server/lib" includes="weblogic.jar" />
+	</path>
+
+	<target name="getExportJar" >
+		<echo message="export script: ${domain.export.script}" />
+		<java classname="weblogic.WLST" fork="true" classpathref="wlst-alsb-classpath">
+			<arg line="${domain.export.script} ${config.file} ${genConfigFile}" />
+		</java>
+	</target>
+
+	<target name="zipUp">
+		<jar destfile="${jarFileName}" basedir="${unzipToDir}"/>
+	</target>
+	
+	<target name="importToALSB">
+		<echo message="import script: ${domain.import.script}" />
+		<antcall target="clean"/>
+		<jar destfile="${jarFileName}" basedir="${unzipToDir}"/>
+		<java classname="weblogic.WLST" fork="true" classpathref="wlst-alsb-classpath">
+			<arg line="${domain.import.script} '${config.file}' ${genConfigFile}" />
+		</java>
+		<antcall target="clean"/>		
+	</target>
+
+	<target name="exportConfigFromALSB" depends="getExportJar">
+		<echo message="getting config from alsb at : ${adminUrl}"/>
+		<unjar dest="${unzipToDir}" src="${jarFileName}" />
+		<antcall target="clean"/> 
+	</target>
+
+
+
+	<target name="clean">
+		<delete file="${jarFileName}"/>
+	</target>
+
+</project>
