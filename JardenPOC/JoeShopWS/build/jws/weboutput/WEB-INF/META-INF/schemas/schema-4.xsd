@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="java:john.ws.bank" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="BankException"/>
+  <xs:element name="BankException" type="java:BankException" xmlns:java="java:john.ws.bank"/>
+</xs:schema>

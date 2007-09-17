@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.4" id="WebApp_ID">
+  <display-name>JoeShopWS</display-name>
+  <servlet>
+    <servlet-name>JoeShopWSServiceServlethttp</servlet-name>
+    <servlet-class>joe.ws.cart.JoeShopWS</servlet-class>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JoeShopWSServiceServlethttp</servlet-name>
+    <url-pattern>/JoeShopWS</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <service-ref>
+    <service-ref-name>service/joe_ws_cart_BankWSServiceControl</service-ref-name>
+    <service-interface>javax.xml.rpc.Service</service-interface>
+    <wsdl-file>joe/ws/cart/Bank.wsdl</wsdl-file>
+    <jaxrpc-mapping-file>joe/ws/cart/BankWSServiceControlJaxRpcMap.xml</jaxrpc-mapping-file>
+    <service-qname xmlns:bank="http://john/ws/bank">bank:BankWSService</service-qname>
+  </service-ref>
+  <service-ref>
+    <service-ref-name>service/joe_ws_cart_ProductWSServiceControl</service-ref-name>
+    <service-interface>javax.xml.rpc.Service</service-interface>
+    <wsdl-file>joe/ws/cart/Product.wsdl</wsdl-file>
+    <jaxrpc-mapping-file>joe/ws/cart/ProductWSServiceControlJaxRpcMap.xml</jaxrpc-mapping-file>
+    <service-qname xmlns:prod="http://john/ws/product">prod:ProductWSService</service-qname>
+  </service-ref>
+</web-app>

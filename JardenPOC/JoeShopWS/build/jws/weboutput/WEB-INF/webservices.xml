@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<webservices xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1">
+  <webservice-description>
+    <webservice-description-name>JoeShopWSService</webservice-description-name>
+    <wsdl-file>WEB-INF/JoeShopWSService.wsdl</wsdl-file>
+    <jaxrpc-mapping-file>WEB-INF/JoeShopWSService.xml</jaxrpc-mapping-file>
+    <port-component>
+      <port-component-name>JoeShopWSSoapPort</port-component-name>
+      <wsdl-port xmlns:cart="http://joe/ws/cart">cart:JoeShopWSSoapPort</wsdl-port>
+      <service-endpoint-interface>joe.ws.cart.JoeShopWSPortType</service-endpoint-interface>
+      <service-impl-bean>
+        <servlet-link>JoeShopWSServiceServlethttp</servlet-link>
+      </service-impl-bean>
+    </port-component>
+  </webservice-description>
+</webservices>

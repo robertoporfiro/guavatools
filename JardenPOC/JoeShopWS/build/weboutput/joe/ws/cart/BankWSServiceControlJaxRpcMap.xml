@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<j2ee:java-wsdl-mapping xmlns:j2ee="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1">
+  <j2ee:package-mapping>
+    <j2ee:package-type>joe.ws.cart</j2ee:package-type>
+    <j2ee:namespaceURI>http://john/ws/bank</j2ee:namespaceURI>
+  </j2ee:package-mapping>
+  <j2ee:package-mapping>
+    <j2ee:package-type>john.db</j2ee:package-type>
+    <j2ee:namespaceURI>java:john.db</j2ee:namespaceURI>
+  </j2ee:package-mapping>
+  <j2ee:package-mapping>
+    <j2ee:package-type>john.ws.bank</j2ee:package-type>
+    <j2ee:namespaceURI>java:john.ws.bank</j2ee:namespaceURI>
+  </j2ee:package-mapping>
+  <j2ee:java-xml-type-mapping>
+    <j2ee:java-type>john.ws.bank.BankException</j2ee:java-type>
+    <j2ee:root-type-qname xmlns:java="java:john.ws.bank">java:BankException</j2ee:root-type-qname>
+    <j2ee:qname-scope>element</j2ee:qname-scope>
+  </j2ee:java-xml-type-mapping>
+  <j2ee:java-xml-type-mapping>
+    <j2ee:java-type>john.db.JohnLogVO[]</j2ee:java-type>
+    <j2ee:root-type-qname xmlns:java="java:john.db">java:ArrayOfJohnLogVO_literal</j2ee:root-type-qname>
+    <j2ee:qname-scope>complexType</j2ee:qname-scope>
+  </j2ee:java-xml-type-mapping>
+  <j2ee:java-xml-type-mapping>
+    <j2ee:java-type>john.ws.bank.BankException</j2ee:java-type>
+    <j2ee:root-type-qname xmlns:java="java:john.ws.bank">java:BankException</j2ee:root-type-qname>
+    <j2ee:qname-scope>complexType</j2ee:qname-scope>
+    <j2ee:variable-mapping>
+      <j2ee:java-variable-name>Message</j2ee:java-variable-name>
+      <j2ee:xml-element-name>Message</j2ee:xml-element-name>
+    </j2ee:variable-mapping>
+  </j2ee:java-xml-type-mapping>
+  <j2ee:java-xml-type-mapping>
+    <j2ee:java-type>john.db.JohnLogVO</j2ee:java-type>
+    <j2ee:root-type-qname xmlns:java="java:john.db">java:JohnLogVO</j2ee:root-type-qname>
+    <j2ee:qname-scope>complexType</j2ee:qname-scope>
+    <j2ee:variable-mapping>
+      <j2ee:java-variable-name>CreateTime</j2ee:java-variable-name>
+      <j2ee:xml-element-name>CreateTime</j2ee:xml-element-name>
+    </j2ee:variable-mapping>
+    <j2ee:variable-mapping>
+      <j2ee:java-variable-name>Ident</j2ee:java-variable-name>
+      <j2ee:xml-element-name>Ident</j2ee:xml-element-name>
+    </j2ee:variable-mapping>
+    <j2ee:variable-mapping>
+      <j2ee:java-variable-name>Message</j2ee:java-variable-name>
+      <j2ee:xml-element-name>Message</j2ee:xml-element-name>
+    </j2ee:variable-mapping>
+    <j2ee:variable-mapping>
+      <j2ee:java-variable-name>Owner</j2ee:java-variable-name>
+      <j2ee:xml-element-name>Owner</j2ee:xml-element-name>
+    </j2ee:variable-mapping>
+  </j2ee:java-xml-type-mapping>
+  <j2ee:exception-mapping>
+    <j2ee:exception-type>john.ws.bank.BankException</j2ee:exception-type>
+    <j2ee:wsdl-message xmlns:bank="http://john/ws/bank">bank:BankException</j2ee:wsdl-message>
+    <j2ee:wsdl-message-part-name>BankException</j2ee:wsdl-message-part-name>
+    <j2ee:constructor-parameter-order>
+      <j2ee:element-name>Message</j2ee:element-name>
+    </j2ee:constructor-parameter-order>
+  </j2ee:exception-mapping>
+  <j2ee:exception-mapping>
+    <j2ee:exception-type>john.ws.bank.BankException</j2ee:exception-type>
+    <j2ee:wsdl-message xmlns:bank="http://john/ws/bank">bank:BankException</j2ee:wsdl-message>
+    <j2ee:wsdl-message-part-name>BankException</j2ee:wsdl-message-part-name>
+    <j2ee:constructor-parameter-order>
+      <j2ee:element-name>Message</j2ee:element-name>
+    </j2ee:constructor-parameter-order>
+  </j2ee:exception-mapping>
+  <j2ee:exception-mapping>
+    <j2ee:exception-type>john.ws.bank.BankException</j2ee:exception-type>
+    <j2ee:wsdl-message xmlns:bank="http://john/ws/bank">bank:BankException</j2ee:wsdl-message>
+    <j2ee:wsdl-message-part-name>BankException</j2ee:wsdl-message-part-name>
+    <j2ee:constructor-parameter-order>
+      <j2ee:element-name>Message</j2ee:element-name>
+    </j2ee:constructor-parameter-order>
+  </j2ee:exception-mapping>
+  <j2ee:exception-mapping>
+    <j2ee:exception-type>john.ws.bank.BankException</j2ee:exception-type>
+    <j2ee:wsdl-message xmlns:bank="http://john/ws/bank">bank:BankException</j2ee:wsdl-message>
+    <j2ee:wsdl-message-part-name>BankException</j2ee:wsdl-message-part-name>
+    <j2ee:constructor-parameter-order>
+      <j2ee:element-name>Message</j2ee:element-name>
+    </j2ee:constructor-parameter-order>
+  </j2ee:exception-mapping>
+  <j2ee:service-interface-mapping>
+    <j2ee:service-interface>joe.ws.cart.BankWSServiceControl</j2ee:service-interface>
+    <j2ee:wsdl-service-name xmlns:bank="http://john/ws/bank">bank:BankWSService</j2ee:wsdl-service-name>
+    <j2ee:port-mapping>
+      <j2ee:port-name>BankWSSoapPort</j2ee:port-name>
+      <j2ee:java-port-name>BankWSSoapPort</j2ee:java-port-name>
+    </j2ee:port-mapping>
+  </j2ee:service-interface-mapping>
+  <j2ee:service-endpoint-interface-mapping>
+    <j2ee:service-endpoint-interface>joe.ws.cart.BankWSServiceControlSEI</j2ee:service-endpoint-interface>
+    <j2ee:wsdl-port-type xmlns:bank="http://john/ws/bank">bank:BankWS</j2ee:wsdl-port-type>
+    <j2ee:wsdl-binding xmlns:bank="http://john/ws/bank">bank:BankWSServiceSoapBinding</j2ee:wsdl-binding>
+    <j2ee:service-endpoint-method-mapping>
+      <j2ee:java-method-name>getTransactionLog</j2ee:java-method-name>
+      <j2ee:wsdl-operation>getTransactionLog</j2ee:wsdl-operation>
+      <j2ee:wrapped-element></j2ee:wrapped-element>
+      <j2ee:method-param-parts-mapping>
+        <j2ee:param-position>0</j2ee:param-position>
+        <j2ee:param-type>java.lang.String</j2ee:param-type>
+        <j2ee:wsdl-message-mapping>
+          <j2ee:wsdl-message xmlns:bank="http://john/ws/bank">bank:getTransactionLog</j2ee:wsdl-message>
+          <j2ee:wsdl-message-part-name>userName</j2ee:wsdl-message-part-name>
+          <j2ee:parameter-mode>IN</j2ee:parameter-mode>
+        </j2ee:wsdl-message-mapping>
+      </j2ee:method-param-parts-mapping>
+      <j2ee:method-param-parts-mapping>
+        <j2ee:param-position>1</j2ee:param-position>
+        <j2ee:param-type>java.lang.String</j2ee:param-type>
+        <j2ee:wsdl-message-mapping>
+          <j2ee:wsdl-message xmlns:bank="http://john/ws/bank">bank:getTransactionLog</j2ee:wsdl-message>
+          <j2ee:wsdl-message-part-name>password</j2ee:wsdl-message-part-name>
+          <j2ee:parameter-mode>IN</j2ee:parameter-mode>
+        </j2ee:wsdl-message-mapping>
+      </j2ee:method-param-parts-mapping>
+      <j2ee:wsdl-return-value-mapping>
+        <j2ee:method-return-value>john.db.JohnLogVO[]</j2ee:method-return-value>
+        <j2ee:wsdl-message xmlns:bank="http://john/ws/bank">bank:getTransactionLogResponse</j2ee:wsdl-message>
+        <j2ee:wsdl-message-part-name>return</j2ee:wsdl-message-part-name>
+      </j2ee:wsdl-return-value-mapping>
+    </j2ee:service-endpoint-method-mapping>
+    <j2ee:service-endpoint-method-mapping>
+      <j2ee:java-method-name>changePassword</j2ee:java-method-name>
+      <j2ee:wsdl-operation>changePassword</j2ee:wsdl-operation>
+      <j2ee:wrapped-element></j2ee:wrapped-element>
+      <j2ee:method-param-parts-mapping>
+        <j2ee:param-position>0</j2ee:param-position>
+        <j2ee:param-type>java.lang.String</j2ee:param-type>
+        <j2ee:wsdl-message-mapping>
+          <j2ee:wsdl-message xmlns:bank="http://john/ws/bank">bank:changePassword</j2ee:wsdl-message>
+          <j2ee:wsdl-message-part-name>userName</j2ee:wsdl-message-part-name>
+          <j2ee:parameter-mode>IN</j2ee:parameter-mode>
+        </j2ee:wsdl-message-mapping>
+      </j2ee:method-param-parts-mapping>
+      <j2ee:method-param-parts-mapping>
+        <j2ee:param-position>1</j2ee:param-position>
+        <j2ee:param-type>java.lang.String</j2ee:param-type>
+        <j2ee:wsdl-message-mapping>
+          <j2ee:wsdl-message xmlns:bank="http://john/ws/bank">bank:changePassword</j2ee:wsdl-message>
+          <j2ee:wsdl-message-part-name>oldPassword</j2ee:wsdl-message-part-name>
+          <j2ee:parameter-mode>IN</j2ee:parameter-mode>
+        </j2ee:wsdl-message-mapping>
+      </j2ee:method-param-parts-mapping>
+      <j2ee:method-param-parts-mapping>
+        <j2ee:param-position>2</j2ee:param-position>
+        <j2ee:param-type>java.lang.String</j2ee:param-type>
+        <j2ee:wsdl-message-mapping>
+          <j2ee:wsdl-message xmlns:bank="http://john/ws/bank">bank:changePassword</j2ee:wsdl-message>
+          <j2ee:wsdl-message-part-name>newPassword</j2ee:wsdl-message-part-name>
+          <j2ee:parameter-mode>IN</j2ee:parameter-mode>
+        </j2ee:wsdl-message-mapping>
+      </j2ee:method-param-parts-mapping>
+      <j2ee:wsdl-return-value-mapping>
+        <j2ee:method-return-value>int</j2ee:method-return-value>
+        <j2ee:wsdl-message xmlns:bank="http://john/ws/bank">bank:changePasswordResponse</j2ee:wsdl-message>
+        <j2ee:wsdl-message-part-name>return</j2ee:wsdl-message-part-name>
+      </j2ee:wsdl-return-value-mapping>
+    </j2ee:service-endpoint-method-mapping>
+    <j2ee:service-endpoint-method-mapping>
+      <j2ee:java-method-name>getBalance</j2ee:java-method-name>
+      <j2ee:wsdl-operation>getBalance</j2ee:wsdl-operation>
+      <j2ee:wrapped-element></j2ee:wrapped-element>
+      <j2ee:method-param-parts-mapping>
+        <j2ee:param-position>0</j2ee:param-position>
+        <j2ee:param-type>java.lang.String</j2ee:param-type>
+        <j2ee:wsdl-message-mapping>
+          <j2ee:wsdl-message xmlns:bank="http://john/ws/bank">bank:getBalance</j2ee:wsdl-message>
+          <j2ee:wsdl-message-part-name>userName</j2ee:wsdl-message-part-name>
+          <j2ee:parameter-mode>IN</j2ee:parameter-mode>
+        </j2ee:wsdl-message-mapping>
+      </j2ee:method-param-parts-mapping>
+      <j2ee:method-param-parts-mapping>
+        <j2ee:param-position>1</j2ee:param-position>
+        <j2ee:param-type>java.lang.String</j2ee:param-type>
+        <j2ee:wsdl-message-mapping>
+          <j2ee:wsdl-message xmlns:bank="http://john/ws/bank">bank:getBalance</j2ee:wsdl-message>
+          <j2ee:wsdl-message-part-name>password</j2ee:wsdl-message-part-name>
+          <j2ee:parameter-mode>IN</j2ee:parameter-mode>
+        </j2ee:wsdl-message-mapping>
+      </j2ee:method-param-parts-mapping>
+      <j2ee:wsdl-return-value-mapping>
+        <j2ee:method-return-value>double</j2ee:method-return-value>
+        <j2ee:wsdl-message xmlns:bank="http://john/ws/bank">bank:getBalanceResponse</j2ee:wsdl-message>
+        <j2ee:wsdl-message-part-name>return</j2ee:wsdl-message-part-name>
+      </j2ee:wsdl-return-value-mapping>
+    </j2ee:service-endpoint-method-mapping>
+    <j2ee:service-endpoint-method-mapping>
+      <j2ee:java-method-name>transfer</j2ee:java-method-name>
+      <j2ee:wsdl-operation>transfer</j2ee:wsdl-operation>
+      <j2ee:wrapped-element></j2ee:wrapped-element>
+      <j2ee:method-param-parts-mapping>
+        <j2ee:param-position>0</j2ee:param-position>
+        <j2ee:param-type>java.lang.String</j2ee:param-type>
+        <j2ee:wsdl-message-mapping>
+          <j2ee:wsdl-message xmlns:bank="http://john/ws/bank">bank:transfer</j2ee:wsdl-message>
+          <j2ee:wsdl-message-part-name>fromName</j2ee:wsdl-message-part-name>
+          <j2ee:parameter-mode>IN</j2ee:parameter-mode>
+        </j2ee:wsdl-message-mapping>
+      </j2ee:method-param-parts-mapping>
+      <j2ee:method-param-parts-mapping>
+        <j2ee:param-position>1</j2ee:param-position>
+        <j2ee:param-type>java.lang.String</j2ee:param-type>
+        <j2ee:wsdl-message-mapping>
+          <j2ee:wsdl-message xmlns:bank="http://john/ws/bank">bank:transfer</j2ee:wsdl-message>
+          <j2ee:wsdl-message-part-name>password</j2ee:wsdl-message-part-name>
+          <j2ee:parameter-mode>IN</j2ee:parameter-mode>
+        </j2ee:wsdl-message-mapping>
+      </j2ee:method-param-parts-mapping>
+      <j2ee:method-param-parts-mapping>
+        <j2ee:param-position>2</j2ee:param-position>
+        <j2ee:param-type>java.lang.String</j2ee:param-type>
+        <j2ee:wsdl-message-mapping>
+          <j2ee:wsdl-message xmlns:bank="http://john/ws/bank">bank:transfer</j2ee:wsdl-message>
+          <j2ee:wsdl-message-part-name>toName</j2ee:wsdl-message-part-name>
+          <j2ee:parameter-mode>IN</j2ee:parameter-mode>
+        </j2ee:wsdl-message-mapping>
+      </j2ee:method-param-parts-mapping>
+      <j2ee:method-param-parts-mapping>
+        <j2ee:param-position>3</j2ee:param-position>
+        <j2ee:param-type>double</j2ee:param-type>
+        <j2ee:wsdl-message-mapping>
+          <j2ee:wsdl-message xmlns:bank="http://john/ws/bank">bank:transfer</j2ee:wsdl-message>
+          <j2ee:wsdl-message-part-name>amount</j2ee:wsdl-message-part-name>
+          <j2ee:parameter-mode>IN</j2ee:parameter-mode>
+        </j2ee:wsdl-message-mapping>
+      </j2ee:method-param-parts-mapping>
+      <j2ee:wsdl-return-value-mapping>
+        <j2ee:method-return-value>double</j2ee:method-return-value>
+        <j2ee:wsdl-message xmlns:bank="http://john/ws/bank">bank:transferResponse</j2ee:wsdl-message>
+        <j2ee:wsdl-message-part-name>return</j2ee:wsdl-message-part-name>
+      </j2ee:wsdl-return-value-mapping>
+    </j2ee:service-endpoint-method-mapping>
+  </j2ee:service-endpoint-interface-mapping>
+</j2ee:java-wsdl-mapping>

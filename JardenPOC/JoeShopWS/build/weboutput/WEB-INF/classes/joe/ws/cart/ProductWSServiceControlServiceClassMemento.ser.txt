@@ -1,0 +1,32 @@
+ServiceClass class = joe.ws.cart.ProductWSServiceControl
+tns = null
+WSDL path relative to JCX = null
+WSDL resource path = joe/ws/cart/Product.wsdl
+WSDL service name = {http://john/ws/product}ProductWSService
+_use81BindingTypes = false
+_has81Conversation = false
+_callbackJmsQueueName = weblogic.wsee.DefaultCallbackQueue
+_serviceMethodsMap
+     [getMatchingProducts]=[[ServiceMethod name = getMatchingProducts, return type = john.db.ProductVO[], argument string = john.db.ProductVO vo_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/product}ProductWSSoapPort], transports = {http://john/ws/product}ProductWSSoapPort->http]]
+     [getAllProducts]=[[ServiceMethod name = getAllProducts, return type = john.db.ProductVO[], argument string = , throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/product}ProductWSSoapPort], transports = {http://john/ws/product}ProductWSSoapPort->http]]
+     [getProduct]=[[ServiceMethod name = getProduct, return type = john.db.ProductVO, argument string = java.lang.String supplier_arg,java.lang.String code_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/product}ProductWSSoapPort], transports = {http://john/ws/product}ProductWSSoapPort->http]]
+_operationNameMap
+     [{http://john/ws/product}getProduct]=[[ServiceMethod name = getProduct, return type = john.db.ProductVO, argument string = java.lang.String supplier_arg,java.lang.String code_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/product}ProductWSSoapPort], transports = {http://john/ws/product}ProductWSSoapPort->http]]
+     [{http://john/ws/product}getAllProducts]=[[ServiceMethod name = getAllProducts, return type = john.db.ProductVO[], argument string = , throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/product}ProductWSSoapPort], transports = {http://john/ws/product}ProductWSSoapPort->http]]
+     [{http://john/ws/product}getMatchingProducts]=[[ServiceMethod name = getMatchingProducts, return type = john.db.ProductVO[], argument string = john.db.ProductVO vo_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/product}ProductWSSoapPort], transports = {http://john/ws/product}ProductWSSoapPort->http]]
+_portProtocolMap
+     [{http://john/ws/product}ProductWSSoapPort]=[3]
+_portTransportMap
+     [{http://john/ws/product}ProductWSSoapPort]=[http]
+_portLocationMap
+     [{http://john/ws/product}ProductWSSoapPort]=[http://localhost:7041/JohnWS/ProductWS]
+_serviceMethods
+     [[ServiceMethod name = getAllProducts, return type = john.db.ProductVO[], argument string = , throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/product}ProductWSSoapPort], transports = {http://john/ws/product}ProductWSSoapPort->http]]
+     [[ServiceMethod name = getMatchingProducts, return type = john.db.ProductVO[], argument string = john.db.ProductVO vo_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/product}ProductWSSoapPort], transports = {http://john/ws/product}ProductWSSoapPort->http]]
+     [[ServiceMethod name = getProduct, return type = john.db.ProductVO, argument string = java.lang.String supplier_arg,java.lang.String code_arg, throws clause = , SEI throws clause =  throws java.rmi.RemoteException, conv phase = none, SOAP style = document, SOAP use = literal, protocols = http-soap], ports = {http://john/ws/product}ProductWSSoapPort], transports = {http://john/ws/product}ProductWSSoapPort->http]]
+_sortedPortProtocols
+     [com.bea.control.servicecontrol.util.memento.v1.ServicePortProtocolV1@18788cc]
+Callback Endpoint Context Path:null
+Callback Endpoint Service URI:null
+EightOneCallbackMethods: 
+Callback Class = null
