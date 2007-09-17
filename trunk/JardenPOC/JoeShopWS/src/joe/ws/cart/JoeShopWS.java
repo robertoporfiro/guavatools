@@ -16,7 +16,7 @@ import org.apache.beehive.controls.api.bean.Control;
 @WebService
 @Conversational()
 /*
- * Conversational version of Shop2WS.
+ * Conversational version of Shop2WS. Built by John.
  */
 public class JoeShopWS implements Serializable
 {
