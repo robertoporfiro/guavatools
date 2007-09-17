@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:schemaEntry xmlns:con="http://www.bea.com/wli/sb/resources/config">
+  <con:schema>&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;xsd:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" targetNamespace="http://jarden/shop"
+	xmlns:tns="http://jarden/shop"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	&lt;xsd:complexType name="Invoice">
+		&lt;xsd:sequence>
+			&lt;xsd:element minOccurs="1" name="TotalPrice"
+				nillable="false" type="xsd:double" />
+			&lt;xsd:element minOccurs="1" name="Client" nillable="true"
+				type="xsd:string" />
+			&lt;xsd:element minOccurs="1" name="AccountName"
+				nillable="true" type="xsd:string" />
+			&lt;xsd:element maxOccurs="unbounded" minOccurs="0"
+				name="Items" nillable="true" type="tns:CartItem" />
+		&lt;/xsd:sequence>
+	&lt;/xsd:complexType>
+
+	&lt;xsd:complexType name="CartItem">
+		&lt;xsd:sequence>
+			&lt;xsd:element minOccurs="1" name="Code" nillable="true"
+				type="xsd:string" />
+			&lt;xsd:element minOccurs="1" name="Supplier" nillable="true"
+				type="xsd:string" />
+			&lt;xsd:element minOccurs="1" name="Name" nillable="true"
+				type="xsd:string" />
+			&lt;xsd:element minOccurs="1" name="Price" nillable="false"
+				type="xsd:double" />
+			&lt;xsd:element minOccurs="1" name="Quantity" nillable="false"
+				type="xsd:int" />
+		&lt;/xsd:sequence>
+	&lt;/xsd:complexType>
+
+	&lt;xsd:complexType name="ProductVO">
+		&lt;xsd:sequence>
+			&lt;xsd:element minOccurs="1" name="Description"
+				nillable="true" type="xsd:string" />
+			&lt;xsd:element minOccurs="1" name="Price" nillable="false"
+				type="xsd:double" />
+			&lt;xsd:element minOccurs="1" name="Name" nillable="true"
+				type="xsd:string" />
+			&lt;xsd:element minOccurs="1" name="Supplier" nillable="true"
+				type="xsd:string" />
+			&lt;xsd:element minOccurs="1" name="Code" nillable="true"
+				type="xsd:string" />
+		&lt;/xsd:sequence>
+	&lt;/xsd:complexType>
+
+	&lt;xsd:complexType name="ProductVOList">
+		&lt;xsd:sequence>
+			&lt;xsd:element name="values" type="tns:ProductVO"
+				minOccurs="0" maxOccurs="unbounded" nillable="true" />
+		&lt;/xsd:sequence>
+	&lt;/xsd:complexType>
+&lt;/xsd:schema></con:schema>
+  <con:targetNamespace>http://jarden/shop</con:targetNamespace>
+</con:schemaEntry>
