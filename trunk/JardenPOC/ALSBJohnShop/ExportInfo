@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-fragment name="" version="v2">
+  <imp:properties xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:property name="username" value="weblogic"/>
+    <imp:property name="description" value=""/>
+    <imp:property name="exporttime" value="Wed Sep 12 16:48:31 BST 2007"/>
+    <imp:property name="productname" value="AquaLogic Service Bus"/>
+    <imp:property name="productversion" value="2.6.0"/>
+    <imp:property name="projectLevelExport" value="true"/>
+  </imp:properties>
+  <imp:exportedItemInfo instanceId="JohnShop/proxy/ShoppingCartToJoe" typeId="ProxyService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/proxy/ShoppingCartToJoe.ProxyService"/>
+      <imp:property name="extrefs" value="BusinessService$JohnShop$service$JoeShop"/>
+      <imp:property name="extrefs" value="Xquery$JohnShop$xquery$GetProductsJoeToShopResponse"/>
+      <imp:property name="extrefs" value="WSDL$JohnShop$wsdl$ShoppingCart"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/service/Product" typeId="BusinessService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/service/Product.BusinessService"/>
+      <imp:property name="extrefs" value="WSDL$JohnShop$wsdl$Product"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/xquery/GetProductsJoeToJohnResponse" typeId="Xquery" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.XqueryEntryDocumentImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/xquery/GetProductsJoeToJohnResponse.Xquery"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/proxy/ProductJohnToJoe" typeId="ProxyService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/proxy/ProductJohnToJoe.ProxyService"/>
+      <imp:property name="extrefs" value="Xquery$JohnShop$xquery$GetProductJoeToJohnResponse"/>
+      <imp:property name="extrefs" value="Xquery$JohnShop$xquery$GetProductsJoeToJohnResponse"/>
+      <imp:property name="extrefs" value="Xquery$JohnShop$xquery$GetProductsJohnToJoeRequest"/>
+      <imp:property name="extrefs" value="WSDL$JohnShop$wsdl$Product"/>
+      <imp:property name="extrefs" value="Xquery$JohnShop$xquery$GetProductJohnToJoeRequest"/>
+      <imp:property name="extrefs" value="BusinessService$JohnShop$service$JoeProduct"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/service/_folderdata" typeId="LocationData" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.config.project.impl.LocationDataImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/service/_folderdata.LocationData"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/wsdl/JoeProduct" typeId="WSDL" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.WsdlEntryDocumentImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/wsdl/JoeProduct.WSDL"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/xquery/GetProductJohnToJoeRequest" typeId="Xquery" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.XqueryEntryDocumentImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/xquery/GetProductJohnToJoeRequest.Xquery"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/schema/Shop.xsd" typeId="XMLSchema" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.SchemaEntryDocumentImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/schema/Shop.xsd.XMLSchema"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/xquery/GetProductsJohnToJoeRequest" typeId="Xquery" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.XqueryEntryDocumentImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/xquery/GetProductsJohnToJoeRequest.Xquery"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/schema/Bank.xsd" typeId="XMLSchema" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.SchemaEntryDocumentImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/schema/Bank.xsd.XMLSchema"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/service/JoeProduct" typeId="BusinessService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/service/JoeProduct.BusinessService"/>
+      <imp:property name="extrefs" value="WSDL$JohnShop$wsdl$JoeProduct"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/schema/_folderdata" typeId="LocationData" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.config.project.impl.LocationDataImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/schema/_folderdata.LocationData"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/xquery/GetProductsCombinedResponse" typeId="Xquery" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.XqueryEntryDocumentImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/xquery/GetProductsCombinedResponse.Xquery"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/_projectdata" typeId="LocationData" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.config.project.impl.LocationDataImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/_projectdata.LocationData"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/xquery/GetProductsJoeToShopResponse" typeId="Xquery" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.XqueryEntryDocumentImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/xquery/GetProductsJoeToShopResponse.Xquery"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/proxy/ProductAllShops" typeId="ProxyService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/proxy/ProductAllShops.ProxyService"/>
+      <imp:property name="extrefs" value="Xquery$JohnShop$xquery$GetProductJoeToJohnResponse"/>
+      <imp:property name="extrefs" value="Xquery$JohnShop$xquery$GetProductsCombinedResponse"/>
+      <imp:property name="extrefs" value="BusinessService$JohnShop$service$Product"/>
+      <imp:property name="extrefs" value="ProxyService$JohnShop$proxy$ProductJohnToJoe"/>
+      <imp:property name="extrefs" value="WSDL$JohnShop$wsdl$Product"/>
+      <imp:property name="extrefs" value="Xquery$JohnShop$xquery$GetProductJohnToJoeRequest"/>
+      <imp:property name="extrefs" value="BusinessService$JohnShop$service$JoeProduct"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/proxy/_folderdata" typeId="LocationData" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.config.project.impl.LocationDataImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/proxy/_folderdata.LocationData"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/wsdl/_folderdata" typeId="LocationData" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.config.project.impl.LocationDataImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/wsdl/_folderdata.LocationData"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/wsdl/ShoppingCart" typeId="WSDL" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.WsdlEntryDocumentImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/wsdl/ShoppingCart.WSDL"/>
+      <imp:property name="extrefs" value="XMLSchema$JohnShop$schema$Shop.xsd"/>
+      <imp:property name="extrefs" value="XMLSchema$JohnShop$schema$Bank.xsd"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/wsdl/JoeShop" typeId="WSDL" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.WsdlEntryDocumentImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/wsdl/JoeShop.WSDL"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/wsdl/Product" typeId="WSDL" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.WsdlEntryDocumentImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/wsdl/Product.WSDL"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/xquery/GetMatchingProductsJohnToJoeRequest" typeId="Xquery" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.XqueryEntryDocumentImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/xquery/GetMatchingProductsJohnToJoeRequest.Xquery"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/xquery/GetProductJoeToJohnResponse" typeId="Xquery" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.XqueryEntryDocumentImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/xquery/GetProductJoeToJohnResponse.Xquery"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/xquery/_folderdata" typeId="LocationData" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.config.project.impl.LocationDataImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/xquery/_folderdata.LocationData"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/xquery/GetProductsFromJohnAndJoeResponse" typeId="Xquery" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.XqueryEntryDocumentImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/xquery/GetProductsFromJohnAndJoeResponse.Xquery"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/service/JoeShop" typeId="BusinessService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/service/JoeShop.BusinessService"/>
+      <imp:property name="extrefs" value="WSDL$JohnShop$wsdl$JoeShop"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/xquery/GetMatchingProductsJoeToJohnResponse" typeId="Xquery" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.XqueryEntryDocumentImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/xquery/GetMatchingProductsJoeToJohnResponse.Xquery"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnShop/proxy/Product" typeId="ProxyService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnShop/proxy/Product.ProxyService"/>
+      <imp:property name="extrefs" value="BusinessService$JohnShop$service$Product"/>
+      <imp:property name="extrefs" value="WSDL$JohnShop$wsdl$Product"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+</xml-fragment>

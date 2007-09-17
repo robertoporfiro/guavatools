@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:wsdlEntry xmlns:con="http://www.bea.com/wli/sb/resources/config">
+  <con:wsdl><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions name="ShopServiceDefinitions"
+	targetNamespace="http://jarden/ShoppingCart"
+	xmlns:tns="http://jarden/ShoppingCart"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:shop="http://jarden/shop"
+	xmlns:java="java:john.ws.bank"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:conv="http://www.openuri.org/2002/04/wsdl/conversation/">
+	<wsdl:types>
+		<xsd:schema attributeFormDefault="unqualified"
+			elementFormDefault="qualified"
+			targetNamespace="http://jarden/ShoppingCart"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+			<xsd:import namespace="http://jarden/shop"
+				schemaLocation="http://localhost/JardenWeb/shop/Shop.xsd" />
+			<xsd:import namespace="java:john.ws.bank"
+				schemaLocation="http://localhost/JardenWeb/shop/Bank.xsd" />
+
+			<xsd:element name="getAllProducts">
+				<xsd:complexType>
+					<xsd:sequence />
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="getAllProductsResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="return"
+							type="shop:ProductVOList" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="newCart">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="client" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="newCartResponse">
+				<xsd:complexType>
+					<xsd:sequence />
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="addItem">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="supplier" type="xsd:string" />
+						<xsd:element name="code" type="xsd:string" />
+						<xsd:element name="qty" type="xsd:int" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="addItemResponse">
+				<xsd:complexType>
+					<xsd:sequence />
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="confirmOrder">
+				<xsd:complexType>
+					<xsd:sequence />
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="confirmOrderResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="return" type="shop:Invoice" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="setAccount">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="accountName"
+							type="xsd:string" />
+						<xsd:element name="accountPassword"
+							type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="setAccountResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="return" type="xsd:boolean" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="cancelOrder">
+				<xsd:complexType>
+					<xsd:sequence />
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="cancelOrderResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="return" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="getCart">
+				<xsd:complexType>
+					<xsd:sequence />
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="getCartResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="return" type="shop:Invoice" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="getClient">
+				<xsd:complexType>
+					<xsd:sequence />
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="getClientResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="return" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="confirmOrder">
+		<wsdl:part element="tns:confirmOrder" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="confirmOrderResponse">
+		<wsdl:part element="tns:confirmOrderResponse"
+			name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getAllProducts">
+		<wsdl:part element="tns:getAllProducts" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getAllProductsResponse">
+		<wsdl:part element="tns:getAllProductsResponse"
+			name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="newCart">
+		<wsdl:part element="tns:newCart" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="newCartResponse">
+		<wsdl:part element="tns:newCartResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="addItem">
+		<wsdl:part element="tns:addItem" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="addItemResponse">
+		<wsdl:part element="tns:addItemResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="setAccount">
+		<wsdl:part element="tns:setAccount" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="setAccountResponse">
+		<wsdl:part element="tns:setAccountResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="cancelOrder">
+		<wsdl:part element="tns:cancelOrder" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="cancelOrderResponse">
+		<wsdl:part element="tns:cancelOrderResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="BankException">
+		<wsdl:part element="java:BankException" name="BankException" />
+	</wsdl:message>
+	<wsdl:message name="getCart">
+		<wsdl:part element="tns:getCart" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getCartResponse">
+		<wsdl:part element="tns:getCartResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getClient">
+		<wsdl:part element="tns:getClient" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="getClientResponse">
+		<wsdl:part element="tns:getClientResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:portType name="ShopPortType">
+		<wsdl:operation name="confirmOrder"
+			parameterOrder="parameters">
+			<wsdl:input message="tns:confirmOrder" />
+			<wsdl:output message="tns:confirmOrderResponse" />
+			<wsdl:fault message="tns:BankException"
+				name="BankException" />
+		</wsdl:operation>
+		<wsdl:operation name="getAllProducts"
+			parameterOrder="parameters">
+			<wsdl:input message="tns:getAllProducts" />
+			<wsdl:output message="tns:getAllProductsResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="newCart" parameterOrder="parameters">
+			<wsdl:input message="tns:newCart" />
+			<wsdl:output message="tns:newCartResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="addItem" parameterOrder="parameters">
+			<wsdl:input message="tns:addItem" />
+			<wsdl:output message="tns:addItemResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="setAccount" parameterOrder="parameters">
+			<wsdl:input message="tns:setAccount" />
+			<wsdl:output message="tns:setAccountResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="cancelOrder"
+			parameterOrder="parameters">
+			<wsdl:input message="tns:cancelOrder" />
+			<wsdl:output message="tns:cancelOrderResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="getCart" parameterOrder="parameters">
+			<wsdl:input message="tns:getCart" />
+			<wsdl:output message="tns:getCartResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="getClient" parameterOrder="parameters">
+			<wsdl:input message="tns:getClient" />
+			<wsdl:output message="tns:getClientResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ShopSoapBinding" type="tns:ShopPortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="confirmOrder">
+			<soap:operation soapAction="" style="document" />
+			<conv:transition phase="finish" />
+			<wsdl:input>
+				<soap:body parts="parameters" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="parameters" use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="BankException">
+				<soap:fault name="BankException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getAllProducts">
+			<soap:operation soapAction="" style="document" />
+			<conv:transition phase="continue" />
+			<wsdl:input>
+				<soap:body parts="parameters" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="parameters" use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="newCart">
+			<soap:operation soapAction="" style="document" />
+			<conv:transition phase="start" />
+			<wsdl:input>
+				<soap:body parts="parameters" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="addItem">
+			<soap:operation soapAction="" style="document" />
+			<conv:transition phase="continue" />
+			<wsdl:input>
+				<soap:body parts="parameters" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setAccount">
+			<soap:operation soapAction="" style="document" />
+			<conv:transition phase="continue" />
+			<wsdl:input>
+				<soap:body parts="parameters" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="parameters" use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="cancelOrder">
+			<soap:operation soapAction="" style="document" />
+			<conv:transition phase="finish" />
+			<wsdl:input>
+				<soap:body parts="parameters" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="parameters" use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getCart">
+			<soap:operation soapAction="" style="document" />
+			<conv:transition phase="continue" />
+			<wsdl:input>
+				<soap:body parts="parameters" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="parameters" use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getClient">
+			<soap:operation soapAction="" style="document" />
+			<conv:transition phase="continue" />
+			<wsdl:input>
+				<soap:body parts="parameters" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="parameters" use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ShopService">
+		<wsdl:port binding="tns:ShopSoapBinding" name="ShopSoapPort">
+			<soap:address
+				location="http://localhost:7041/JoeShopWS/ShopWS" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>]]></con:wsdl>
+  <con:dependencies>
+    <con:schemaRef isInclude="false" schemaLocation="http://localhost/JardenWeb/shop/Bank.xsd" namespace="java:john.ws.bank" ref="JohnShop/schema/Bank.xsd"/>
+    <con:schemaRef isInclude="false" schemaLocation="http://localhost/JardenWeb/shop/Shop.xsd" namespace="http://jarden/shop" ref="JohnShop/schema/Shop.xsd"/>
+  </con:dependencies>
+  <con:targetNamespace>http://jarden/ShoppingCart</con:targetNamespace>
+</con:wsdlEntry>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-fragment xmlns:ser="http://www.bea.com/wli/sb/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tran="http://www.bea.com/wli/sb/transports" xmlns:env="http://www.bea.com/wli/config/env" xmlns:con="http://www.bea.com/wli/sb/stages/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config">
+  <ser:coreEntry isProxy="true" isEnabled="true" isAutoPublish="false">
+    <ser:description/>
+    <ser:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType" xmlns:con="http://www.bea.com/wli/sb/services/bindings/config">
+      <con:wsdl ref="JohnShop/wsdl/Product"/>
+      <con:port>
+        <con:name>ProductWSSoapPort</con:name>
+        <con:namespace>http://john/ws/product</con:namespace>
+      </con:port>
+      <con:selector type="SOAP body"/>
+    </ser:binding>
+    <ser:monitoring isEnabled="false">
+      <ser:aggregationInterval>10</ser:aggregationInterval>
+    </ser:monitoring>
+    <ser:reporting>true</ser:reporting>
+    <ser:logging isEnabled="true">
+      <ser:logLevel>debug</ser:logLevel>
+    </ser:logging>
+    <ser:sla-alerting isEnabled="true">
+      <ser:alertLevel>normal</ser:alertLevel>
+    </ser:sla-alerting>
+    <ser:pipeline-alerting isEnabled="true">
+      <ser:alertLevel>normal</ser:alertLevel>
+    </ser:pipeline-alerting>
+  </ser:coreEntry>
+  <ser:endpointConfig>
+    <tran:provider-id>http</tran:provider-id>
+    <tran:inbound>true</tran:inbound>
+    <tran:URI>
+      <env:value>/MyProductToJoeProduct</env:value>
+    </tran:URI>
+    <tran:inbound-properties/>
+    <tran:all-headers>false</tran:all-headers>
+    <tran:provider-specific xsi:type="http:HttpEndPointConfiguration" xmlns:http="http://www.bea.com/wli/sb/transports/http">
+      <http:inbound-properties/>
+    </tran:provider-specific>
+  </ser:endpointConfig>
+  <ser:router>
+    <con:flow xmlns:con="http://www.bea.com/wli/sb/pipeline/config">
+      <con:route-node name="RouteNode1">
+        <con:context>
+          <con2:varNsDecl prefix="java" namespace="java:john.db" xmlns:con2="http://www.bea.com/wli/sb/stages/config"/>
+          <con2:varNsDecl prefix="prod" namespace="http://john/ws/product" xmlns:con2="http://www.bea.com/wli/sb/stages/config"/>
+        </con:context>
+        <con:actions>
+          <con1:routingTable xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+            <con1:expression>
+              <con:xqueryText xmlns:con="http://www.bea.com/wli/sb/stages/config">$operation</con:xqueryText>
+            </con1:expression>
+            <con1:case>
+              <con1:operator>equals</con1:operator>
+              <con1:value>'getProduct'</con1:value>
+              <con1:route>
+                <con1:service ref="JohnShop/service/JoeProduct" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                <con1:operation>getProduct</con1:operation>
+                <con1:outboundTransform>
+                  <con2:replace varName="body" contents-only="true" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config">
+                    <con2:location>
+                      <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">.</con:xpathText>
+                    </con2:location>
+                    <con2:expr>
+                      <con:xqueryTransform xmlns:con="http://www.bea.com/wli/sb/stages/config">
+                        <con:resource ref="JohnShop/xquery/GetProductJohnToJoeRequest"/>
+                        <con:param name="getProduct1">
+                          <con:path>$body/*</con:path>
+                        </con:param>
+                      </con:xqueryTransform>
+                    </con2:expr>
+                  </con2:replace>
+                </con1:outboundTransform>
+                <con1:responseTransform>
+                  <con2:replace varName="body" contents-only="true" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config">
+                    <con2:expr>
+                      <con:xqueryTransform xmlns:con="http://www.bea.com/wli/sb/stages/config">
+                        <con:resource ref="JohnShop/xquery/GetProductJoeToJohnResponse"/>
+                        <con:param name="getProductResponse1">
+                          <con:path>$body/*</con:path>
+                        </con:param>
+                      </con:xqueryTransform>
+                    </con2:expr>
+                  </con2:replace>
+                  <con2:validate xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config">
+                    <con2:wsdl ref="JohnShop/wsdl/Product"/>
+                    <con2:schemaElement xmlns:prod="http://john/ws/product">prod:getProductResponse</con2:schemaElement>
+                    <con2:varName>body</con2:varName>
+                    <con2:location>
+                      <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">./prod:getProductResponse</con:xpathText>
+                    </con2:location>
+                    <con2:resultVarName/>
+                  </con2:validate>
+                </con1:responseTransform>
+              </con1:route>
+            </con1:case>
+            <con1:case>
+              <con1:operator>equals</con1:operator>
+              <con1:value>'getAllProducts'</con1:value>
+              <con1:route>
+                <con1:service ref="JohnShop/service/JoeProduct" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                <con1:operation>getProducts</con1:operation>
+                <con1:outboundTransform>
+                  <con2:replace varName="body" contents-only="true" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config">
+                    <con2:location>
+                      <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">.</con:xpathText>
+                    </con2:location>
+                    <con2:expr>
+                      <con:xqueryTransform xmlns:con="http://www.bea.com/wli/sb/stages/config">
+                        <con:resource ref="JohnShop/xquery/GetProductsJohnToJoeRequest"/>
+                      </con:xqueryTransform>
+                    </con2:expr>
+                  </con2:replace>
+                </con1:outboundTransform>
+                <con1:responseTransform>
+                  <con2:replace varName="body" contents-only="true" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config">
+                    <con2:location>
+                      <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">.</con:xpathText>
+                    </con2:location>
+                    <con2:expr>
+                      <con:xqueryTransform xmlns:con="http://www.bea.com/wli/sb/stages/config">
+                        <con:resource ref="JohnShop/xquery/GetProductsJoeToJohnResponse"/>
+                        <con:param name="getProductsResponse1">
+                          <con:path>$body/*</con:path>
+                        </con:param>
+                      </con:xqueryTransform>
+                    </con2:expr>
+                  </con2:replace>
+                  <con2:validate xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config">
+                    <con2:wsdl ref="JohnShop/wsdl/Product"/>
+                    <con2:schemaElement xmlns:prod="http://john/ws/product">prod:getAllProductsResponse</con2:schemaElement>
+                    <con2:varName>body</con2:varName>
+                    <con2:location>
+                      <con:xpathText xmlns:con="http://www.bea.com/wli/sb/stages/config">./prod:getAllProductsResponse</con:xpathText>
+                    </con2:location>
+                    <con2:resultVarName/>
+                  </con2:validate>
+                </con1:responseTransform>
+              </con1:route>
+            </con1:case>
+          </con1:routingTable>
+        </con:actions>
+      </con:route-node>
+    </con:flow>
+  </ser:router>
+</xml-fragment>

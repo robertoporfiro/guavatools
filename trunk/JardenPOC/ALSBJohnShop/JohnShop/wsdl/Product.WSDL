@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:wsdlEntry xmlns:con="http://www.bea.com/wli/sb/resources/config">
+  <con:wsdl><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<s0:definitions name="ProductWSServiceDefinitions" targetNamespace="http://john/ws/product" xmlns="" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://john/ws/product" xmlns:s2="http://schemas.xmlsoap.org/wsdl/soap/">
+  <s0:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="java:john.db" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://john/ws/product" xmlns:s2="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="ProductVO">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="Description" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="1" name="Price" nillable="false" type="xs:double"/>
+          <xs:element minOccurs="1" name="Name" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="1" name="Supplier" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="1" name="Code" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfProductVO_literal">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="ProductVO" nillable="true" type="java:ProductVO" xmlns:java="java:john.db"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfProductVO_literal" type="java:ArrayOfProductVO_literal" xmlns:java="java:john.db"/>
+    </xs:schema>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://john/ws/product" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://john/ws/product" xmlns:s2="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="java:john.db"/>
+      <xs:element name="getAllProducts">
+        <xs:complexType>
+          <xs:sequence/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getAllProductsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="java:ArrayOfProductVO_literal" xmlns:java="java:john.db"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getMatchingProducts">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="vo" type="java:ProductVO" xmlns:java="java:john.db"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getMatchingProductsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="java:ArrayOfProductVO_literal" xmlns:java="java:john.db"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getProduct">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="supplier" type="xs:string"/>
+            <xs:element name="code" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getProductResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="java:ProductVO" xmlns:java="java:john.db"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </s0:types>
+  <s0:message name="getAllProducts">
+    <s0:part element="s1:getAllProducts" name="parameters"/>
+  </s0:message>
+  <s0:message name="getAllProductsResponse">
+    <s0:part element="s1:getAllProductsResponse" name="parameters"/>
+  </s0:message>
+  <s0:message name="getMatchingProducts">
+    <s0:part element="s1:getMatchingProducts" name="parameters"/>
+  </s0:message>
+  <s0:message name="getMatchingProductsResponse">
+    <s0:part element="s1:getMatchingProductsResponse" name="parameters"/>
+  </s0:message>
+  <s0:message name="getProduct">
+    <s0:part element="s1:getProduct" name="parameters"/>
+  </s0:message>
+  <s0:message name="getProductResponse">
+    <s0:part element="s1:getProductResponse" name="parameters"/>
+  </s0:message>
+  <s0:portType name="ProductWS">
+    <s0:operation name="getAllProducts" parameterOrder="parameters">
+      <s0:input message="s1:getAllProducts"/>
+      <s0:output message="s1:getAllProductsResponse"/>
+    </s0:operation>
+    <s0:operation name="getMatchingProducts" parameterOrder="parameters">
+      <s0:input message="s1:getMatchingProducts"/>
+      <s0:output message="s1:getMatchingProductsResponse"/>
+    </s0:operation>
+    <s0:operation name="getProduct" parameterOrder="parameters">
+      <s0:input message="s1:getProduct"/>
+      <s0:output message="s1:getProductResponse"/>
+    </s0:operation>
+  </s0:portType>
+  <s0:binding name="ProductWSServiceSoapBinding" type="s1:ProductWS">
+    <s2:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <s0:operation name="getAllProducts">
+      <s2:operation soapAction="" style="document"/>
+      <s0:input>
+        <s2:body parts="parameters" use="literal"/>
+      </s0:input>
+      <s0:output>
+        <s2:body parts="parameters" use="literal"/>
+      </s0:output>
+    </s0:operation>
+    <s0:operation name="getMatchingProducts">
+      <s2:operation soapAction="" style="document"/>
+      <s0:input>
+        <s2:body parts="parameters" use="literal"/>
+      </s0:input>
+      <s0:output>
+        <s2:body parts="parameters" use="literal"/>
+      </s0:output>
+    </s0:operation>
+    <s0:operation name="getProduct">
+      <s2:operation soapAction="" style="document"/>
+      <s0:input>
+        <s2:body parts="parameters" use="literal"/>
+      </s0:input>
+      <s0:output>
+        <s2:body parts="parameters" use="literal"/>
+      </s0:output>
+    </s0:operation>
+  </s0:binding>
+  <s0:service name="ProductWSService">
+    <s0:port binding="s1:ProductWSServiceSoapBinding" name="ProductWSSoapPort">
+      <s2:address location="http://localhost:7041/JohnWS/ProductWS"/>
+    </s0:port>
+  </s0:service>
+</s0:definitions>]]></con:wsdl>
+  <con:targetNamespace>http://john/ws/product</con:targetNamespace>
+</con:wsdlEntry>
