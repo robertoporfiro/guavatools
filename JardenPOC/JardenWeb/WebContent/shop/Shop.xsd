@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" targetNamespace="http://jarden/shop"
+	xmlns:tns="http://jarden/shop"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:complexType name="Invoice">
+		<xsd:sequence>
+			<xsd:element minOccurs="1" name="TotalPrice"
+				nillable="false" type="xsd:double" />
+			<xsd:element minOccurs="1" name="Client" nillable="true"
+				type="xsd:string" />
+			<xsd:element minOccurs="1" name="AccountName"
+				nillable="true" type="xsd:string" />
+			<xsd:element maxOccurs="unbounded" minOccurs="0"
+				name="Items" nillable="true" type="tns:CartItem" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="CartItem">
+		<xsd:sequence>
+			<xsd:element minOccurs="1" name="Code" nillable="true"
+				type="xsd:string" />
+			<xsd:element minOccurs="1" name="Supplier" nillable="true"
+				type="xsd:string" />
+			<xsd:element minOccurs="1" name="Name" nillable="true"
+				type="xsd:string" />
+			<xsd:element minOccurs="1" name="Price" nillable="false"
+				type="xsd:double" />
+			<xsd:element minOccurs="1" name="Quantity" nillable="false"
+				type="xsd:int" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ProductVO">
+		<xsd:sequence>
+			<xsd:element minOccurs="1" name="Description"
+				nillable="true" type="xsd:string" />
+			<xsd:element minOccurs="1" name="Price" nillable="false"
+				type="xsd:double" />
+			<xsd:element minOccurs="1" name="Name" nillable="true"
+				type="xsd:string" />
+			<xsd:element minOccurs="1" name="Supplier" nillable="true"
+				type="xsd:string" />
+			<xsd:element minOccurs="1" name="Code" nillable="true"
+				type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ProductVOList">
+		<xsd:sequence>
+			<xsd:element name="values" type="tns:ProductVO"
+				minOccurs="0" maxOccurs="unbounded" nillable="true" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

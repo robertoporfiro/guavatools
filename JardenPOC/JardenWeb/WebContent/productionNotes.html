@@ -1,0 +1,55 @@
+<h3>How the WSDLs were produced</h3>
+<ul>
+<li>Obtain the current WSDL from Auto; the automatic build process (cruise control)
+notes any ALSB changes in svn and copies them into Auto.</li>
+<li>Remove exceptions; preferred pattern is web service throws a SOAPFaultException,
+using a helper class developed by Steve Leach.</li>
+<li>Change namespace; should be of form: http://www.zurich.com/ep/<stream>/<service>
+	e.g. http://www.zurich.com/ep/lookup/countrylookup</li>
+<li>Use meaningful namespace prefixes, e.g. tns (targetNameSpace), prod (product),  soap
+</li>
+<li>Put generic types (Address, Quote, Product) into a separate schema file.</li>
+<li>Where a type is already defined in another schema, import that schema rather than
+define a duplicate.</li>
+<li>Rename Array elements to house conventions, e.g.<pre>
+   &lt;xs:complexType name="ArrayOfStatusMapping_literal"&gt;
+      &lt;xs:sequence&gt;
+         &lt;xs:element minOccurs="0" maxOccurs="unbounded"
+            name="StatusMapping" nillable="true" type="java:StatusMapping"
+            xmlns:java="java:com.zurich.ep.product" /&gt;
+         &lt;/xs:sequence&gt;
+      &lt;/xs:complexType&gt;
+</pre>becomes<pre>
+   &lt;xs:complexType name="StatusMappingList"&gt;
+      &lt;xs:sequence&gt;
+         &lt;xs:element minOccurs="0" maxOccurs="unbounded"
+            name="values" type="prod:StatusMapping" /&gt;
+      &lt;/xs:sequence&gt;
+   &lt;/xs:complexType&gt;
+Note the name of the repeated element is always "values", so that the JAX-RPC java
+bean generated will have methods
+   StatusMapping[] getValues();
+   setValues(StatusMapping[] values);
+</pre>
+<li>Rename some of the wsdl element names, e.g.<pre>
+   &lt;definitions name="BankLookupDefinitions" ...
+   &lt;portType name="BankLookupPortType"&gt;
+   &lt;binding name="BankLookupSoapBinding" ...
+   &lt;service name="BankLookupService"&gt;
+      &lt;port binding="tns:BankLookupSoapBinding"
+         name="BankLookupSoapPort"&gt;	 
+</pre>
+</li>
+<li>Where a java type has a set of defined values (as in java 5 enum), we have defined
+an xml enumeration; for examples, see sample/enumsample.xsd and ApplicationStatus
+in Pipeline.xsd</li>
+</ul>
+
+<h3>Questions</h3>
+<ol>
+<li>Some of the types are common, so we need to decide where they should go.
+E.g. Pipeline.xsd has PolicyNumber and PolicyType which are also used in Product.xsd.
+As I did Pipeline.xsd first, I have imported Pipeline.xsd into Product.xsd,
+but I suspect it should be the other way round. Probably most of Pipeline.xsd types
+are shared, and could be in Product.xsd.</li>
+</ol>
