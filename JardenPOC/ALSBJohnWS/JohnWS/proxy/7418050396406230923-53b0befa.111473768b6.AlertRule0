@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-fragment name="HelloExceptionAlert" ResourceBoundTo="ProxyService$JohnWS$proxy$HelloProxy" ruleId="7418050396406230923-53b0befa.111473768b6.-7fec" enabled="true">
+  <aler:description xmlns:aler="http://www.bea.com/wli/monitoring/alert"/>
+  <aler:AlertFrequency xmlns:aler="http://www.bea.com/wli/monitoring/alert">every-time</aler:AlertFrequency>
+  <aler:AlertSeverity xmlns:aler="http://www.bea.com/wli/monitoring/alert">normal</aler:AlertSeverity>
+  <aler:StopProcessing xmlns:aler="http://www.bea.com/wli/monitoring/alert">false</aler:StopProcessing>
+  <aler:Condition type="statistics" xmlns:aler="http://www.bea.com/wli/monitoring/alert">
+    <aler:config aggregation-interval="2" xsi:type="mon:monitoringConditionType" xmlns:mon="http://www.bea.com/wli/monitoring/alert/condition/monitoringstatistic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <mon:monCondExpr>
+        <mon:function>count</mon:function>
+        <mon:lhs>Folder$JohnWS$proxy/HelloProxy/Transport/error-count</mon:lhs>
+        <mon:lhs-operand-type>count</mon:lhs-operand-type>
+        <mon:lhsDisplayName>Error Count</mon:lhsDisplayName>
+        <mon:operator>></mon:operator>
+        <mon:rhs>0</mon:rhs>
+      </mon:monCondExpr>
+    </aler:config>
+  </aler:Condition>
+  <aler:AlertDestination ref="JohnWS/alert/JohnAlertDestination" xmlns:aler="http://www.bea.com/wli/monitoring/alert"/>
+  <aler:AlertSummary xsi:nil="true" xmlns:aler="http://www.bea.com/wli/monitoring/alert" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+</xml-fragment>

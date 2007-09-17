@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:wsdlEntry xmlns:con="http://www.bea.com/wli/sb/resources/config">
+  <con:wsdl><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<s2:definitions name="DelayedHelloWSServiceDefinitions" targetNamespace="http://john/ws/callback" xmlns="" xmlns:s0="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:s1="http://john/ws/callback" xmlns:s2="http://schemas.xmlsoap.org/wsdl/" xmlns:s3="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s4="http://www.openuri.org/2002/04/wsdl/conversation/">
+  <s0:partnerLinkType name="DelayedHelloWSService_CallbackSvc">
+    <s0:role name="Service">
+      <s0:portType name="s1:DelayedHelloWS"/>
+    </s0:role>
+    <s0:role name="Callback">
+      <s0:portType name="s1:DelayedHelloWSService_CallbackSvc"/>
+    </s0:role>
+  </s0:partnerLinkType>
+  <s2:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://john/ws/callback" xmlns:s0="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:s1="http://john/ws/callback" xmlns:s2="http://schemas.xmlsoap.org/wsdl/" xmlns:s3="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s4="http://www.openuri.org/2002/04/wsdl/conversation/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="delayedHello">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="delay" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="hello">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="helloResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="helloCallback">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="reply" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="helloCallbackResponse">
+        <xs:complexType>
+          <xs:sequence/>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </s2:types>
+  <s2:message name="delayedHello">
+    <s2:part element="s1:delayedHello" name="parameters"/>
+  </s2:message>
+  <s2:message name="hello">
+    <s2:part element="s1:hello" name="parameters"/>
+  </s2:message>
+  <s2:message name="helloResponse">
+    <s2:part element="s1:helloResponse" name="parameters"/>
+  </s2:message>
+  <s2:message name="helloCallback">
+    <s2:part element="s1:helloCallback" name="parameters"/>
+  </s2:message>
+  <s2:message name="helloCallbackResponse">
+    <s2:part element="s1:helloCallbackResponse" name="parameters"/>
+  </s2:message>
+  <s2:portType name="DelayedHelloWS">
+    <s2:operation name="delayedHello" parameterOrder="parameters">
+      <s2:input message="s1:delayedHello"/>
+    </s2:operation>
+    <s2:operation name="hello" parameterOrder="parameters">
+      <s2:input message="s1:hello"/>
+      <s2:output message="s1:helloResponse"/>
+    </s2:operation>
+  </s2:portType>
+  <s2:portType name="DelayedHelloWSService_CallbackSvc">
+    <s2:operation name="helloCallback" parameterOrder="parameters">
+      <s2:input message="s1:helloCallback"/>
+      <s2:output message="s1:helloCallbackResponse"/>
+    </s2:operation>
+  </s2:portType>
+  <s2:binding name="DelayedHelloWSServiceSoapBinding" type="s1:DelayedHelloWS">
+    <s3:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <s2:operation name="delayedHello">
+      <s3:operation soapAction="" style="document"/>
+      <s4:transition phase="start"/>
+      <s2:input>
+        <s3:body parts="parameters" use="literal"/>
+      </s2:input>
+    </s2:operation>
+    <s2:operation name="hello">
+      <s3:operation soapAction="" style="document"/>
+      <s4:transition phase="start"/>
+      <s2:input>
+        <s3:body parts="parameters" use="literal"/>
+      </s2:input>
+      <s2:output>
+        <s3:body parts="parameters" use="literal"/>
+      </s2:output>
+    </s2:operation>
+  </s2:binding>
+  <s2:binding name="DelayedHelloWSService_CallbackSvcServiceSoapBinding" type="s1:DelayedHelloWSService_CallbackSvc">
+    <s3:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <s2:operation name="helloCallback">
+      <s3:operation soapAction="" style="document"/>
+      <s2:input>
+        <s3:body parts="parameters" use="literal"/>
+      </s2:input>
+      <s2:output>
+        <s3:body use="literal"/>
+      </s2:output>
+    </s2:operation>
+  </s2:binding>
+  <s2:service name="DelayedHelloWSService">
+    <s2:port binding="s1:DelayedHelloWSServiceSoapBinding" name="DelayedHelloWSSoapPort">
+      <s3:address location="http://localhost:7041/JohnWS/DelayedHelloWS"/>
+    </s2:port>
+  </s2:service>
+  <s2:service name="DelayedHelloWSService_CallbackSvcService">
+    <s2:port binding="s1:DelayedHelloWSService_CallbackSvcServiceSoapBinding" name="DelayedHelloWSSoapPortCallback"/>
+  </s2:service>
+</s2:definitions>]]></con:wsdl>
+  <con:targetNamespace>http://john/ws/callback</con:targetNamespace>
+</con:wsdlEntry>

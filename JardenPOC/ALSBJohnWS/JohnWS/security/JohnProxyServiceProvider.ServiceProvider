@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-fragment name="JohnProxyServiceProvider" xmlns:ser="http://www.bea.com/wli/sb/services">
+  <ser:type>proxy-service-provider</ser:type>
+  <ser:credentials>
+    <ser:key-pair purpose="SSL">
+      <ser:alias>cuka53</ser:alias>
+      <ser:password>johnstorepass</ser:password>
+    </ser:key-pair>
+  </ser:credentials>
+</xml-fragment>

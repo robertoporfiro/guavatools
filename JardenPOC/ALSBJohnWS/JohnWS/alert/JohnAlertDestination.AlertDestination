@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-fragment>
+  <aler:AlertToReportingDataSet xmlns:aler="http://www.bea.com/wli/monitoring/alert">false</aler:AlertToReportingDataSet>
+  <aler:AlertToSNMP xmlns:aler="http://www.bea.com/wli/monitoring/alert">true</aler:AlertToSNMP>
+  <aler:Destinations type="jms" xmlns:aler="http://www.bea.com/wli/monitoring/alert">
+    <aler:config xsi:type="jms:JmsActionProviderConfiguration" xmlns:jms="http://www.bea.com/wli/monitoring/alert/action/jms" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <jms:transport-end-point-config>
+        <jms:config xsi:type="tran:EndPointConfiguration" xmlns:tran="http://www.bea.com/wli/sb/transports">
+          <tran:provider-id>jms</tran:provider-id>
+          <tran:inbound>false</tran:inbound>
+          <tran:URI>
+            <env:value xmlns:env="http://www.bea.com/wli/config/env">jms://10.160.2.94:7091/javax.jms.QueueConnectionFactory/jms.johnAlertQ</env:value>
+          </tran:URI>
+          <tran:provider-specific xsi:type="jms:JmsEndPointConfiguration" xmlns:jms="http://www.bea.com/wli/sb/transports/jms">
+            <jms:is-queue>true</jms:is-queue>
+            <jms:is-secure>false</jms:is-secure>
+            <jms:outbound-properties>
+              <jms:message-type>Bytes</jms:message-type>
+            </jms:outbound-properties>
+            <jms:request-encoding>UTF-8</jms:request-encoding>
+          </tran:provider-specific>
+        </jms:config>
+      </jms:transport-end-point-config>
+    </aler:config>
+  </aler:Destinations>
+</xml-fragment>
