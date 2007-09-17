@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class ProductVO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int ident;
 	private String supplier;
+	private String code;
 	private String name;
 	private String description;
 	private double price;
@@ -15,12 +15,6 @@ public class ProductVO implements Serializable {
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	public int getIdent() {
-		return ident;
-	}
-	public void setIdent(int ident) {
-		this.ident = ident;
 	}
 	public double getPrice() {
 		return price;
@@ -39,5 +33,11 @@ public class ProductVO implements Serializable {
 	}
 	public void setSupplier(String supplier) {
 		this.supplier = supplier;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 }

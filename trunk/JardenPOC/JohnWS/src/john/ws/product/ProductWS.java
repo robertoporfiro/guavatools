@@ -14,15 +14,26 @@ public class ProductWS {
 	private ProductDB productDB;
 
 	public ProductVO[] getAllProducts() {
+		System.out.println("ProductWS.getAllProducts()");
 		return productDB.getAllProducts();
 	}
-	public ProductVO getProduct(int ident) {
-		return productDB.getProduct(ident);
+	public ProductVO getProduct(String supplier, String code) {
+		System.out.println("ProductWS.getProduct('" + supplier + "', '" + code + "')");
+		return productDB.getProduct(code);
 	}
+	/**
+	 * Return all Products that match pattern specified by vo.
+	 * if code supplied, return exactly matching product
+	 * else return all products matching name (if supplied)
+	 * 	and less than price (if supplied).
+	 * @param vo
+	 * @return
+	 */
 	public ProductVO[] getMatchingProducts(ProductVO vo) {
-		int ident = vo.getIdent(); 
-		if (ident > 0) {
-			return new ProductVO[] {productDB.getProduct(ident)};
+		System.out.println("ProductWS.getMatchingProducts(" + vo + ")");
+		String code = vo.getCode(); 
+		if (code != null && code.trim().length() > 0) {
+			return new ProductVO[] {productDB.getProduct(code)};
 		}
 		ProductVO[] prods;
 		String name = vo.getName(); 

@@ -8,7 +8,7 @@ public class Invoice implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private ArrayList itemList = new ArrayList();
 	private String client;
-	private String creditCardNumber;
+	private String accountName;
 	private double totalPrice;
 	
 	public double getTotalPrice() {
@@ -23,11 +23,11 @@ public class Invoice implements Serializable {
 	public void setClient(String client) {
 		this.client = client;
 	}
-	public String getCreditCardNumber() {
-		return creditCardNumber;
+	public String getAccountName() {
+		return accountName;
 	}
-	public void setCreditCardNumber(String creditCardNumber) {
-		this.creditCardNumber = creditCardNumber;
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
 	}
 	public CartItem[] getItems() {
 		return (CartItem[])itemList.toArray(new CartItem[0]);
@@ -37,12 +37,13 @@ public class Invoice implements Serializable {
 	}
 	public void addItem(CartItem item) {
 		itemList.add(item);
+		calculateTotalPrice();
 	}
-	public void calculateTotalPrice() {
+	private void calculateTotalPrice() {
 		totalPrice = 0;
 		for (int i = 0; i < itemList.size(); ++i) {
 			CartItem item = (CartItem)itemList.get(i); 
-			totalPrice += item.getPrice() * item.getQuantity();
+			totalPrice += item.getPrice();
 		}
 	}
 
