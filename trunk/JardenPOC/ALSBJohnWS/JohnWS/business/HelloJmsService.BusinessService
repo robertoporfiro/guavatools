@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-fragment xmlns:ser="http://www.bea.com/wli/sb/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tran="http://www.bea.com/wli/sb/transports" xmlns:env="http://www.bea.com/wli/config/env" xmlns:jms="http://www.bea.com/wli/sb/transports/jms">
+  <ser:coreEntry isProxy="false" isEnabled="true" isAutoPublish="false">
+    <ser:description/>
+    <ser:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType" xmlns:con="http://www.bea.com/wli/sb/services/bindings/config">
+      <con:wsdl ref="JohnWS/wsdl/HelloJms"/>
+      <con:port>
+        <con:name>HelloJmsWSSoapPort</con:name>
+        <con:namespace>http://john/ws</con:namespace>
+      </con:port>
+    </ser:binding>
+    <ser:monitoring isEnabled="false">
+      <ser:aggregationInterval>10</ser:aggregationInterval>
+    </ser:monitoring>
+    <ser:sla-alerting isEnabled="true">
+      <ser:alertLevel>normal</ser:alertLevel>
+    </ser:sla-alerting>
+  </ser:coreEntry>
+  <ser:endpointConfig>
+    <tran:provider-id>jms</tran:provider-id>
+    <tran:inbound>false</tran:inbound>
+    <tran:URI>
+      <env:value>jms://localhost:7041/weblogic.jms.XAConnectionFactory/jms.johnHelloQ</env:value>
+    </tran:URI>
+    <tran:outbound-properties>
+      <tran:load-balancing-algorithm>round-robin</tran:load-balancing-algorithm>
+      <tran:retry-count>0</tran:retry-count>
+      <tran:retry-interval>30</tran:retry-interval>
+    </tran:outbound-properties>
+    <tran:provider-specific>
+      <jms:is-queue>true</jms:is-queue>
+      <jms:is-secure>false</jms:is-secure>
+      <jms:outbound-properties>
+        <jms:message-type>Text</jms:message-type>
+        <jms:expiration>0</jms:expiration>
+        <jms:response-required>true</jms:response-required>
+        <jms:response-URI>jms://localhost:7041/weblogic.jms.XAConnectionFactory/jms.johnHelloReplyQ</jms:response-URI>
+        <jms:response-timeout>0</jms:response-timeout>
+        <jms:response-pattern>JMSMessageID</jms:response-pattern>
+        <jms:response-CF>javax.jms.QueueConnectionFactory</jms:response-CF>
+        <jms:response-target-map>
+          <jms:target-pair>
+            <jms:target>AdminServer</jms:target>
+            <jms:destination>jms.johnHelloReplyQ</jms:destination>
+          </jms:target-pair>
+        </jms:response-target-map>
+      </jms:outbound-properties>
+      <jms:request-encoding>UTF-8</jms:request-encoding>
+      <jms:response-encoding>UTF-8</jms:response-encoding>
+    </tran:provider-specific>
+  </ser:endpointConfig>
+</xml-fragment>

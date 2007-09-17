@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-fragment name="" version="v2">
+  <imp:properties xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:property name="username" value="weblogic"/>
+    <imp:property name="description" value=""/>
+    <imp:property name="exporttime" value="Wed Sep 12 16:50:05 BST 2007"/>
+    <imp:property name="productname" value="AquaLogic Service Bus"/>
+    <imp:property name="productversion" value="2.6.0"/>
+    <imp:property name="projectLevelExport" value="true"/>
+  </imp:properties>
+  <imp:exportedItemInfo instanceId="JohnWS/proxy/7418050396406230923-53b0befa.111473768b6.-7fde" typeId="AlertRule" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="26"/>
+      <imp:property name="dataclass" value="com.bea.wli.monitoring.alert.impl.AlertRuleImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/proxy/7418050396406230923-53b0befa.111473768b6.AlertRule"/>
+      <imp:property name="subordinateparent" value="ProxyService$JohnWS$proxy$HelloProxy"/>
+      <imp:property name="extrefs" value="AlertDestination$JohnWS$alert$JohnAlertDestination"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/wsdl/HelloJms" typeId="WSDL" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.WsdlEntryDocumentImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/wsdl/HelloJms.WSDL"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/business/HelloJmsService" typeId="BusinessService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/business/HelloJmsService.BusinessService"/>
+      <imp:property name="extrefs" value="WSDL$JohnWS$wsdl$HelloJms"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/proxy/7418050396406230923-53b0befa.111473768b6.-7fec" typeId="AlertRule" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="26"/>
+      <imp:property name="dataclass" value="com.bea.wli.monitoring.alert.impl.AlertRuleImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/proxy/7418050396406230923-53b0befa.111473768b6.AlertRule0"/>
+      <imp:property name="subordinateparent" value="ProxyService$JohnWS$proxy$HelloProxy"/>
+      <imp:property name="extrefs" value="AlertDestination$JohnWS$alert$JohnAlertDestination"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/wsdl/DelayedHello" typeId="WSDL" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.WsdlEntryDocumentImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/wsdl/DelayedHello.WSDL"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/wsdl/HelloWSInsecure" typeId="WSDL" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.WsdlEntryDocumentImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/wsdl/HelloWSInsecure.WSDL"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/proxy/HelloProxyUsingMIProxy" typeId="ProxyService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/proxy/HelloProxyUsingMIProxy.ProxyService"/>
+      <imp:property name="extrefs" value="BusinessService$JohnWS$business$HelloService"/>
+      <imp:property name="extrefs" value="Xquery$MI$xquery$miRequest"/>
+      <imp:property name="extrefs" value="ProxyService$MI$proxy$MIProxy"/>
+      <imp:property name="extrefs" value="WSDL$JohnWS$wsdl$HelloWS"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/security/MappedServiceAccount" typeId="ServiceAccount" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="25"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.svcacct.MapperServiceAccountConfig"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/security/MappedServiceAccount.ServiceAccount"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/proxy/ReportRequest" typeId="ProxyService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/proxy/ReportRequest.ProxyService"/>
+      <imp:property name="extrefs" value="BusinessService$JohnWS$business$HelloService"/>
+      <imp:property name="extrefs" value="WSDL$JohnWS$wsdl$HelloWS"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/proxy/HelloProxyWithReports" typeId="ProxyService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/proxy/HelloProxyWithReports.ProxyService"/>
+      <imp:property name="extrefs" value="BusinessService$JohnWS$business$HelloService"/>
+      <imp:property name="extrefs" value="Xquery$MI$xquery$miMessage"/>
+      <imp:property name="extrefs" value="WSDL$JohnWS$wsdl$HelloWS"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/proxy/ShopProxy" typeId="ProxyService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/proxy/ShopProxy.ProxyService"/>
+      <imp:property name="extrefs" value="BusinessService$JohnWS$business$ShopService"/>
+      <imp:property name="extrefs" value="WSDL$JohnWS$wsdl$Shop"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/proxy/ProxyService$JohnWS$proxy$HelloProxy" typeId="AlertRuleBinding" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.monitoring.alert.impl.AlertRuleBindingImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/proxy/ProxyService_JohnWS_proxy_HelloProxy.AlertRuleBinding"/>
+      <imp:property name="subordinateparent" value="ProxyService$JohnWS$proxy$HelloProxy"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/security/JohnProxyServiceProvider" typeId="ServiceProvider" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="25"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.svcprov.ProxyServiceProviderConfig"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/security/JohnProxyServiceProvider.ServiceProvider"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/business/JohnSSLService" typeId="BusinessService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/business/JohnSSLService.BusinessService"/>
+      <imp:property name="extrefs" value="WSDL$JohnWS$wsdl$JohnSSLWS.wsdl"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/proxy/HelloJmsProxy" typeId="ProxyService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/proxy/HelloJmsProxy.ProxyService"/>
+      <imp:property name="extrefs" value="WSDL$JohnWS$wsdl$HelloJms"/>
+      <imp:property name="extrefs" value="BusinessService$JohnWS$business$HelloJmsService"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/alert/JohnAlertDestination" typeId="AlertDestination" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="26"/>
+      <imp:property name="dataclass" value="com.bea.wli.monitoring.alert.impl.AlertDestinationImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/alert/JohnAlertDestination.AlertDestination"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/wsdl/_folderdata" typeId="LocationData" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.config.project.impl.LocationDataImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/wsdl/_folderdata.LocationData"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/proxy/TempFileProxy" typeId="ProxyService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/proxy/TempFileProxy.ProxyService"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/proxy/HelloFileProxy" typeId="ProxyService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/proxy/HelloFileProxy.ProxyService"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/business/LogRequestService" typeId="BusinessService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/business/LogRequestService.BusinessService"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/proxy/DynamicProxy" typeId="ProxyService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/proxy/DynamicProxy.ProxyService"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/business/ShopService" typeId="BusinessService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/business/ShopService.BusinessService"/>
+      <imp:property name="extrefs" value="WSDL$JohnWS$wsdl$Shop"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/business/DelayedHelloCallback" typeId="BusinessService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/business/DelayedHelloCallback.BusinessService"/>
+      <imp:property name="extrefs" value="WSDL$JohnWS$wsdl$DelayedHello"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/wsdl/Shop" typeId="WSDL" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.WsdlEntryDocumentImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/wsdl/Shop.WSDL"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/business/DummyJMSService" typeId="BusinessService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/business/DummyJMSService.BusinessService"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/security/_folderdata" typeId="LocationData" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.config.project.impl.LocationDataImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/security/_folderdata.LocationData"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/proxy/JohnSSLProxy" typeId="ProxyService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/proxy/JohnSSLProxy.ProxyService"/>
+      <imp:property name="extrefs" value="WSDL$JohnWS$wsdl$JohnSSLWS.wsdl"/>
+      <imp:property name="extrefs" value="ServiceProvider$JohnWS$security$JohnProxyServiceProvider"/>
+      <imp:property name="extrefs" value="BusinessService$JohnWS$business$JohnSSLService"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/business/_folderdata" typeId="LocationData" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.config.project.impl.LocationDataImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/business/_folderdata.LocationData"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/business/DelayedHelloService" typeId="BusinessService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/business/DelayedHelloService.BusinessService"/>
+      <imp:property name="extrefs" value="WSDL$JohnWS$wsdl$DelayedHello"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/wsdl/JohnSSLWS.wsdl" typeId="WSDL" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.WsdlEntryDocumentImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/wsdl/JohnSSLWS.wsdl.WSDL"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/business/HelloService" typeId="BusinessService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/business/HelloService.BusinessService"/>
+      <imp:property name="extrefs" value="ServiceAccount$JohnWS$security$MappedServiceAccount"/>
+      <imp:property name="extrefs" value="WSDL$JohnWS$wsdl$HelloWS"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/security/JulieServiceAccount" typeId="ServiceAccount" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="25"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.svcacct.StaticServiceAccountConfig"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/security/JulieServiceAccount.ServiceAccount"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/_projectdata" typeId="LocationData" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.config.project.impl.LocationDataImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/_projectdata.LocationData"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/business/HelloUnreachable" typeId="BusinessService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/business/HelloUnreachable.BusinessService"/>
+      <imp:property name="extrefs" value="WSDL$JohnWS$wsdl$HelloWS"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/alert/_folderdata" typeId="LocationData" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.config.project.impl.LocationDataImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/alert/_folderdata.LocationData"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/security/JohnServiceAccount" typeId="ServiceAccount" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="25"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.svcacct.StaticServiceAccountConfig"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/security/JohnServiceAccount.ServiceAccount"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/proxy/InsecureToSecureHelloProxy" typeId="ProxyService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/proxy/InsecureToSecureHelloProxy.ProxyService"/>
+      <imp:property name="extrefs" value="BusinessService$JohnWS$business$HelloService"/>
+      <imp:property name="extrefs" value="WSDL$JohnWS$wsdl$HelloWSInsecure"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/wsdl/HelloWS" typeId="WSDL" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.resources.config.impl.WsdlEntryDocumentImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/wsdl/HelloWS.WSDL"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/proxy/HelloUnreachableProxy" typeId="ProxyService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/proxy/HelloUnreachableProxy.ProxyService"/>
+      <imp:property name="extrefs" value="BusinessService$JohnWS$business$HelloUnreachable"/>
+      <imp:property name="extrefs" value="WSDL$JohnWS$wsdl$HelloWS"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/proxy/_folderdata" typeId="LocationData" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="0"/>
+      <imp:property name="dataclass" value="com.bea.wli.config.project.impl.LocationDataImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/proxy/_folderdata.LocationData"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+  <imp:exportedItemInfo instanceId="JohnWS/proxy/HelloProxy" typeId="ProxyService" xmlns:imp="http://www.bea.com/wli/config/importexport">
+    <imp:properties>
+      <imp:property name="representationversion" value="2601"/>
+      <imp:property name="dataclass" value="com.bea.wli.sb.services.impl.ServiceDefinitionImpl"/>
+      <imp:property name="isencrypted" value="false"/>
+      <imp:property name="jarentryname" value="JohnWS/proxy/HelloProxy.ProxyService"/>
+      <imp:property name="extrefs" value="BusinessService$JohnWS$business$HelloService"/>
+      <imp:property name="extrefs" value="WSDL$JohnWS$wsdl$HelloWS"/>
+    </imp:properties>
+  </imp:exportedItemInfo>
+</xml-fragment>

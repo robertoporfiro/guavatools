@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-fragment ResourceName="ProxyService$JohnWS$proxy$HelloProxy" xmlns:aler="http://www.bea.com/wli/monitoring/alert">
+  <aler:RuleId>7418050396406230923-53b0befa.111473768b6.-7fec</aler:RuleId>
+  <aler:RuleId>7418050396406230923-53b0befa.111473768b6.-7fde</aler:RuleId>
+</xml-fragment>
