@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-
-Name: joe/ws/cart/BankWSServiceControlBean.class
-Java-Bean: true
-Beehive-Control: true
