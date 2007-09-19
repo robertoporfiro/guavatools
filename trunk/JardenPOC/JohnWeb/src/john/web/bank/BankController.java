@@ -79,11 +79,12 @@ public class BankController extends PageFlowController {
 	@Jpf.Action(forwards = { @Jpf.Forward(name = "success", path = "bank.jsp")})
 	public Forward changePassword(ChangePasswordFormBean form) {
 		Forward forward = new Forward("success");
-		java.lang.String newPassword = form.getNewPassword_arg();
+		String oldPassword = form.getOldPassword_arg();
+		String newPassword = form.getNewPassword_arg();
 		int changePasswordResult;
 		try {
 			changePasswordResult = bankWSServiceControl.changePassword(
-					userName, password, newPassword);
+					userName, oldPassword, newPassword);
 			if (changePasswordResult == 0) {
 				statusMessage = "password change failed";
 			}

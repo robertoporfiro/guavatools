@@ -1,0 +1,246 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<s1:definitions name="SecureBankWSServiceDefinitions" targetNamespace="http://john/ws/bank" xmlns="" xmlns:s0="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:s1="http://schemas.xmlsoap.org/wsdl/" xmlns:s2="http://john/ws/bank" xmlns:s3="java:john.ws.bank" xmlns:s4="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
+  <wsp:UsingPolicy s1:Required="true"/>
+  <wsp:Policy s0:Id="EncryptPassword">
+    <wssp:Confidentiality xmlns:wssp="http://www.bea.com/wls90/security/policy">
+      <wssp:KeyWrappingAlgorithm URI="http://www.w3.org/2001/04/xmlenc#rsa-1_5"/>
+      <wssp:Target>
+        <wssp:EncryptionAlgorithm URI="http://www.w3.org/2001/04/xmlenc#tripledes-cbc"/>
+        <wssp:MessageParts Dialect="http://www.w3.org/TR/1999/REC-xpath-19991116" xmlns:bank="http://john/ws/bank">
+          <!-- 
+				wsp:GetBody(.//bank:userName)
+				wsp:GetBody(./bank:getBalance/bank:password)
+				-->
+				wsp:GetBody(.//bank:password)
+				
+			</wssp:MessageParts>
+        <!-- above: just name; below: whole request
+			<wssp:MessageParts
+				Dialect="http://schemas.xmlsoap.org/2002/12/wsse#part">
+				wsp:Body()
+			</wssp:MessageParts>
+			 -->
+      </wssp:Target>
+      <wssp:KeyInfo>
+        <wssp:SecurityToken TokenType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3"/>
+        <wssp:SecurityTokenReference>
+          <wssp:Embedded>
+            <wsse:BinarySecurityToken EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary" ValueType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">MIIB7TCCAZcCEDXDeFSAuw4chw4WXHys/1swDQYJKoZIhvcNAQEEBQAweTELMAkGA1UEBhMCVVMxEDAOBgNVBAgTB015U3RhdGUxDzANBgNVBAcTBk15VG93bjEXMBUGA1UEChMOTXlPcmdhbml6YXRpb24xGTAXBgNVBAsTEEZPUiBURVNUSU5HIE9OTFkxEzARBgNVBAMTCkNlcnRHZW5DQUIwHhcNMDcwMjA1MTcwMTQ0WhcNMjIwMjA2MTcwMTQ0WjB7MQswCQYDVQQGEwJVUzEQMA4GA1UECBYHTXlTdGF0ZTEPMA0GA1UEBxYGTXlUb3duMRcwFQYDVQQKFg5NeU9yZ2FuaXphdGlvbjEZMBcGA1UECxYQRk9SIFRFU1RJTkcgT05MWTEVMBMGA1UEAxYMY3VrYTAyMDAwMDUzMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJry3bvGo72j4MjRRAMbDF0SFaFEEAMgZCJmr+24USaq6chykHqVTDgcMpu1Hl3A/xyKuZVgs9ISBBkNpMEdct8CAwEAATANBgkqhkiG9w0BAQQFAANBACD+eZCo0U3g+EokLHVYbaNHpgBSTUZm2HEQlC+NtiPeOTI67QHDwzBXGlNksCBwl2aEIgyeHP0Ya1W6IseIpWw=</wsse:BinarySecurityToken>
+          </wssp:Embedded>
+        </wssp:SecurityTokenReference>
+      </wssp:KeyInfo>
+    </wssp:Confidentiality>
+  </wsp:Policy>
+  <s1:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="java:java.lang" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://john/ws/bank" xmlns:s2="java:john.ws.bank" xmlns:s3="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="Throwable"/>
+    </xs:schema>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://john/ws/bank" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://john/ws/bank" xmlns:s2="java:john.ws.bank" xmlns:s3="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="getTransactionLog">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="userName" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getTransactionLogResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="java:ArrayOfJohnLogVO_literal" xmlns:java="java:john.db"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="changePassword">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="userName" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+            <xs:element name="newPassword" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="changePasswordResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:int"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getBalance">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="userName" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getBalanceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="transfer">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="fromName" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+            <xs:element name="toName" type="xs:string"/>
+            <xs:element name="amount" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="transferResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:double"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="java:john.db" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://john/ws/bank" xmlns:s2="java:john.ws.bank" xmlns:s3="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="JohnLogVO">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="CreateTime" nillable="true" type="xs:dateTime"/>
+          <xs:element minOccurs="1" name="Ident" nillable="false" type="xs:int"/>
+          <xs:element minOccurs="1" name="Message" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="1" name="Owner" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfJohnLogVO_literal">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="JohnLogVO" nillable="true" type="java:JohnLogVO" xmlns:java="java:john.db"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ArrayOfJohnLogVO_literal" type="java:ArrayOfJohnLogVO_literal" xmlns:java="java:john.db"/>
+    </xs:schema>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="java:john.ws.bank" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://john/ws/bank" xmlns:s2="java:john.ws.bank" xmlns:s3="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="java:java.lang"/>
+      <xs:complexType name="BankException">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="Message" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="BankException" type="java:BankException" xmlns:java="java:john.ws.bank"/>
+    </xs:schema>
+  </s1:types>
+  <s1:message name="getTransactionLog">
+    <s1:part element="s2:getTransactionLog" name="parameters"/>
+  </s1:message>
+  <s1:message name="getTransactionLogResponse">
+    <s1:part element="s2:getTransactionLogResponse" name="parameters"/>
+  </s1:message>
+  <s1:message name="BankException">
+    <s1:part element="s3:BankException" name="BankException"/>
+  </s1:message>
+  <s1:message name="changePassword">
+    <s1:part element="s2:changePassword" name="parameters"/>
+  </s1:message>
+  <s1:message name="changePasswordResponse">
+    <s1:part element="s2:changePasswordResponse" name="parameters"/>
+  </s1:message>
+  <s1:message name="getBalance">
+    <s1:part element="s2:getBalance" name="parameters"/>
+  </s1:message>
+  <s1:message name="getBalanceResponse">
+    <s1:part element="s2:getBalanceResponse" name="parameters"/>
+  </s1:message>
+  <s1:message name="transfer">
+    <s1:part element="s2:transfer" name="parameters"/>
+  </s1:message>
+  <s1:message name="transferResponse">
+    <s1:part element="s2:transferResponse" name="parameters"/>
+  </s1:message>
+  <s1:portType name="SecureBankWS">
+    <s1:operation name="getTransactionLog" parameterOrder="parameters">
+      <s1:input message="s2:getTransactionLog"/>
+      <s1:output message="s2:getTransactionLogResponse"/>
+      <s1:fault message="s2:BankException" name="BankException"/>
+    </s1:operation>
+    <s1:operation name="changePassword" parameterOrder="parameters">
+      <s1:input message="s2:changePassword"/>
+      <s1:output message="s2:changePasswordResponse"/>
+      <s1:fault message="s2:BankException" name="BankException"/>
+    </s1:operation>
+    <s1:operation name="getBalance" parameterOrder="parameters">
+      <s1:input message="s2:getBalance"/>
+      <s1:output message="s2:getBalanceResponse"/>
+      <s1:fault message="s2:BankException" name="BankException"/>
+    </s1:operation>
+    <s1:operation name="transfer" parameterOrder="parameters">
+      <s1:input message="s2:transfer"/>
+      <s1:output message="s2:transferResponse"/>
+      <s1:fault message="s2:BankException" name="BankException"/>
+    </s1:operation>
+  </s1:portType>
+  <s1:binding name="SecureBankWSServiceSoapBinding" type="s2:SecureBankWS">
+    <s4:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <s1:operation name="getTransactionLog">
+      <s4:operation soapAction="" style="document"/>
+      <s1:input>
+        <s4:body parts="parameters" use="literal"/>
+        <wsp:Policy>
+          <wsp:PolicyReference URI="#EncryptPassword"/>
+        </wsp:Policy>
+      </s1:input>
+      <s1:output>
+        <s4:body parts="parameters" use="literal"/>
+      </s1:output>
+      <s1:fault name="BankException">
+        <s4:fault name="BankException" use="literal"/>
+      </s1:fault>
+    </s1:operation>
+    <s1:operation name="changePassword">
+      <s4:operation soapAction="" style="document"/>
+      <s1:input>
+        <s4:body parts="parameters" use="literal"/>
+        <wsp:Policy>
+          <wsp:PolicyReference URI="#EncryptPassword"/>
+        </wsp:Policy>
+      </s1:input>
+      <s1:output>
+        <s4:body parts="parameters" use="literal"/>
+      </s1:output>
+      <s1:fault name="BankException">
+        <s4:fault name="BankException" use="literal"/>
+      </s1:fault>
+    </s1:operation>
+    <s1:operation name="getBalance">
+      <s4:operation soapAction="" style="document"/>
+      <s1:input>
+        <s4:body parts="parameters" use="literal"/>
+        <wsp:Policy>
+          <wsp:PolicyReference URI="#EncryptPassword"/>
+        </wsp:Policy>
+      </s1:input>
+      <s1:output>
+        <s4:body parts="parameters" use="literal"/>
+      </s1:output>
+      <s1:fault name="BankException">
+        <s4:fault name="BankException" use="literal"/>
+      </s1:fault>
+    </s1:operation>
+    <s1:operation name="transfer">
+      <s4:operation soapAction="" style="document"/>
+      <s1:input>
+        <s4:body parts="parameters" use="literal"/>
+        <wsp:Policy>
+          <wsp:PolicyReference URI="#EncryptPassword"/>
+        </wsp:Policy>
+      </s1:input>
+      <s1:output>
+        <s4:body parts="parameters" use="literal"/>
+      </s1:output>
+      <s1:fault name="BankException">
+        <s4:fault name="BankException" use="literal"/>
+      </s1:fault>
+    </s1:operation>
+  </s1:binding>
+  <s1:service name="SecureBankWSService">
+    <s1:port binding="s2:SecureBankWSServiceSoapBinding" name="SecureBankWSSoapPort">
+      <s4:address location="http://localhost:7041/JohnWS/SecureBankWS"/>
+    </s1:port>
+  </s1:service>
+</s1:definitions>

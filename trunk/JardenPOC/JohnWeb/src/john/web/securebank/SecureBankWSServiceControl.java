@@ -1,15 +1,15 @@
-package john.web.bank;
+package john.web.securebank;
 import com.bea.control.ServiceControl;
 
 import org.apache.beehive.controls.api.events.EventSet;
 import org.apache.beehive.controls.api.bean.ControlExtension;
 
-@ServiceControl.Location(urls = {"http://localhost:7041/JohnWS/BankWS"})
+@ServiceControl.Location(urls = {"http://localhost:7041/JohnWS/SecureBankWS"})
 @ServiceControl.HttpSoapProtocol
 @ServiceControl.SOAPBinding(style = ServiceControl.SOAPBinding.Style.DOCUMENT, use = ServiceControl.SOAPBinding.Use.LITERAL, parameterStyle = ServiceControl.SOAPBinding.ParameterStyle.WRAPPED)
-@ServiceControl.WSDL(resourcePath = "john/web/bank/Bank.wsdl", service = "BankWSService")
+@ServiceControl.WSDL(resourcePath = "john/web/securebank/SecureBank.wsdl", service = "SecureBankWSService")
 @ControlExtension
-public interface BankWSServiceControl extends ServiceControl
+public interface SecureBankWSServiceControl extends ServiceControl
 {
     static final long serialVersionUID = 1L;
 
