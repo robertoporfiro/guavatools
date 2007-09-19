@@ -1,6 +1,8 @@
 package john.web.hello;
 
 import java.security.Principal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 
 import javax.naming.Context;
@@ -21,10 +23,11 @@ public class HelloController extends PageFlowController {
 	@Control
 	private LogMessageWSServiceControl logMessageWSServiceControl;
 	private static final String[] endpointNames = {
-		"HelloWS", "HelloProxy", "HelloProxyUsingMIProxy", "HelloProxyWithReports"
+		"HelloWS", "HelloWS via TCP Monitor", "HelloProxy", "HelloProxyUsingMIProxy", "HelloProxyWithReports"
 	};
 	private static final String[] endpoints = {
 		"http://localhost:7041/JohnWS/HelloWS",
+		"http://localhost:8041/JohnWS/HelloWS",
 		"http://localhost:7091/HelloProxy",
 		"http://localhost:7091/HelloProxyUsingMIProxy",
 		"http://localhost:7091/HelloProxyWithReports"
@@ -50,20 +53,51 @@ public class HelloController extends PageFlowController {
 		return helloWSServiceControl.getEndpointAddress();
 	}
 
-	@Jpf.Action(forwards = { @Jpf.Forward(name = "success", path = "index.jsp", actionOutputs = { @Jpf.ActionOutput(name = "helloResult", type = java.lang.String.class) }) })
+	@Jpf.Action(forwards = { @Jpf.Forward(name = "success", path = "index.jsp",
+			actionOutputs = { @Jpf.ActionOutput(name = "helloResult", type = java.lang.String.class) }) })
 	public Forward hello(HelloFormBean form) {
 		Forward forward = new Forward("success");
-		java.lang.String name_arg = form.getName_arg();
-		java.lang.String helloResult = helloWSServiceControl.hello(name_arg);
+		String name_arg = form.getName_arg();
+		String helloResult = helloWSServiceControl.hello(name_arg);
 		forward.addActionOutput("helloResult", helloResult);
 		return forward;
 	}
 
-	@Jpf.Action(forwards = { @Jpf.Forward(name = "success", path = "index.jsp", actionOutputs = { @Jpf.ActionOutput(name = "helloResult", type = java.lang.String.class) }) })
+	@Jpf.Action(forwards = { @Jpf.Forward(name = "success", path = "index.jsp",
+			actionOutputs = { @Jpf.ActionOutput(name = "helloResult", type = java.lang.String.class) }) })
 	public Forward samlHello(HelloFormBean form) {
 		Forward forward = new Forward("success");
+		String name_arg = form.getName_arg();
+		String helloResult = helloWSServiceControl.samlHello(name_arg);
+		forward.addActionOutput("helloResult", helloResult);
+		return forward;
+	}
+
+	@Jpf.Action(forwards = { @Jpf.Forward(name = "success", path = "index.jsp",
+			actionOutputs = { @Jpf.ActionOutput(name = "helloResult", type = java.lang.String.class) }) })
+	public Forward secretHello(HelloFormBean form) {
+		Forward forward = new Forward("success");
+		String name_arg = form.getName_arg();
+		String helloResult = helloWSServiceControl.secretHello(name_arg);
+		forward.addActionOutput("helloResult", helloResult);
+		return forward;
+	}
+
+	@Jpf.Action(forwards = { @Jpf.Forward(name = "success", path = "index.jsp",
+			actionOutputs = { @Jpf.ActionOutput(name = "helloResult", type = java.lang.String.class) }) })
+	public Forward authHello(john.web.hello.HelloController.HelloFormBean form) {
+		Forward forward = new Forward("success");
+		String name_arg = form.getName_arg();
+		String helloResult = helloWSServiceControl.authHello(name_arg);
+		forward.addActionOutput("helloResult", helloResult);
+		return forward;
+	}
+	@Jpf.Action(forwards = { @Jpf.Forward(name = "success", path = "index.jsp",
+			actionOutputs = { @Jpf.ActionOutput(name = "helloResult", type = java.lang.String.class) }) })
+	public Forward signHello(john.web.hello.HelloController.HelloFormBean form) {
+		Forward forward = new Forward("success");
 		java.lang.String name_arg = form.getName_arg();
-		java.lang.String helloResult = helloWSServiceControl.samlHello(name_arg);
+		java.lang.String helloResult = helloWSServiceControl.signHello(name_arg);
 		forward.addActionOutput("helloResult", helloResult);
 		return forward;
 	}
@@ -120,6 +154,15 @@ public class HelloController extends PageFlowController {
 		Forward forward = new Forward("success");
 		java.lang.String p0 = form.getP0();
 		helloWSServiceControl.setEndpointAddress(p0);
+		return forward;
+	}
+	@Jpf.Action(forwards = { @Jpf.Forward(name = "success", path = "index.jsp") })
+	public Forward setMessage() {
+		SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyyMMMdd-HH:mm:ss");
+		String name = "John-" + dateFormat2.format(new Date());
+		HelloFormBean form = new HelloFormBean();
+		form.setName_arg(name);
+		Forward forward = new Forward("success", form);
 		return forward;
 	}
 

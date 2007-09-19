@@ -14,9 +14,101 @@
       </wssp:SupportedTokens>
     </wssp:Identity>
   </s0:Policy>
+  <s0:Policy s1:Id="Auth.xml">
+    <wssp:Identity xmlns:wssp="http://www.bea.com/wls90/security/policy">
+      <wssp:SupportedTokens>
+        <wssp:SecurityToken TokenType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#UsernameToken">
+          <wssp:UsePassword Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText"/>
+        </wssp:SecurityToken>
+      </wssp:SupportedTokens>
+    </wssp:Identity>
+  </s0:Policy>
+  <s0:Policy s1:Id="Sign.xml">
+    <wssp:Integrity xmlns:wls="http://www.bea.com/wls90/security/policy/wsee#part" xmlns:wssp="http://www.bea.com/wls90/security/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+      <wssp:SignatureAlgorithm URI="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+      <wssp:CanonicalizationAlgorithm URI="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+      <wssp:Target>
+        <wssp:DigestAlgorithm URI="http://www.w3.org/2000/09/xmldsig#sha1"/>
+        <wssp:MessageParts Dialect="http://www.bea.com/wls90/security/policy/wsee#part"> 
+        wls:SystemHeaders()
+      </wssp:MessageParts>
+      </wssp:Target>
+      <wssp:Target>
+        <wssp:DigestAlgorithm URI="http://www.w3.org/2000/09/xmldsig#sha1"/>
+        <wssp:MessageParts Dialect="http://www.bea.com/wls90/security/policy/wsee#part"> 
+        wls:SecurityHeader(wsu:Timestamp)
+      </wssp:MessageParts>
+      </wssp:Target>
+      <wssp:Target>
+        <wssp:DigestAlgorithm URI="http://www.w3.org/2000/09/xmldsig#sha1"/>
+        <wssp:MessageParts Dialect="http://schemas.xmlsoap.org/2002/12/wsse#part">
+      wsp:Body()
+      </wssp:MessageParts>
+      </wssp:Target>
+      <wssp:SupportedTokens>
+        <wssp:SecurityToken IncludeInMessage="true" TokenType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3">
+          <wssp:TokenIssuer>CN=CACERT,OU=FOR TESTING ONLY,O=MyOrganization,L=MyTown,ST=MyState,C=US,1.2.840.113549.1.9.1=#160f737570706f7274406265612e636f6d,CN=Demo Certificate Authority Constraints,OU=Security,O=BEA WebLogic,L=San Francisco,ST=California,C=US,1.2.840.113549.1.9.1=#16107365637572697479406265612e636f6d,CN=Demo Certificate Authority Constraints,OU=Security,O=BEA WebLogic,L=San Francisco,ST=California,C=US,CN=cuka02000053,OU=training,O=BEA,L=Swindon,ST=Wilts,C=UK,CN=CertGenCAB,OU=FOR TESTING ONLY,O=MyOrganization,L=MyTown,ST=MyState,C=US,CN=Equifax Secure eBusiness CA-1,O=Equifax Secure Inc.,C=US,CN=VeriSign Class 1 Public Primary Certification Authority - G3,OU=(c) 1999 VeriSign\, Inc. - For authorized use only,OU=VeriSign Trust Network,O=VeriSign\, Inc.,C=US,OU=VeriSign Trust Network,OU=(c) 1998 VeriSign\, Inc. - For authorized use only,OU=Class 2 Public Primary Certification Authority - G2,O=VeriSign\, Inc.,C=US,CN=VeriSign Class 3 Public Primary Certification Authority - G3,OU=(c) 1999 VeriSign\, Inc. - For authorized use only,OU=VeriSign Trust Network,O=VeriSign\, Inc.,C=US,CN=Entrust.net Client Certification Authority,OU=(c) 2000 Entrust.net Limited,OU=www.entrust.net/GCCA_CPS incorp. by ref. (limits liab.),O=Entrust.net,OU=Go Daddy Class 2 Certification Authority,O=The Go Daddy Group\, Inc.,C=US,CN=GTE CyberTrust Global Root,OU=GTE CyberTrust Solutions\, Inc.,O=GTE Corporation,C=US,CN=Entrust.net Secure Server Certification Authority,OU=(c) 2000 Entrust.net Limited,OU=www.entrust.net/SSL_CPS incorp. by ref. (limits liab.),O=Entrust.net,OU=Class 1 Public Primary Certification Authority,O=VeriSign\, Inc.,C=US,1.2.840.113549.1.9.1=#1619706572736f6e616c2d6261736963407468617774652e636f6d,CN=Thawte Personal Basic CA,OU=Certification Services Division,O=Thawte Consulting,L=Cape Town,ST=Western Cape,C=ZA,OU=VeriSign Trust Network,OU=(c) 1998 VeriSign\, Inc. - For authorized use only,OU=Class 1 Public Primary Certification Authority - G2,O=VeriSign\, Inc.,C=US,CN=Entrust.net Secure Server Certification Authority,OU=(c) 1999 Entrust.net Limited,OU=www.entrust.net/CPS incorp. by ref. (limits liab.),O=Entrust.net,C=US,1.2.840.113549.1.9.1=#161c706572736f6e616c2d667265656d61696c407468617774652e636f6d,CN=Thawte Personal Freemail CA,OU=Certification Services Division,O=Thawte Consulting,L=Cape Town,ST=Western Cape,C=ZA,OU=Class 3 Public Primary Certification Authority,O=VeriSign\, Inc.,C=US,CN=GTE CyberTrust Root,O=GTE Corporation,C=US,CN=VeriSign Class 2 Public Primary Certification Authority - G3,OU=(c) 1999 VeriSign\, Inc. - For authorized use only,OU=VeriSign Trust Network,O=VeriSign\, Inc.,C=US,1.2.840.113549.1.9.1=#16177365727665722d6365727473407468617774652e636f6d,CN=Thawte Server CA,OU=Certification Services Division,O=Thawte Consulting cc,L=Cape Town,ST=Western Cape,C=ZA,OU=Equifax Secure Certificate Authority,O=Equifax,C=US,1.2.840.113549.1.9.1=#161b706572736f6e616c2d7072656d69756d407468617774652e636f6d,CN=Thawte Personal Premium CA,OU=Certification Services Division,O=Thawte Consulting,L=Cape Town,ST=Western Cape,C=ZA,1.2.840.113549.1.9.1=#16197072656d69756d2d736572766572407468617774652e636f6d,CN=Thawte Premium Server CA,OU=Certification Services Division,O=Thawte Consulting cc,L=Cape Town,ST=Western Cape,C=ZA,OU=VeriSign Trust Network,OU=(c) 1998 VeriSign\, Inc. - For authorized use only,OU=Class 3 Public Primary Certification Authority - G2,O=VeriSign\, Inc.,C=US,CN=Entrust.net Certification Authority (2048),OU=(c) 1999 Entrust.net Limited,OU=www.entrust.net/CPS_2048 incorp. by ref. (limits liab.),O=Entrust.net,1.2.840.113549.1.9.1=#1611696e666f4076616c69636572742e636f6d,CN=http://www.valicert.com/,OU=ValiCert Class 2 Policy Validation Authority,O=ValiCert\, Inc.,L=ValiCert Validation Network,CN=Baltimore CyberTrust Root,OU=CyberTrust,O=Baltimore,C=IE,OU=Secure Server Certification Authority,O=RSA Data Security\, Inc.,C=US,CN=Entrust.net Client Certification Authority,OU=(c) 1999 Entrust.net Limited,OU=www.entrust.net/Client_CA_Info/CPS incorp. by ref. limits liab.,O=Entrust.net,C=US,CN=GeoTrust Global CA,O=GeoTrust Inc.,C=US,CN=GTE CyberTrust Root 5,OU=GTE CyberTrust Solutions\, Inc.,O=GTE Corporation,C=US,OU=Starfield Class 2 Certification Authority,O=Starfield Technologies\, Inc.,C=US,CN=Equifax Secure Global eBusiness CA-1,O=Equifax Secure Inc.,C=US,CN=Baltimore CyberTrust Code Signing Root,OU=CyberTrust,O=Baltimore,C=IE,OU=Class 2 Public Primary Certification Authority,O=VeriSign\, Inc.,C=US,OU=Equifax Secure eBusiness CA-2,O=Equifax Secure,C=US,</wssp:TokenIssuer>
+        </wssp:SecurityToken>
+      </wssp:SupportedTokens>
+    </wssp:Integrity>
+    <wssp:MessageAge Age="60" xmlns:wssp="http://www.bea.com/wls90/security/policy"/>
+  </s0:Policy>
+  <s0:Policy s1:Id="EncryptName">
+    <wssp:Confidentiality xmlns:wssp="http://www.bea.com/wls90/security/policy">
+      <wssp:KeyWrappingAlgorithm URI="http://www.w3.org/2001/04/xmlenc#rsa-1_5"/>
+      <wssp:Target>
+        <wssp:EncryptionAlgorithm URI="http://www.w3.org/2001/04/xmlenc#tripledes-cbc"/>
+        <wssp:MessageParts Dialect="http://www.w3.org/TR/1999/REC-xpath-19991116" xmlns:ws="http://john/ws">
+				wsp:GetBody(./ws:secretHello/ws:name)
+		</wssp:MessageParts>
+        <!-- above: just name; below: whole request
+			<wssp:MessageParts
+				Dialect="http://schemas.xmlsoap.org/2002/12/wsse#part">
+				wsp:Body()
+			</wssp:MessageParts>
+			 -->
+      </wssp:Target>
+      <wssp:KeyInfo>
+        <wssp:SecurityToken TokenType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3"/>
+        <wssp:SecurityTokenReference>
+          <wssp:Embedded>
+            <wsse:BinarySecurityToken EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary" ValueType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">MIIB7TCCAZcCEDXDeFSAuw4chw4WXHys/1swDQYJKoZIhvcNAQEEBQAweTELMAkGA1UEBhMCVVMxEDAOBgNVBAgTB015U3RhdGUxDzANBgNVBAcTBk15VG93bjEXMBUGA1UEChMOTXlPcmdhbml6YXRpb24xGTAXBgNVBAsTEEZPUiBURVNUSU5HIE9OTFkxEzARBgNVBAMTCkNlcnRHZW5DQUIwHhcNMDcwMjA1MTcwMTQ0WhcNMjIwMjA2MTcwMTQ0WjB7MQswCQYDVQQGEwJVUzEQMA4GA1UECBYHTXlTdGF0ZTEPMA0GA1UEBxYGTXlUb3duMRcwFQYDVQQKFg5NeU9yZ2FuaXphdGlvbjEZMBcGA1UECxYQRk9SIFRFU1RJTkcgT05MWTEVMBMGA1UEAxYMY3VrYTAyMDAwMDUzMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJry3bvGo72j4MjRRAMbDF0SFaFEEAMgZCJmr+24USaq6chykHqVTDgcMpu1Hl3A/xyKuZVgs9ISBBkNpMEdct8CAwEAATANBgkqhkiG9w0BAQQFAANBACD+eZCo0U3g+EokLHVYbaNHpgBSTUZm2HEQlC+NtiPeOTI67QHDwzBXGlNksCBwl2aEIgyeHP0Ya1W6IseIpWw=</wsse:BinarySecurityToken>
+          </wssp:Embedded>
+        </wssp:SecurityTokenReference>
+      </wssp:KeyInfo>
+    </wssp:Confidentiality>
+  </s0:Policy>
   <wsp:UsingPolicy s2:Required="true"/>
   <s2:types>
     <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://john/ws" xmlns:s0="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:s1="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:s2="http://schemas.xmlsoap.org/wsdl/" xmlns:s3="http://john/ws" xmlns:s4="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="secretHello">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="secretHelloResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="authHello">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="authHelloResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
       <xs:element name="logMessage">
         <xs:complexType>
           <xs:sequence>
@@ -25,6 +117,20 @@
         </xs:complexType>
       </xs:element>
       <xs:element name="logMessageResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="signHello">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="signHelloResponse">
         <xs:complexType>
           <xs:sequence>
             <xs:element name="return" type="xs:string"/>
@@ -76,11 +182,29 @@
       </xs:element>
     </xs:schema>
   </s2:types>
+  <s2:message name="secretHello">
+    <s2:part element="s3:secretHello" name="parameters"/>
+  </s2:message>
+  <s2:message name="secretHelloResponse">
+    <s2:part element="s3:secretHelloResponse" name="parameters"/>
+  </s2:message>
+  <s2:message name="authHello">
+    <s2:part element="s3:authHello" name="parameters"/>
+  </s2:message>
+  <s2:message name="authHelloResponse">
+    <s2:part element="s3:authHelloResponse" name="parameters"/>
+  </s2:message>
   <s2:message name="logMessage">
     <s2:part element="s3:logMessage" name="parameters"/>
   </s2:message>
   <s2:message name="logMessageResponse">
     <s2:part element="s3:logMessageResponse" name="parameters"/>
+  </s2:message>
+  <s2:message name="signHello">
+    <s2:part element="s3:signHello" name="parameters"/>
+  </s2:message>
+  <s2:message name="signHelloResponse">
+    <s2:part element="s3:signHelloResponse" name="parameters"/>
   </s2:message>
   <s2:message name="samlHello">
     <s2:part element="s3:samlHello" name="parameters"/>
@@ -101,9 +225,21 @@
     <s2:part element="s3:longHelloResponse" name="parameters"/>
   </s2:message>
   <s2:portType name="HelloWS">
+    <s2:operation name="secretHello" parameterOrder="parameters">
+      <s2:input message="s3:secretHello"/>
+      <s2:output message="s3:secretHelloResponse"/>
+    </s2:operation>
+    <s2:operation name="authHello" parameterOrder="parameters">
+      <s2:input message="s3:authHello"/>
+      <s2:output message="s3:authHelloResponse"/>
+    </s2:operation>
     <s2:operation name="logMessage" parameterOrder="parameters">
       <s2:input message="s3:logMessage"/>
       <s2:output message="s3:logMessageResponse"/>
+    </s2:operation>
+    <s2:operation name="signHello" parameterOrder="parameters">
+      <s2:input message="s3:signHello"/>
+      <s2:output message="s3:signHelloResponse"/>
     </s2:operation>
     <s2:operation name="samlHello" parameterOrder="parameters">
       <s2:input message="s3:samlHello"/>
@@ -120,10 +256,46 @@
   </s2:portType>
   <s2:binding name="HelloWSServiceSoapBinding" type="s3:HelloWS">
     <s4:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <s2:operation name="secretHello">
+      <s4:operation soapAction="" style="document"/>
+      <s2:input>
+        <s4:body parts="parameters" use="literal"/>
+        <wsp:Policy>
+          <wsp:PolicyReference URI="#EncryptName"/>
+        </wsp:Policy>
+      </s2:input>
+      <s2:output>
+        <s4:body parts="parameters" use="literal"/>
+      </s2:output>
+    </s2:operation>
+    <s2:operation name="authHello">
+      <s4:operation soapAction="" style="document"/>
+      <s2:input>
+        <s4:body parts="parameters" use="literal"/>
+        <wsp:Policy>
+          <wsp:PolicyReference URI="#Auth.xml"/>
+        </wsp:Policy>
+      </s2:input>
+      <s2:output>
+        <s4:body parts="parameters" use="literal"/>
+      </s2:output>
+    </s2:operation>
     <s2:operation name="logMessage">
       <s4:operation soapAction="" style="document"/>
       <s2:input>
         <s4:body parts="parameters" use="literal"/>
+      </s2:input>
+      <s2:output>
+        <s4:body parts="parameters" use="literal"/>
+      </s2:output>
+    </s2:operation>
+    <s2:operation name="signHello">
+      <s4:operation soapAction="" style="document"/>
+      <s2:input>
+        <s4:body parts="parameters" use="literal"/>
+        <wsp:Policy>
+          <wsp:PolicyReference URI="#Sign.xml"/>
+        </wsp:Policy>
       </s2:input>
       <s2:output>
         <s4:body parts="parameters" use="literal"/>

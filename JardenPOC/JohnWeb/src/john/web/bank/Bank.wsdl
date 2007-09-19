@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<s0:definitions name="BankWSServiceDefinitions" targetNamespace="http://john/ws/bank" xmlns="" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://john/ws/bank" xmlns:s2="john.ws.bank" xmlns:s3="http://schemas.xmlsoap.org/wsdl/soap/">
+<s0:definitions name="BankWSServiceDefinitions" targetNamespace="http://john/ws/bank" xmlns="" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://john/ws/bank" xmlns:s2="java:john.ws.bank" xmlns:s3="http://schemas.xmlsoap.org/wsdl/soap/">
   <s0:types>
-    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="john.ws.bank" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://john/ws/bank" xmlns:s2="john.ws.bank" xmlns:s3="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-      <xs:element name="string" type="xs:string"/>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="java:java.lang" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://john/ws/bank" xmlns:s2="java:john.ws.bank" xmlns:s3="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="Throwable"/>
     </xs:schema>
-    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://john/ws/bank" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://john/ws/bank" xmlns:s2="john.ws.bank" xmlns:s3="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://john/ws/bank" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://john/ws/bank" xmlns:s2="java:john.ws.bank" xmlns:s3="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:element name="getTransactionLog">
         <xs:complexType>
           <xs:sequence>
@@ -24,7 +24,7 @@
         <xs:complexType>
           <xs:sequence>
             <xs:element name="userName" type="xs:string"/>
-            <xs:element name="oldPassword" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
             <xs:element name="newPassword" type="xs:string"/>
           </xs:sequence>
         </xs:complexType>
@@ -69,7 +69,7 @@
         </xs:complexType>
       </xs:element>
     </xs:schema>
-    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="java:john.db" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://john/ws/bank" xmlns:s2="john.ws.bank" xmlns:s3="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="java:john.db" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://john/ws/bank" xmlns:s2="java:john.ws.bank" xmlns:s3="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:complexType name="JohnLogVO">
         <xs:sequence>
           <xs:element minOccurs="1" name="CreateTime" nillable="true" type="xs:dateTime"/>
@@ -85,7 +85,8 @@
       </xs:complexType>
       <xs:element name="ArrayOfJohnLogVO_literal" type="java:ArrayOfJohnLogVO_literal" xmlns:java="java:john.db"/>
     </xs:schema>
-    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="java:john.ws.bank" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://john/ws/bank" xmlns:s2="john.ws.bank" xmlns:s3="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="java:john.ws.bank" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://john/ws/bank" xmlns:s2="java:john.ws.bank" xmlns:s3="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="java:java.lang"/>
       <xs:complexType name="BankException">
         <xs:sequence>
           <xs:element minOccurs="1" name="Message" nillable="true" type="xs:string"/>
@@ -101,7 +102,7 @@
     <s0:part element="s1:getTransactionLogResponse" name="parameters"/>
   </s0:message>
   <s0:message name="BankException">
-    <s0:part element="s2:string" name="BankException"/>
+    <s0:part element="s2:BankException" name="BankException"/>
   </s0:message>
   <s0:message name="changePassword">
     <s0:part element="s1:changePassword" name="parameters"/>

@@ -13,6 +13,8 @@ public interface HelloWSServiceControl extends ServiceControl
 {
     static final long serialVersionUID = 1L;
 
+    public java.lang.String authHello(java.lang.String name_arg);
+
     public java.lang.String hello(java.lang.String name_arg);
 
     public java.lang.String logMessage(java.lang.String message_arg);
@@ -20,6 +22,10 @@ public interface HelloWSServiceControl extends ServiceControl
     public java.lang.String longHello(java.lang.String name_arg,int delay_arg);
 
     public java.lang.String samlHello(java.lang.String name_arg);
+
+    public java.lang.String secretHello(java.lang.String name_arg);
+
+    public java.lang.String signHello(java.lang.String name_arg);
 
    /** This event set interface provides support for the onAsyncFailure event.
     */

@@ -18,13 +18,18 @@
 		<table>
 			<tr valign="top">
 				<td><label for="field1"> Name: </label></td>
-				<td><netui:textBox dataSource="actionForm.name_arg" tagId="field1"></netui:textBox></td>
+				<td><netui:textBox dataSource="actionForm.name_arg" size="35" tagId="field1"></netui:textBox></td>
 			</tr>
 		</table>
 		</div>
 		<netui:button value="Hello" type="submit" />
-		<netui:button action="samlHello" value="saml Hello" />
+		<netui:button action="samlHello" value="SAML Hello" />
+		<netui:button action="secretHello" value="Secret Hello" />
+		<netui:button action="authHello" value="Auth Hello" />
+		<netui:button action="signHello" value="Sign Hello" />
+		<netui:anchor action="setMessage">Set Message</netui:anchor>
 	</netui:form>
+
 	<netui:span value="${pageInput.helloResult}"></netui:span>
 	<netui:form action="logMessage">
 		<div>
@@ -48,7 +53,7 @@
 	</netui:form>
 
 	<netui:form action="setEndpointAddress2">
-		Hello Endpoint: <netui:textBox dataSource="actionForm.p0" tagId="field1" size="25"/>
+		Hello Endpoint: <netui:textBox dataSource="actionForm.p0" tagId="field1" size="35"/>
 		<netui:button value="setEndpoint" type="submit" />
 	</netui:form>
 
