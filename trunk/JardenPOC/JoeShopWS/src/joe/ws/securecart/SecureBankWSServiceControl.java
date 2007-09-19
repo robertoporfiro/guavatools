@@ -1,15 +1,15 @@
-package joe.ws.cart;
+package joe.ws.securecart;
 import com.bea.control.ServiceControl;
 
 import org.apache.beehive.controls.api.events.EventSet;
 import org.apache.beehive.controls.api.bean.ControlExtension;
 
-@ServiceControl.Location(urls = {"http://localhost:7041/JohnWS/BankWS"})
+@ServiceControl.Location(urls = {"http://localhost:7041/JohnWS/SecureBankWS"})
 @ServiceControl.HttpSoapProtocol
 @ServiceControl.SOAPBinding(style = ServiceControl.SOAPBinding.Style.DOCUMENT, use = ServiceControl.SOAPBinding.Use.LITERAL, parameterStyle = ServiceControl.SOAPBinding.ParameterStyle.WRAPPED)
-@ServiceControl.WSDL(resourcePath = "joe/ws/cart/Bank.wsdl", service = "BankWSService")
+@ServiceControl.WSDL(resourcePath = "joe/ws/securecart/SecureBank.wsdl", service = "SecureBankWSService")
 @ControlExtension
-public interface BankWSServiceControl extends ServiceControl
+public interface SecureBankWSServiceControl extends ServiceControl
 {
     static final long serialVersionUID = 1L;
 
