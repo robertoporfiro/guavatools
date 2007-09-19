@@ -13,7 +13,7 @@ import weblogic.wsee.jws.JwsContext;
 import org.apache.beehive.controls.api.bean.Control;
 
 @WebService
-@Conversational()
+@Conversational(maxAge = "20 minutes", maxIdleTime = "10 minutes")
 /*
  * Conversational version of Shop2WS.
  */
