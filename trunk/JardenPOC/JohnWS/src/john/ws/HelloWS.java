@@ -19,7 +19,6 @@ public class HelloWS {
 	@Control
 	private LogMessageDB logMessageDB;
 	
-	@WebMethod
 	public String hello(String name) {
 		String user = jwsContext.getCallerPrincipal().getName();
 		String greeting = "HelloWS.hello('" + name + "'); user=" + user;
@@ -29,7 +28,6 @@ public class HelloWS {
 		}
 		return greeting;
 	}
-	@WebMethod
 	public String longHello(String name, int delay) {
 		String greeting = "HelloWS.longHello('" + name + "', " + delay + ")";
 		System.out.println(greeting);
@@ -41,7 +39,6 @@ public class HelloWS {
 		System.out.println("HelloWS.longHello delay completed");
 		return greeting;
 	}
-	@WebMethod
 	@Policy(uri = "./AuthSAML.xml", direction = Policy.Direction.inbound, attachToWsdl = true)
 	public String samlHello(String name) {
 		String user = jwsContext.getCallerPrincipal().getName();
@@ -49,7 +46,6 @@ public class HelloWS {
 		System.out.println(greeting);
 		return greeting;
 	}
-	@WebMethod
 	@Transactional(value=true)
 	public String logMessage(String message) {
 		String request = "HelloWS.logMessage('" + message + "')";
@@ -59,5 +55,24 @@ public class HelloWS {
 			throw new IllegalArgumentException(message + " must start with upper case letter");
 		}
 		return request;
+	}
+	// @Policy(uri="policy:Encrypt.xml", direction = Policy.Direction.inbound)
+	@Policy(uri="./EncryptName.xml", direction = Policy.Direction.inbound)
+	public String secretHello(String name) {
+		String action = "HelloWS.secretHello('" + name + "')";
+		System.out.println(action);
+		return action;
+	}
+	@Policy(uri="policy:Auth.xml", direction = Policy.Direction.inbound)
+	public String authHello(String name) {
+		String action = "HelloWS.authHello('" + name + "')";
+		System.out.println(action);
+		return action;
+	}
+	@Policy(uri="policy:Sign.xml", direction = Policy.Direction.inbound)
+	public String signHello(String name) {
+		String action = "HelloWS.signHello('" + name + "')";
+		System.out.println(action);
+		return action;
 	}
 }

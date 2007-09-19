@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.jws.*;
 
+import weblogic.jws.Policy;
 import weblogic.jws.Transactional;
 import org.apache.beehive.controls.api.bean.Control;
 import john.db.BankDB;
@@ -12,7 +13,8 @@ import john.db.JohnLogVO;
 import john.db.LogMessageDB;
 
 @WebService
-public class BankWS {
+@Policy(uri="./EncryptPassword.xml", direction = Policy.Direction.inbound)
+public class SecureBankWS {
 	@Control
 	private BankDB bankDB;
 	@Control
@@ -21,8 +23,8 @@ public class BankWS {
 	@Transactional(value = true)
 	public double transfer(String fromName, String password, String toName,
 			double amount) throws BankException {
-		String action = "BankWS.transfer('" + fromName + "', <password>, '" + toName +
-			"', " + amount + ")";
+		String action = "SecureBankWS.transfer('" + fromName + "', '" + password + "', '" +
+			toName + "', " + amount + ")";
 		System.out.println(action);
 		if (amount <= 0) {
 			throw new BankException("invalid amount: " + amount);
@@ -47,15 +49,22 @@ public class BankWS {
 		return newBal;
 	}
 	public double getBalance(String userName, String password) throws BankException {
+		String action = "SecureBankWS.getBalance('" + userName + "', '" + password + "')";
+		System.out.println(action);
 		JardenAccountVO account = getAccount(userName, password);
 		return account.getBalance();
 	}
 	public int changePassword(String userName, String password, String newPassword)
 	throws BankException {
+		String action = "SecureBankWS.changePassword('" + userName + "', '" + password +
+			"', '" + newPassword + "')";
+		System.out.println(action);
 		getAccount(userName, password); // i.e. check userName & password are valid
 		return bankDB.changePassword(userName, newPassword);
 	}
 	public JohnLogVO[] getTransactionLog(String userName, String password) throws BankException {
+		String action = "SecureBankWS.getTransactionLog('" + userName + "', '" + password + "')";
+		System.out.println(action);
 		getAccount(userName, password);
 		return logMessageDB.getMessagesByOwner(userName);
 	}
