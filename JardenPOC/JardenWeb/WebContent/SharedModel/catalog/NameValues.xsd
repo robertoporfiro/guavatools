@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+ xmlns="http://www.zurich.com/ep/catalog"
+ targetNamespace="http://www.zurich.com/ep/catalog">
+ 	<!-- 
+ 	<xs:simpleType name="nvType">
+ 		<xs:restriction base="xs:string">
+ 			<xs:enumeration value="hyperlink"/>
+ 		</xs:restriction>
+ 	</xs:simpleType>
+ 	<xs:element name="nvType" type="nvType"/>
+ 	 -->
+	<xs:complexType name="nameValue">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="value" type="xs:string"/>
+			<!-- <xs:element name="type" type="nvType" minOccurs="0"/> -->
+			<xs:element name="hyperlink" type="xs:boolean" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="nameValue" type="nameValue"/>
+	<xs:complexType name="nameValues">
+		<xs:sequence>
+			<xs:element ref="nameValue" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="nameValues" type="nameValues"/>
+</xs:schema>
