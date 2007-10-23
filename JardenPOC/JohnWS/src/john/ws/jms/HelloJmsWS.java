@@ -5,8 +5,7 @@ import javax.jws.*;
 import weblogic.jws.WLJmsTransport;
 
 @WebService(targetNamespace="http://john/ws")
-@WLJmsTransport(queue="jms.johnHelloQ", serviceUri = "HelloJmsWS" /*,
-		connectionFactory = "javax.jms.QueueConnectionFactory"*/)
+@WLJmsTransport(queue="jms.johnHelloQ", serviceUri = "HelloJmsWS")
 public class HelloJmsWS {
 
 	@WebMethod
