@@ -1,0 +1,78 @@
+<quotation>
+    <control prntflg="1">
+      <ifaname></ifaname>
+      <quotetype>500</quotetype>
+    </control>
+    <vendor vndrtyp="0">
+      <submittyp>E</submittyp>
+    </vendor>
+    <client sex="M" smkind="N">
+      <role>mph</role>
+      <name>
+        <titl/>
+        <snam/>
+        <fnam/>
+      </name>
+      <date>02051959</date>
+      <emply>
+        <occ/>
+      </emply>
+    </client>
+    <product prodid="DW/20101">
+      <date>01112007</date>
+      <req>
+        <moneyin ben="lcov" freq="M">
+          <prmamnt ntgr="G">
+            <amnt>10.0</amnt>
+          </prmamnt>
+          <incbsis inctyp="2">
+            <roi/>
+          </incbsis>
+        </moneyin>
+        <benefit ben="lcov">
+          <trm>
+            <yy>5</yy>
+          </trm>
+          <bnft trmassind="C">
+            <bnfinc>
+              <incbsis inctyp="2"/>
+            </bnfinc>
+          </bnft>
+          <undrwrtng/>
+          <role>mph</role>
+        </benefit>
+        <benefit ben="wop">
+          <trm>
+            <yy>5</yy>
+          </trm>
+          <bnft trmassind="C">
+            <bnfinc>
+              <incbsis inctyp="2"/>
+            </bnfinc>
+          </bnft>
+          <undrwrtng/>
+          <role>mph</role>
+        </benefit>
+        <commission styl="I" stylbs="A" indmcd="N">
+          <commamnt>
+            <pcnt>100</pcnt>
+          </commamnt>
+          <commsac>
+            <pcnt>0</pcnt>
+          </commsac>
+          <accrlpd>
+            <yy>4</yy>
+          </accrlpd>
+          <commuplift>
+            <pcnt>155</pcnt>
+          </commuplift>
+        </commission>
+        <commission styl="R" stylbs="A" indmcd="N">
+          <commamnt>
+            <pcnt>100.0</pcnt>
+          </commamnt>
+        </commission>
+      </req>
+      <polstrdt>01112007</polstrdt>
+    </product>
+  </quotation>

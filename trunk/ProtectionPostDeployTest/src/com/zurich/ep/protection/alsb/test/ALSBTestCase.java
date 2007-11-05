@@ -1,5 +1,6 @@
 package com.zurich.ep.protection.alsb.test;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Date;
@@ -33,6 +34,8 @@ public class ALSBTestCase extends TestCase {
 
     Logger log = Logger.getLogger(this.getClass().getName());
 
+    private File responseXMLDir = new File("C:/temp/ALSBTestOK");
+
     public void testQuoteScenario() throws Exception {
         
         NewALSBInvoker invoker = NewALSBInvoker.getALSBInvoker();
@@ -48,7 +51,9 @@ public class ALSBTestCase extends TestCase {
         Date endTime = new Date();
         assertNotNull(info);
         XmlObject responseObject = info.getResponsePayload();
-
+        
+        responseObject.save(new File(responseXMLDir,testNumber+".xml"));
+        
         Collection<String> errorMessages = ResponseObjectValidator.validateResponse(info, validatorTests, testName);
         ResponseErrorHandler responseErrorHandler = ALSBTestConfiguration.getResponseErrorHandler();
         responseErrorHandler.handleErrors(responseObject, testName, testDescription, errorMessages);
