@@ -128,7 +128,15 @@ public class ResponseObjectValidator {
     }
     
     private static boolean assertNodeDoesntExist(String nodePath, XmlObject obj){
-        XmlObject[] node = obj.selectPath(nodePath);
+        XmlObject[] node = null;
+        try{
+            node = obj.selectPath(nodePath);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+            e.printStackTrace();
+        }
+        System.out.println(node);
         if(node.length >0){
             return false;
         }

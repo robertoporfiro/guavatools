@@ -9,8 +9,22 @@
 # SAL sum-assured led
 tests=[
 
+    ########### general tests ######
+    ["cover_period has 1 child","testXML/TEX/AdilOne.xml","[boron] cover perido has 1 child", ['is origo message','is origo response message','has warning status','cover_period has one child']],    
+    ["quote details in right place","testXML/TEX/AdilOne.xml","[boron] quote details in right place", ['is origo message','is origo response message','has warning status','quote details in right place']],
+    ["no related to id on error","testXML/TEX/AdilOne.xml","[boron] Error notes should now not have a relates_to element", ['is origo message','is origo response message','has warning status','has no relates to id']],
+    ["3626","testXML/TEX/Bug3626.xml","[boron] Commission Payable part for 1-Year Term Indemnity", ['is origo message','is origo response message','has warning status','has correct commission note for 1 year indemnity']],          
+    ["3760","testXML/general/Bug3760.xml","[boron] decimal places disallowed in Benefit field", ['is origo message','is origo response message','has error status','has decimals error note']],          
+    ["3481","testXML/general/Bug3481.xml","[boron] premium variations. id attribute in correct place", ['is origo message','is origo response message','has warning status','has correct premium variation id']],          
+    ["3860","testXML/general/Bug3860.xml","[boron] People over 69 aren't allowed insurance.", ['is origo message','is origo response message','has error status']],
+    ["3860-b","testXML/general/Bug3860-b.xml","[boron] People under 16 aren't allowed insurance.", ['is origo message','is origo response message','has error status']],    
+   # (not sure why we are not implementing this rule yet) ["3860-c","testXML/general/Bug3860-c.xml","[boron] People over 54 aren't allowed TPD cover", ['is origo message','is origo response message','has error status']],        
+
+   
+
     ########### the exchange #######
-    
+    ["Bug3712","testXML/TEX/Bug3712.xml","Nasty 10% bug: Rule 24 not being fired", ['is origo message','is origo response message','has error status']],
+    ["Bug4170","testXML/TEX/Bug4170-Request.xml","TEX - incorrect response bug", ['is origo message','is origo response message','has warning status','has either end_age or term but not both']],    
     ["Test1","testXML/TEX/onlineQuote1.xml", "Basic TEX Request SC 1RB BL",['is origo message','is origo response message']],
     ["Test2","testXML/TEX/onlineQuote2.xml","Basic TEX Request", ['is origo message','is origo response message']],
     ["Test3","testXML/TEX/onlineQuote3.xml","Testing the LPP bug", ['is origo message','is origo response message']],
@@ -64,13 +78,12 @@ tests=[
     ["Bug2343","testXML/Webline/Bug2343.xml","BEA Server Error", ['is origo message','is origo response message','has warning status']],
     ["Bug2344","testXML/Webline/Bug2344.xml","BEA Server Error", ['is origo message','is origo response message','has warning status']],
     ["Bug2346","testXML/Webline/Bug2346.xml","BEA Server Error", ['is origo message','is origo response message','has warning status']],    
-    ["Bug2379","testXML/Webline/Bug2379.xml","BEA Server Error", ['is origo message','is origo response message','has warning status']],    
-    ["Bug2655","testXML/Webline/Bug2655.xml","Duplicate user messages", ['is origo message','is origo response message','has warning status','has variations']],        
-    ["Bug3699","testXML/Webline/Bug3699.xml","Prem_Led/DMC/Annual not producing quote when commission is flexed", ['is origo message','is origo response message','has warning status']],            
+   ["Bug2379","testXML/Webline/Bug2379.xml","BEA Server Error", ['is origo message','is origo response message','has warning status']],    
+   ["Bug2655","testXML/Webline/Bug2655.xml","Duplicate user messages", ['is origo message','is origo response message','has warning status','has variations']],        
+   ["Bug3699","testXML/Webline/Bug3699.xml","Prem_Led/DMC/Annual not producing quote when commission is flexed", ['is origo message','is origo response message','has warning status']],            
+    
 
     
-#
-#    
 #
 #    ########### positive solutions ##   
 #
