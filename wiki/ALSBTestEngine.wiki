@@ -1,4 +1,3 @@
-
 = A testing tool for running tests against a service bus =
 
 We’ve put together a tool to allow you to fire off tests to ALSB and check the results via a set of validators.
@@ -21,4 +20,3 @@ The test rig endpoint is configured using the properties file ALSBTest.propertie
 The only things we can’t test at the moment with this tool are environments that use HTTPS, becuase I haven’t figured out how to get HttpUnit working with SSL yet (can’t be that hard though can it??!)
 
 Check it out, and run this class: com.zurich.ep.protection.alsb.test.RunPythonTests
-
