@@ -136,7 +136,7 @@ public class ResponseObjectValidator {
             System.out.println(e);
             e.printStackTrace();
         }
-        System.out.println(node);
+       // System.out.println(node);
         if(node.length >0){
             return false;
         }
