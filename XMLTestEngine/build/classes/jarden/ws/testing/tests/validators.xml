@@ -1,0 +1,42 @@
+<validators>
+
+    <validator name="has m_control element" >
+        <check type="EXISTS">.//message/m_control</check>
+    </validator>
+
+    <validator name="has m_content element" >
+        <check type="EXISTS">.//message/m_content</check>
+    </validator>
+    
+    
+    <validator name="is origo message" >
+        <inherit ref="has m_control element" />
+        <inherit ref="has m_content element" />        
+    </validator>
+    
+    <validator name="is origo request message" >
+        <check type="EQUALS" value="Origo Request">.//message/product/request_type</check>
+        <inherit ref="is origo message" />
+    </validator>
+    
+    
+
+    <validator name="cover period has one child" >
+        <check type="EQUALS" value="1">.//message/product/client_specific_illustration/variation</check>
+    </validator>
+</validators>
+
+<tests>
+
+	<suite>
+		<validator ref="is origo request message" />	<!-- These validators will be run for every test in this suite -->
+		
+		<test name="Bug 3712">
+			<description>Nasty 10% bug: Rule 24 not being fired</description>
+			<validator ref="cover period has one child" />
+		</test>
+		
+		<test name="Bug 3713" validator=""/>
+	</suite>
+	
+</tests>

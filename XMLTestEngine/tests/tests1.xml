@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test:tests xmlns:test="http://www.jarden.com/testengine" 
+			rootDir=".">			
+
+  <test name="test1" inputFile="test1.xml"  validator=""/>	<!-- If no input file is provided, we can consider it to be the same name as the test -->
+  <test name="test2" inputFile="test1.xml"  validator=""/>
+  <test name="test3" inputFile="test1.xml"  validator=""/>
+  <test name="test4" inputFile="test1.xml"  validator=""/>
+    <description>description</description>
+    <validator>validator</validator>
+  </test>
+  <suite name="" validator="">
+    <test inputFile="" name="" validator="">
+      <description>description</description>
+      <validator>validator</validator>
+    </test>
+  </suite>
+</test:tests>

@@ -1,0 +1,166 @@
+<message xmlns="">
+	<m_control>
+		<control_timestamp>2007-10-06T15:36:06.5370</control_timestamp>
+		<message_id>bb489433-b4fa-49d9-8f9e-ce2f3a4ab7fb</message_id>
+		<retry_number>0</retry_number>
+		<message_type>Quotation Request</message_type>
+		<message_version>/origo/3.2.1/QNBProtectionQuoteRequest.xsd</message_version>
+		<expected_response_type>synchronous</expected_response_type>
+		<initiator_id>Exchange, The</initiator_id>
+		<initiator_orchestration_id>777505</initiator_orchestration_id>
+		<responder_id>Zurich Assurance</responder_id>
+	</m_control>
+	<m_content>
+		<b_control>
+			<service_provider_reference_number>777505</service_provider_reference_number>
+			<intermediary_case_reference_number>071006153605859</intermediary_case_reference_number>
+			<quote_type>Comparison</quote_type>
+			<quote_or_print>Quote Only</quote_or_print>
+			<generic_quote_ind>No</generic_quote_ind>
+			<message_version_number>3.2.1</message_version_number>
+			<submission_date>2007-10-06</submission_date>
+			<tpsdata>
+				<billingproducttype>155</billingproducttype>
+				<billingproductsubtype>0</billingproductsubtype>
+				<billingproduct>35</billingproduct>
+				<URLofIP>https://systest-quote-ep.zurich.co.uk/quote/OrigoProtectionTransformXMLPS</URLofIP>
+				<IPtimeout>30000</IPtimeout>
+			</tpsdata>
+		</b_control>
+		<intermediary type="IFA">
+			<sib_number>171342</sib_number>
+			<FirmFSARef>171342</FirmFSARef>
+			<basis_of_sale>
+				<whole_of_market>Yes</whole_of_market>
+			</basis_of_sale>
+			<company_name>Zurich Life Assurance Co (Demo)</company_name>
+			<branch_name>Zurich Life Assurance Co (Demo)</branch_name>
+			<agency_number>ZUR610024</agency_number>
+			<agency_address>
+				<postcode>GL4 3RZ</postcode>
+			</agency_address>
+			<contact_details>
+				<name>Stuart Hogton</name>
+			</contact_details>
+		</intermediary>
+		<application>
+			<personal_client id="pc1">
+				<title>Mrs</title>
+				<forenames>Paula</forenames>
+				<surname>Fletcher</surname>
+				<sex>Female</sex>
+				<date_of_birth>1990-12-16</date_of_birth>
+				<tax_rate>22</tax_rate>
+				<employment_contract>
+					<occupation code="SAC01916">School Secretary</occupation>
+				</employment_contract>
+				<smoker_ind>Yes</smoker_ind>
+				<preferred_life_ind>No</preferred_life_ind>
+			</personal_client>
+			<personal_client id="pc2">
+				<title>Mr</title>
+				<forenames>Darren</forenames>
+				<surname>Fletcher</surname>
+				<sex>Male</sex>
+				<date_of_birth>1985-10-03</date_of_birth>
+				<tax_rate>0</tax_rate>
+				<employment_contract>
+					<occupation code="DAB00601">Dental Nurse</occupation>
+				</employment_contract>
+				<smoker_ind>Yes</smoker_ind>
+				<preferred_life_ind>No</preferred_life_ind>
+			</personal_client>
+			<product type="Term Protection" product_code="DY_E">
+				<increment_ind>No</increment_ind>
+				<benefits_required>
+					<life_assured personal_client_id="pc1"
+						sequence_number="1" />
+					<death_ind>Yes</death_ind>
+					<death_or_earlier_cic_ind>Yes</death_or_earlier_cic_ind>
+					<critical_illness_ind>Yes</critical_illness_ind>
+					<tpd_ind>Yes</tpd_ind>
+					<waiver_ind>Yes</waiver_ind>
+					<unemployment_ind>No</unemployment_ind>
+				</benefits_required>
+				<benefits_required>
+					<life_assured personal_client_id="pc2"
+						sequence_number="2" />
+					<death_ind>Yes</death_ind>
+					<death_or_earlier_cic_ind>Yes</death_or_earlier_cic_ind>
+					<critical_illness_ind>Yes</critical_illness_ind>
+					<tpd_ind>Yes</tpd_ind>
+					<waiver_ind>Yes</waiver_ind>
+					<unemployment_ind>No</unemployment_ind>
+				</benefits_required>
+				<risk_benefit id="rb1" type="Life And Health">
+					<cover_basis>First Event</cover_basis>
+					<cover_period>
+						<end_age
+							definition="Attained Last Whole Year">35</end_age>
+					</cover_period>
+					<risk_cover>
+						<risk_event>Death</risk_event>
+						<risk_event qualifier="Comprehensive">Critical Illness</risk_event>
+						<risk_event qualifier="Any Occupation">Total And Permanent Disability</risk_event>
+						<life_assured personal_client_id="pc1"
+							sequence_number="1" />
+						<life_assured personal_client_id="pc2"
+							sequence_number="2" />
+						<cover_indexation>
+							<change_basis>Increasing</change_basis>
+							<change_index>Fixed</change_index>
+							<change_percent>5.00</change_percent>
+						</cover_indexation>
+					</risk_cover>
+					<risk_contribution>
+						<cost_basis>Paid For Separately</cost_basis>
+						<contribution>
+							<amount currency="GBP">150.00</amount>
+							<frequency>Annually</frequency>
+						</contribution>
+						<payment_indexation>
+							<change_index>Fixed</change_index>
+							<change_percent>5.0</change_percent>
+						</payment_indexation>
+						<waiver risk_benefit_id="rb2" />
+						<main_commission
+							commission_entitlement_id="CE1" />
+						<renewal_commission
+							commission_entitlement_id="CE2" />
+					</risk_contribution>
+				</risk_benefit>
+				<risk_benefit id="rb2" type="Waiver">
+					<cover_basis>First Event</cover_basis>
+					<risk_cover>
+						<risk_event qualifier="Any Occupation">Disability</risk_event>
+						<life_assured personal_client_id="pc1"
+							sequence_number="1" />
+						<life_assured personal_client_id="pc2"
+							sequence_number="2" />
+					</risk_cover>
+					<risk_contribution>
+						<cost_basis>Funded From Waived Risk Contribution</cost_basis>
+					</risk_contribution>
+				</risk_benefit>
+				<policy_term>
+					<start_date>2007-10-06</start_date>
+				</policy_term>
+				<product_option type="Guaranteed Rates" />
+				<commission_entitlement id="CE1" type="Initial">
+					<sacrifice>
+						<percent calculation_basis="Entitlement">100</percent>
+					</sacrifice>
+					<indemnity_ind>Yes</indemnity_ind>
+				</commission_entitlement>
+				<commission_entitlement id="CE2" type="Renewal">
+					<sacrifice>
+						<percent calculation_basis="Entitlement">100</percent>
+					</sacrifice>
+				</commission_entitlement>
+				<illustration_basis>
+					<contribution_or_benefit_led>Contribution</contribution_or_benefit_led>
+				</illustration_basis>
+			</product>
+		</application>
+	</m_content>
+</message>
