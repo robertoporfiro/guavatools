@@ -1,0 +1,97 @@
+Statement:
+------------------
+
+We need to rewrite the ALSB Post-deploy tester to make it more flexible.
+The existing testrig:
+	presumes that we will always be doing end to end testing, and so doesn't allow for testing of Xqueries and/or services deeper within call stack
+	doesn't allow for time-sensitive tests. (e.g. setting a date to be always 1 week ago for example)
+	
+Let's add the following features:
+
+# Web-based interface to allow different users to fire the tests at different environments.
+# Potential to fire off ALSB config scripts at the target environment before and after testing.
+# Ability to group tests together into suites, and run either individual tests, suites or groups of suites.
+# The test itself needs to be far more configurable, allowing a test to consist of:
+		# a request XML test and a validator
+		# a request XML script and a validator - this could be run against a different endpoint altogether.
+# The response validators need to be more configurable to permit grouping of validators, and both scripted and simple XPath. In addtion, each
+	validator should be able to contain several sub validators, forming a tree
+# Add and configure both test scripts, XML and validators through the GUI
+# The test harness should support SSL
+# The test harness should keep track of perf metrics
+# The gui should ask you who you are, and remember it (via a cookie)
+# The gui should keep a track of the last n test results, with perf metrics
+# The test harness should keep allow for queueing of test runs.
+# Configure on a per-test basis whether to store success XML, error XML, or both.
+
+
+
+Use Cases:
+----------
+
+select and run test from list
+select and run test suite from list
+Add script validator
+Add xpath validator 
+Add validator to validator
+Add test
+Add validator to test
+Add test suite
+Add test to testsuite
+View test results
+View my test results
+
+
+
+
+
+Design considerations:
+----------------------
+
+Since we will be spending a much longer time validating requests with collections of validators, we probably need to have the 
+	testing over HTTP and the validation happen in different threads, using a validation queue.
+	
+
+How about using a SOA approach and having the following services?
+	# ValidatorService
+	# TestEngineService
+	# ResultsService
+	
+Jython: for and against
+is there anything that we actually NEED Jython for ? Can't we just use java/xml for everything ?
+We are currently just using Jython to allow for non-techies to script thier own	tests. If they had a web interface, 
+and were able to add their own JUnit Tests, we wouldn't need Jython at all.
+
+Test
+----
+endpoint
+validators
+srcXML
+
+Validator
+---------
+
+	simple
+		XPath (opt value)
+		Error message
+		Collection of validators
+		
+	complex
+		Java Class (which either works on compiled classes or on the XML)
+		Error message(s)
+		Collection of validators
+	
+	
+ResultsAggregator
+--------------
+
+beginSession(String username)
+endSession(String sessionId)
+getAllSessions()
+getLastNSessions(int noOfSessions)
+getSessionsForUser(String username)
+purgeSessions();
+purgeOldSessions(Date olderthan);
+
+
+

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.jarden.com/testengine" xmlns:test="http://www.jarden.com/testengine" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	
+	<xs:complexType name="Test">
+		<xs:sequence>
+				<xs:element name="description" type="string" minOccurs="0" maxOccurs="1" />
+				<xs:element name="validator"  minOccurs="0" maxOccurs="unbounded" >
+					<xs:complexType mixed="false">
+						<attribute name="ref" use="optional" type="xs:IDREF" />
+					</xs:complexType>
+				</xs:element>
+		</xs:sequence>
+		<attribute name="name" use="required" />
+		<attribute name="validator" use="optional" type="xs:IDREF"/>
+		<attribute name="inputFile" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="Suite">
+		<xs:sequence>
+			<xs:element name="test" type="test:Test" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<attribute name="name" use="required" />
+		<attribute name="validator" use="optional" type="xs:IDREF" />
+	</xs:complexType>
+	
+	
+	<xs:complexType name="Tests">
+		<xs:sequence>
+			<xs:element name="test" type="test:Test" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="suite" type="test:Suite" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<attribute name="rootDir" use="required" />
+	</xs:complexType>
+	
+	<xs:complexType name="Validators">
+		<xs:sequence>
+			<xs:element name="validator" type="test:Validator" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<simpleType name="CheckType">
+		<restriction base="xs:string">
+			<xs:enumeration value="exists" />
+			<xs:enumeration value="not-exists" />
+			<xs:enumeration value="equals" />
+			<xs:enumeration value="not-equals" />
+			<xs:enumeration value="contains" />			
+		</restriction>
+	</simpleType>
+	
+	<xs:complexType name="Check" >
+				
+	</xs:complexType>
+
+	<xs:complexType name="Validator">
+		<xs:sequence>
+			<xs:element name="check" minOccurs="0">
+			<xs:complexType mixed="true">
+				<xs:attribute name="checkType" type="test:CheckType"/>	
+			</xs:complexType>			
+			</xs:element>
+			<xs:element name="inherit" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType mixed="false">
+					<attribute name="ref" use="optional" type="xs:IDREF" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:ID"/>
+	</xs:complexType>
+	
+	<xs:complexType name="TestConfiguration">
+		<xs:sequence>
+			<xs:element name="tests" type="test:Tests" />
+			<xs:element name="validators" type="test:Validators" />	
+		</xs:sequence>
+	</xs:complexType>
+	
+	
+	<xs:element name="testConfiguration" type="test:TestConfiguration" />
+	
+</xs:schema>

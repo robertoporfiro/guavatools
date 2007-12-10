@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test:testConfiguration xmlns:test="http://www.jarden.com/testengine" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.jarden.com/testengine Tests.xsd ">
+
+  <!-- ###############        TESTS              ###################### -->
+  <test:tests rootDir="c:/blahblah">
+  
+    <test:test name="test1" inputFile="test1.xml"  validator="is-origo-message">
+      <test:description>This test is the root test that defines what an origo message is</test:description>
+      <test:validator ref="is-origo-message"/>
+    </test:test>
+    
+    
+    <test:suite name="origo-suite-one" validator="is-origo-message">
+      <test:test name="test1" inputFile="test1.xml"/>	<!-- These 3 tests will all use the same validator defined above -->
+      <test:test name="test2" inputFile="test2.xml"/>      
+      <test:test name="test3" inputFile="test3.xml"/>
+      
+      <test:test name="" inputFile="">  
+        <test:description>test:description</test:description> 
+        <test:validator ref="is-origo-message" />
+      </test:test> 
+    </test:suite>
+  
+  
+  </test:tests>
+  
+  
+  <!-- ###############       VALIDATORS         ###################### -->
+  
+  <test:validators>
+
+
+    <test:validator name="has-mcontrol-node">
+	      <test:check checkType="exists">.//m_control</test:check>    
+    </test:validator>
+    
+    <test:validator name="has-product-node">
+	      <test:check checkType="exists">.//m_content/application/product</test:check>    
+    </test:validator>
+    
+    <test:validator name="has-minimum-one-risk-benefit">
+	      <test:check checkType="exists">.//m_content/application/product</test:check>    
+    </test:validator>
+    
+
+    <test:validator name="has-mcontent-node">
+	      <test:check checkType="exists">.//m_content</test:check>    
+    </test:validator>
+  
+    <test:validator name="is-origo-message">	<!-- this validator inherits the checks from many other validators -->
+     	<test:inherit ref="has-mcontrol-node"/>
+     	<test:inherit ref="has-mcontent-node"/>     	
+     	<test:inherit ref="has-product-node"/>  
+     	<test:inherit ref="has-minimum-one-risk-benefit"/>
+    </test:validator>
+  
+    <test:validator name="is-origo-request-message">
+      <test:check checkType="exists">.//m_content</test:check>
+      <test:inherit ref="is-origo-message"/>
+    </test:validator>
+  
+    <test:validator name="has-variations">
+      <test:check checkType="not-exists">.//m_content</test:check>
+    </test:validator>
+  
+  
+  </test:validators>
+  
+  
+  
+  
+</test:testConfiguration>
