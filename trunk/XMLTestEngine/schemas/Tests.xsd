@@ -17,12 +17,20 @@
 	
 	<xs:complexType name="Suite">
 		<xs:sequence>
-			<xs:element name="test" type="test:Test" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="test" type="test:Test" minOccurs="0" maxOccurs="unbounded" >
+				
+			</xs:element>
 		</xs:sequence>
 		<attribute name="name" use="required" />
-		<attribute name="validator" use="optional" type="xs:IDREF" />
+		<element name="validator">
+			<xs:keyref name=""/>
+		</element>
+			
+		</attribute>
+
 	</xs:complexType>
-	
+	 
+
 	
 	<xs:complexType name="Tests">
 		<xs:sequence>
@@ -48,10 +56,8 @@
 		</restriction>
 	</simpleType>
 	
-	<xs:complexType name="Check" >
+	<xs:complexType name="Check" />
 				
-	</xs:complexType>
-
 	<xs:complexType name="Validator">
 		<xs:sequence>
 			<xs:element name="check" minOccurs="0">
@@ -65,7 +71,7 @@
 				</xs:complexType>
 			</xs:element>
 		</xs:sequence>
-		<xs:attribute name="name" type="xs:ID"/>
+		
 	</xs:complexType>
 	
 	<xs:complexType name="TestConfiguration">
