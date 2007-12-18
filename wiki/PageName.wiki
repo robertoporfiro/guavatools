@@ -1,0 +1,9 @@
+<h3 id="section-FailedOperationName-SupportKnowledge">Support Knowledge</h3>
+<h4 id="section-FailedOperationName-Title">Title</h4>
+Failed to get operation name from the incoming request
+<h4 id="section-FailedOperationName-Description">Description</h4>
+The name of the operation doesn't match any operation of the target
+service. Usually means a mismatch between the wsdl of the Proxy and the
+wsdl of the target service, either the name of the operation or its
+namespace. If so, change one of the wsdls, or produce a transformation
+within the proxy.  
