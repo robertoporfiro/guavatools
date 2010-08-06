@@ -1,0 +1,26 @@
+
+
+
+Warning: this design is based on the assumption that queue browsing doesn't cause messages paged to disk to be marshalled back into memory.
+This is as yet unproven
+
+
+
+BatchMetaData
+	Describes the current state of a batch based on the JMS message headers: correlationId, batchSize, positionInBatch
+	has a method to indicate when the batch is ready for collection
+
+QueuePoller
+	Polls queue every n seconds and builds a collection of BatchMetaData objects
+	Then hands that to the BatchProcessOrchestrator
+
+BatchProcessOrchestrator
+	Accepts incoming BatchMetaData collections from the MessageBrowser and hands individual BatchMetaData to a BatchProcessor once the batch indicates it
+	is ready for processing,
+	creates it if necessary. Removes completed BatchProcessors from the store
+	
+BatchProcessor
+	Created with a specific correlationId, queries the first message it finds
+	
+BatchProcessorFactory
+	Creates batchProcessors and injects them with JMS resources (Queues, Topics what have you)
