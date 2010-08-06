@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 	xmlns="http://www.springframework.org/schema/beans" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns:p="http://www.springframework.org/schema/p" 
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+		 
+		xmlns:util="http://www.springframework.org/schema/util"
+		default-lazy-init="true">
+	
+
+	<bean id="batchProcessorFactory" class="org.guavatools.jms.aggregator.processor.BatchProcessorFactory">
+	</bean> 
+	
+	<bean id="errorHandler" class="org.guavatools.jms.aggregator.ErrorHandler" />
+	
+	
+	<bean id="jmsUtils" class="org.guavatools.jms.aggregator.JMSUtils" >
+		<property name="confacName" value="OSB.jms.InboundConnectionFactory" />
+		<property name="queueName" value="jms/OSB.AggregatorSortQueue" />
+		<property name="connectionString" value="t3://localhost:7001" />
+	</bean>
+	
+	
+	<bean id="batchProcessor" class="org.guavatools.jms.aggregator.BatchProcessor" scope="prototype">
+		<property name="errorHandler" ref="errorHandler" />
+		<property name="jmsUtils" ref="jmsUtils" />
+		<property name="messageWriter" ref="messageWriter"  />
+	</bean>
+	
+	
+	<bean id="messageWriter" class="org.guavatools.jms.aggregator.writer.FileWriter" scope="prototype" >
+		<property name="outputDirName" value="d:/tmp/aggregator-output" />	
+	</bean>
+	
+	<bean id="batchProcessOrchestrator" class="org.guavatools.jms.aggregator.BatchProcessOrchestrator">
+		<property name="batchProcessorFactory" ref="batchProcessorFactory" />	
+	</bean>
+	
+	<bean id="queuePoller" class="org.guavatools.jms.aggregator.QueuePoller" init-method="init">
+		<property name="jmsUtils" ref="jmsUtils" />
+		<property name="errorHandler" ref="errorHandler" />
+		<property name="batchProcessOrchestrator" ref="batchProcessOrchestrator" />
+		<property name="pollFrequency" value="1000" />	<!-- poll every second -->
+	</bean>
+	
+	
+	
+	 	
+</beans>
