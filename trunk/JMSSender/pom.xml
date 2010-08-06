@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.lchclearnet.solutions-design.tools</groupId>
+	<artifactId>JMSTools</artifactId>
+	<name>JMSTools</name>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<description />
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>3.0.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>3.0.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.5</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+		</dependency>
+		<dependency>
+			<groupId>com.bea.weblogic</groupId>
+			<artifactId>weblogic-client-fulljar</artifactId>
+			<version>10.3</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</build>
+	<distributionManagement>
+		<repository>
+			<id>lch-releases</id>
+			<name>lch-releases</name>
+			<url>http://risdv1:8091/artifactory/lch-releases</url>
+		</repository>
+
+		<snapshotRepository>
+			<id>lch-snapshots</id>
+			<name>lch-snapshots</name>
+			<url>http://risdv1:8091/artifactory/lch-snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+
+</project>
