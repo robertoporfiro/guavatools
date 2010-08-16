@@ -24,3 +24,5 @@ BatchProcessor
 	
 BatchProcessorFactory
 	Creates batchProcessors and injects them with JMS resources (Queues, Topics what have you)
+
+Test
