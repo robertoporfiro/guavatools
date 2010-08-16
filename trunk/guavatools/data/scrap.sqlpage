@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<SQLPage nameConnection="HSQL">
-<Statement><![CDATA[update public.speaker set brother=true where id <=19;
-
-
-
-select * from speaker;]]></Statement>
-</SQLPage>
