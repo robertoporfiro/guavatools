@@ -1,8 +1,6 @@
 package test.banking;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Holds a collection of bank accounts
