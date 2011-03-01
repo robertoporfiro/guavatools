@@ -14,6 +14,7 @@ public class BankingApp {
 	public static void main(String[] args) {
 		if(console == null){
 			console = System.console();
+			System.out.println("Console: "+console);
 		}
 		boolean loggedIn = false;
 
