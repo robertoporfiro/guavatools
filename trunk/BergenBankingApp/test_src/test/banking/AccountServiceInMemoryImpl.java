@@ -1,11 +1,16 @@
 package test.banking;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AccountServiceInMemoryImpl implements AccountService {
+public class AccountServiceInMemoryImpl implements AccountService, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String checkingAccNumberStub = "C-";
 	String savingsAccNumberStub = "S-";
 	private Map<String,Account> accountStore = new HashMap<String, Account>();
@@ -33,6 +38,14 @@ public class AccountServiceInMemoryImpl implements AccountService {
 			Account a = new SavingsAccount(accNo);
 			accountStore.put(a.getAccountNumber(),a);
 		}
+		Runtime.getRuntime().addShutdownHook(new Thread(){
+
+			@Override
+			public void run() {
+				System.out.println("Shutting down banking app");
+			}
+			
+		});
 	}
 	
 	@Override
@@ -62,6 +75,13 @@ public class AccountServiceInMemoryImpl implements AccountService {
 	@Override
 	public void updateAccount(Account account) throws ServiceException {
 		
+	}
+
+	public void setAccounts(Collection<Account> accounts) {
+		System.out.println("Loading "+accounts.size()+ "accounts from disk");
+		for(Account acc: accounts){
+			this.accountStore.put(acc.getAccountNumber(), acc);
+		}
 	}
 
 }

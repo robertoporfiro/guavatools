@@ -1,21 +1,25 @@
 package test.banking.ui;
 
 import java.io.Console;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import test.banking.Account;
 import test.banking.AccountService;
 import test.banking.AccountServiceFactory;
+import test.banking.store.Shutdownable;
 
 /**
  * Provides basic CLI for the banking app
  * @author denny
  *
  */
-public class BankingApp {
+public class BankingApp{
 
 	private static final String CREDIT_COMMAND = "credit";
-	private static final String DETAIL_STRING = "detail";
-	Console console = System.console();
+	private static final String DETAIL_COMMAND = "detail";
+	private static final String DEBIT_COMMAND = "debit";
+	private transient Console console = System.console();
 	private boolean showtime = true;
 	private AccountService accountService = AccountServiceFactory.getAccountService();
 	
@@ -53,21 +57,30 @@ public class BankingApp {
 			printAccountDetails();
 		}
 		if(action.equalsIgnoreCase("exit")){
-			exit();
+			try {
+				exit();
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
 		}
-		if(action.contains(DETAIL_STRING)){
+		if(action.contains(DETAIL_COMMAND)){
 			getDetails(action);
 		}
 	}
 
 	private void getDetails(String request) {
-		String accNo = getNonCommandPortion(request, DETAIL_STRING);
+		String accNo = getNonCommandPortion(request, DETAIL_COMMAND);
 		Account account = accountService.getAccountByNumber(accNo);
 		if(account != null){
 			runDetailsLoop(account);
 		}else{
 			System.out.println("No account could be found with number "+accNo);
 		}
+	}
+
+	private String getNonCommandPortion(String request, String command) {
+		String portion = request.replace(command, "").trim();
+		return portion;
 	}
 
 	private void runDetailsLoop(Account account) {
@@ -77,22 +90,42 @@ public class BankingApp {
 			prompt("What would you like to do now? (debit, credit, back)");
 			String command = console.readLine();
 			if(command.contains(CREDIT_COMMAND)){
-				String amount = getNonCommandPortion(command, CREDIT_COMMAND);
-				System.out.println("crediting accou8nt by GBP"+amount);
-				double amtAsNumber = Double.parseDouble(amount);
-				account.credit(amtAsNumber);
+				try {
+					double amtAsNumber= getNonCommandPortionAsDouble(command, CREDIT_COMMAND);
+					account.credit(amtAsNumber);
+					System.out.println("crediting account by GBP "+amtAsNumber);
+				} catch (NumberFormatException e) {
+					System.out.println("The string entered is not a number. Please try again");
+					continue;
+				}
 			}
+			
+			if(command.contains(DEBIT_COMMAND)){
+				try {
+					double amtAsNumber= getNonCommandPortionAsDouble(command, DEBIT_COMMAND);
+					account.debit(amtAsNumber);
+					System.out.println("debiting account by GBP "+amtAsNumber);
+				} catch (NumberFormatException e) {
+					System.out.println("The string entered is not a number. Please try again");
+					continue;
+				}
+			}
+			
 			if(command.contains("back")){
 				runDetailsLoop=false;
 			}
 		}
 	}
 
-	private String getNonCommandPortion(String request, String command) {
-		return request.replace(command, "").trim();
+	private double getNonCommandPortionAsDouble(String request, String command) {
+		String amount = getNonCommandPortion(request, command);
+		return Double.parseDouble(amount);
 	}
 
-	private void exit() {
+	private void exit() throws FileNotFoundException, IOException {
+		if(accountService instanceof Shutdownable){
+			((Shutdownable)accountService).shutdown();
+		}
 		System.out.println("Thanks for banking with DennyBank");
 		System.exit(0);
 	}
