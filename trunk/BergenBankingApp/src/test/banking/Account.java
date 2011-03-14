@@ -8,11 +8,7 @@ import java.io.Serializable;
  *
  */
 public abstract class Account implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	protected static final long serialVersionUID = 1L;
 	private String accountNumber="ABC-393-1994";
 	public String getAccountNumber() {
 		return accountNumber;

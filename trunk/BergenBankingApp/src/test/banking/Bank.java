@@ -17,7 +17,7 @@ public class Bank {
 	private Bank(){
 	}
 	
-	public void openNewAccount(CheckingAccount account) {
+	public void openNewAccount(Account account) {
 		accountService.openAccount(account);
 	}
 
