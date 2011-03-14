@@ -6,21 +6,21 @@ import java.util.Map;
 
 public class AccountServiceInMemoryImpl implements AccountService {
 
-	String checkingAccNumberStub = "BB123-192-";
-	String savingsAccNumberStub = "BBS123-192-";
+	String checkingAccNumberStub = "C-";
+	String savingsAccNumberStub = "S-";
 	private Map<String,Account> accountStore = new HashMap<String, Account>();
 	private int sequence=100;
 
 	public final static String[] testCheckingAccountNumbers = {
-		"BB123-192-6757",
-		"BB123-192-6758",
-		"BB123-192-6759",
+		"C-6757",
+		"C-6758",
+		"C-6759",
 	};
 	
 	public final static String[] testSavingsAccountNumbers = {
-		"BBS123-192-6757",
-		"BBS123-192-6758",
-		"BBS123-192-6759",
+		"S-6757",
+		"S-6758",
+		"S-6759",
 	};
 
 	
