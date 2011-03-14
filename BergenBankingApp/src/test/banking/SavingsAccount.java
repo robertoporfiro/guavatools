@@ -2,6 +2,8 @@ package test.banking;
 
 public class SavingsAccount extends Account {
 
+	protected static final long serialVersionUID = 1L;
+	
 	private double interestRate;
 
 	public void setInterestRate(double d) {
@@ -10,8 +12,6 @@ public class SavingsAccount extends Account {
 	 	}
 		this.interestRate = d;
 	}
-
-	
 
 	public SavingsAccount(String accountNumber) {
 		super(accountNumber);
