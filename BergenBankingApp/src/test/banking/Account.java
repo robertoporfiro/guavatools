@@ -16,6 +16,18 @@ public abstract class Account {
 		this.accountNumber = accountNumber;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder buf = new StringBuilder();
+		buf.append("Account Number: ");
+		buf.append(accountNumber);
+		buf.append(" | ");
+		buf.append("Balance: ");
+		buf.append(balance);
+		buf.append("\n");
+		return buf.toString();
+	}
+
 	public Account(String accountNumber) {
 		super();
 		this.accountNumber = accountNumber;

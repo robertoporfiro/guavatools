@@ -1,4 +1,4 @@
-package test.banking;
+package test.misc;
 
 import java.util.Date;
 
