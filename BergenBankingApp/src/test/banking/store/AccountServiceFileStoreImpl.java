@@ -49,7 +49,12 @@ public class AccountServiceFileStoreImpl implements AccountService, Shutdownable
 	 */
 	@SuppressWarnings("unchecked")
 	void load() throws FileNotFoundException, IOException, ClassNotFoundException {
-		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(this.fileStore));
+		FileInputStream fileInputStream = new FileInputStream(this.fileStore);
+		if(fileInputStream.available() <1){
+			System.out.println("No file yet. Skipping load from disk");
+			return;
+		}
+		ObjectInputStream ois = new ObjectInputStream(fileInputStream);
 		Collection<Account> accounts = null;
 		try{
 			accounts = (Collection<Account>) ois.readObject();
