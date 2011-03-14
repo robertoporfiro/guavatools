@@ -1,12 +1,18 @@
 package test.banking;
 
+import java.io.Serializable;
+
 /**
  * The account class 
  * @author denny
  *
  */
-public abstract class Account {
+public abstract class Account implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String accountNumber="ABC-393-1994";
 	public String getAccountNumber() {
 		return accountNumber;
