@@ -34,11 +34,5 @@ public class BankingServer {
 		NetworkBankingSession session = new NetworkBankingSession(reader,writer);
 		Thread sessionThread = new Thread(session);
 		sessionThread.start();
-		try {
-			sessionThread.join();
-		} catch (InterruptedException e) {
-			//ignore
-		}
-		System.out.println("Customer session ending");
 	}
 }
