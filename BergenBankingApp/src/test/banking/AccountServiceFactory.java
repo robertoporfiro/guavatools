@@ -6,7 +6,12 @@ import java.util.Properties;
 
 public class AccountServiceFactory {
 
+	private static AccountService instance;
+
 	public static AccountService getAccountService() {
+		if(instance != null){
+			return instance;
+		}
 		Properties props = new Properties();
 		InputStream is = AccountServiceFactory.class.getResourceAsStream("/banking-app.properties");
 		try {
@@ -18,6 +23,7 @@ public class AccountServiceFactory {
 			@SuppressWarnings("unchecked")
 			Class<? extends AccountService> serviceImplClass = (Class<? extends AccountService>) Class.forName(props.getProperty("test.banking.AccountService.Implementation.Classname"));
 			AccountService serviceImpl = (AccountService) serviceImplClass.newInstance();
+			instance=serviceImpl;
 			return serviceImpl;
 			
 			

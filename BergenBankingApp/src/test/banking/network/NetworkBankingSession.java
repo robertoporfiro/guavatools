@@ -20,7 +20,6 @@ public class NetworkBankingSession extends BankingSession {
 	public String readLine() {
 		try {
 			String readLine = reader.readLine();
-			System.out.printf("(%s)",readLine);
 			return readLine;
 		} catch (IOException e) {
 			e.printStackTrace();
