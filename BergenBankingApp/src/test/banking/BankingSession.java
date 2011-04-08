@@ -10,12 +10,12 @@ import test.banking.store.Shutdownable;
  * @author denny
  *
  */
-public abstract class BankingSession{
+public abstract class BankingSession implements Runnable{
 
 	private static final String CREDIT_COMMAND = "credit";
 	private static final String DETAIL_COMMAND = "detail";
 	private static final String DEBIT_COMMAND = "debit";
-	private boolean showtime = true;
+	protected boolean showtime = true;
 	private AccountService accountService = AccountServiceFactory.getAccountService();
 
 	public BankingSession(){
@@ -54,7 +54,6 @@ public abstract class BankingSession{
 		}
 		if(action.equalsIgnoreCase("exit")){
 			try {
-				exit();
 				dispose();
 			} catch (Exception e) {
 				throw new RuntimeException(e);
@@ -120,13 +119,6 @@ public abstract class BankingSession{
 		return Double.parseDouble(amount);
 	}
 
-	private void exit() throws FileNotFoundException, IOException {
-		if(accountService instanceof Shutdownable){
-			((Shutdownable)accountService).shutdown();
-		}
-		print("Thanks for banking with DennyBank");
-		showtime=false;
-	}
 
 	private void printAccountDetails() {
 		print("----Printin all account details-----");

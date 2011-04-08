@@ -43,7 +43,7 @@ public class WaitNotifyDemo {
 				stack.push(1);
 				stack.push(2);
 				stack.push(3);
-				stack.notify();
+				stack.notifyAll();
 			}
 		}
 	}

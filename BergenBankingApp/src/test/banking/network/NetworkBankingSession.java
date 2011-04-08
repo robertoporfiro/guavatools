@@ -36,12 +36,13 @@ public class NetworkBankingSession extends BankingSession {
 
 	@Override
 	public void dispose() {
+		showtime=false;
 		try {
 			reader.close();
+			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		writer.close();
 	}
 
 }

@@ -36,6 +36,16 @@ public class AccountServiceFileStoreImpl implements AccountService, Shutdownable
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+		Runtime.getRuntime().addShutdownHook(new Thread(){
+			@Override
+			public void run() {
+				try {
+					shutdown();
+				} catch (Exception e) {
+					e.printStackTrace();	//otherwise ignore
+				}
+			}
+		});
 		
 	}
 	

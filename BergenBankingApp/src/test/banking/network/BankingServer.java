@@ -32,8 +32,13 @@ public class BankingServer {
 		PrintWriter writer = new PrintWriter(socket.getOutputStream());
 		BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		NetworkBankingSession session = new NetworkBankingSession(reader,writer);
-		session.run();
+		Thread sessionThread = new Thread(session);
+		sessionThread.start();
+		try {
+			sessionThread.join();
+		} catch (InterruptedException e) {
+			//ignore
+		}
 		System.out.println("Customer session ending");
-		session.dispose();
 	}
 }

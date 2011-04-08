@@ -7,9 +7,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class BankingClient {
 	
@@ -67,7 +64,9 @@ public class BankingClient {
 				while(showtime){
 					try {
 						String line = reader.readLine();
-						System.out.println("line");
+						if(line.equals("exit")){
+							showtime=false;
+						}
 						serverStream.println(line);
 						serverStream.flush();
 					} catch (IOException e) {
