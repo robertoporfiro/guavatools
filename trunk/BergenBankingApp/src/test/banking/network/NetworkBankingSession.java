@@ -19,7 +19,9 @@ public class NetworkBankingSession extends BankingSession {
 	@Override
 	public String readLine() {
 		try {
-			return reader.readLine();
+			String readLine = reader.readLine();
+			System.out.printf("(%s)",readLine);
+			return readLine;
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "Server Error: "+e;
@@ -29,6 +31,7 @@ public class NetworkBankingSession extends BankingSession {
 	@Override
 	public void print(String string) {
 		writer.println(string);
+		writer.flush();
 	}
 
 	@Override
