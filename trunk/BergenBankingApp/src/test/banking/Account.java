@@ -38,9 +38,11 @@ public abstract class Account implements Serializable {
 	protected double balance;
 
 	public void debit(double values) {
-		if(!((this.balance-values) <0)){
-			balance -= values;			
+		synchronized (this) {
+			if(!((this.balance-values) <0))
+				balance -= values;			
 		}
+		
 		
 	}
 
@@ -48,7 +50,7 @@ public abstract class Account implements Serializable {
 		return balance;
 	}
 
-	public void credit(double value) {
+	public synchronized void credit(double value) {
 		balance +=value;
 	}
 

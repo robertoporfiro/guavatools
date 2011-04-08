@@ -10,9 +10,10 @@ public class TestServer {
 
 	
 	public static void main(String[] args) throws IOException {
+		int portNumber = 80;
+		ServerSocket serverSocket = new ServerSocket(portNumber);
 		while(true){
-			ServerSocket serverSocket = new ServerSocket(12345);
-			System.out.println("Blocking to wait for connections...");
+			System.out.println("Blocking to wait for connections on "+portNumber);
 			Socket socket = serverSocket.accept();
 			InputStream is = socket.getInputStream();
 			DataInputStream dis = new DataInputStream(is);
