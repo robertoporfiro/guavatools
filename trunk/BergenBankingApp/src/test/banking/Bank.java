@@ -1,6 +1,10 @@
 package test.banking;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Collection;
+
+import test.banking.store.Shutdownable;
 
 /**
  * Holds a collection of bank accounts
@@ -30,6 +34,12 @@ public class Bank {
 	}
 	public Collection<Account> getAllAccounts() {
 		return accountService.getAccounts();
+	}
+
+	public void exit() throws FileNotFoundException, IOException {
+		if(accountService instanceof Shutdownable){
+			((Shutdownable)accountService).shutdown();
+		}
 	}
 
 	
