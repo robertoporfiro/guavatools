@@ -27,6 +27,7 @@ public abstract class BankingSession{
 		while(!loggedIn){
 			prompt("Please enter your username");
 			String user = readLine();
+			System.out.println("User="+user);
 			prompt("Please enter your password");
 			String pass= readLine();
 			
