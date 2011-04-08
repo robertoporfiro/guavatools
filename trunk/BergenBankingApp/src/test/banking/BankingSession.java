@@ -27,7 +27,7 @@ public abstract class BankingSession implements Runnable{
 		while(!loggedIn){
 			prompt("Please enter your username");
 			String user = readLine();
-			System.out.println("User="+user);
+			System.out.printf("Logging in user %s...",user);
 			prompt("Please enter your password");
 			String pass= readLine();
 			
@@ -54,7 +54,9 @@ public abstract class BankingSession implements Runnable{
 		}
 		if(action.equalsIgnoreCase("exit")){
 			try {
+				showtime=false;
 				dispose();
+				return;
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
