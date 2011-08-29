@@ -2,6 +2,8 @@ package test.banking.transfer;
 
 public interface InterbankService {
 
-	ExternalBank getBank(int sortCode);
+	public ExternalBank getBank(int sortCode);
+	public boolean verifySortCode(int sortCode);
+	
 
 }
